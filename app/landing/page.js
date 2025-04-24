@@ -1,6 +1,9 @@
+import Header from "@/components/Header/Header";
+
 function Landing() {
   return (
-    <div>
+    <div className="p-6">
+      <Header />
       <h1>Text</h1>
     </div>
   );
