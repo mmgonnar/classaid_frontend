@@ -1,5 +1,3 @@
-import Header from "@/components/Header/Header";
-
 function Landing() {
   return (
     <div className="p-6">
