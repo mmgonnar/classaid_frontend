@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0');
 @import "tailwindcss";
 
-:root {
+@theme inline {
   --color-primary: #1E3A8A;
   --color-secondary: #F0F6FF;
   --font-main: var(--font-inter);

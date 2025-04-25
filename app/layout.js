@@ -1,8 +1,7 @@
 import { Inter } from 'next/font/google';
-
-import Header from '@/components/Header/Header';
 import './globals.css';
-import Footer from '@/components/Header/Footer';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 export const metadata = {
   title: 'ClassAid App',
