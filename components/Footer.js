@@ -1,12 +1,8 @@
 import Link from 'next/link';
+import { menuItems } from '../utils/constants';
 
 function Footer() {
-  const footerItems = [
-    { text: 'About', href: '/' },
-    { text: 'Privacy', href: '/' },
-    { text: 'Terms', href: '/' },
-    { text: 'Contact', href: '/contact' },
-  ];
+  const footerItems = menuItems.filter((item) => item.isFooter);
 
   return (
     <footer className="w-full bg-neutral-700 p-6 pt-12 text-xs text-neutral-200">

@@ -2,22 +2,18 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { menuItems } from '../utils/constants';
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const headerItems = menuItems.filter((item) => item.isHeader);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const menuItems = [
-    { text: 'Pricing', href: '/pricing' },
-    { text: 'Sign In', href: '/signin' },
-    { text: 'Create Account', href: '/register', isButton: true },
-  ];
-
   return (
-    <header className="flex w-full items-center justify-between bg-white p-6 sm:bg-transparent">
+    <header className="fixed top-0 flex w-full items-center justify-between bg-white p-6 sm:bg-transparent">
       <h1 className="text-bg-blue-800 text-xl font-bold">ClassAid</h1>
 
       {/* Burger */}
@@ -35,11 +31,11 @@ function Header() {
 
       {/* Movil */}
       {isMenuOpen && (
-        <nav className="absolute top-16 left-0 z-50 flex w-full flex-col items-center gap-2 bg-white p-4 shadow-md sm:hidden">
-          {menuItems.map((item) =>
+        <nav className="e absolute top-16 left-0 z-50 flex w-full transform flex-col items-center gap-2 bg-white p-4 shadow-md transition-all duration-150">
+          {headerItems.map((item) =>
             item.isButton ? (
               <Link key={item.text} href={item.href} className="w-full">
-                <button className="bg-primary w-full rounded-full p-2 text-center text-sm font-medium text-white hover:bg-blue-900">
+                <button className="w-full rounded-full bg-blue-800 p-2 text-center text-sm font-medium text-white hover:bg-blue-900">
                   {item.text}
                 </button>
               </Link>
@@ -58,7 +54,7 @@ function Header() {
       )}
       {/* Desktop */}
       <nav className="hidden items-center gap-6 sm:flex">
-        {menuItems.map((item) =>
+        {headerItems.map((item) =>
           item.isButton ? (
             <Link key={item.text} href={item.href}>
               <button className="bg-primary w-full rounded-full p-2 text-center text-sm font-medium text-white hover:bg-blue-900">
@@ -71,13 +67,6 @@ function Header() {
             </Link>
           ),
         )}
-
-        {/* <Link href="/" className="">
-          Pricing
-        </Link>
-        <Link href="/" className="">
-          Sign In
-        </Link> */}
       </nav>
     </header>
   );
