@@ -1,20 +1,13 @@
 'use client';
 import Link from 'next/link';
 import { useState } from 'react';
-
-import BurgerIcon from '../../icons/burger.svg';
-import CloseIcon from '../../icons/close.svg';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-//import { Bars3Icon } from '@heroicons/react/24/outline';
-//import { MenuBook } from '@mui/icons-material';
-//import { HomeIcon } from 'lucide-react';
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-    console.log('Clic');
   };
 
   const menuItems = [
@@ -26,7 +19,6 @@ function Header() {
   return (
     <header className="flex w-full items-center justify-between bg-white p-6 sm:bg-transparent">
       <h1 className="text-bg-blue-800 text-xl font-bold">ClassAid</h1>
-      <div></div>
 
       {/* Burger */}
       <button
@@ -34,22 +26,11 @@ function Header() {
         onClick={toggleMenu}
       >
         <Bars3Icon
-          className={`text-primary col-start-1 col-end-2 row-start-1 row-end-2 h-6 w-6 transition-all duration-300 ${isMenuOpen ? 'rotate-0 opacity-0' : 'rotate-0 opacity-100'}`}
+          className={`text-primary col-start-1 col-end-2 row-start-1 row-end-2 h-6 w-6 transition-all duration-100 ${isMenuOpen ? 'rotate-0 opacity-0' : 'rotate-0 opacity-100'}`}
         />
         <XMarkIcon
-          className={`text-primary col-start-1 col-end-2 row-start-1 row-end-2 h-6 w-6 rotate-180 transform transition-all duration-300 ${!isMenuOpen ? 'rotate-0 opacity-0' : 'rotate-90 opacity-100'}`}
+          className={`text-primary col-start-1 col-end-2 row-start-1 row-end-2 h-6 w-6 rotate-180 transform transition-all duration-150 ${!isMenuOpen ? 'rotate-0 opacity-0' : 'rotate-90 opacity-100'}`}
         />
-
-        {/* {isMenuOpen ? (
-          <XMarkIcon
-            className={`text-primary h-6 w-6 rotate-180 transform transition-all duration-300 ${isMenuOpen ? 'rotate-0 opacity-0' : 'rotate-90 opacity-100'}`}
-          />
-        ) : (
-          <Bars3Icon
-            className={`text-primary h-6 w-6 transition-all duration-300 ${!isMenuOpen ? 'rotate-0 opacity-0' : 'rotate-90 opacity-100'}`}
-          />
-        )} */}
-        {/*  */}
       </button>
 
       {/* Movil */}
