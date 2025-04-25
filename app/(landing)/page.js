@@ -1,6 +1,6 @@
 function Landing() {
   return (
-    <div>
+    <div className="p-6">
       <h1>Text</h1>
     </div>
   );
