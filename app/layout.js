@@ -2,6 +2,7 @@ import { Inter } from 'next/font/google';
 
 import Header from '@/components/Header/Header';
 import './globals.css';
+import Footer from '@/components/Header/Footer';
 
 export const metadata = {
   title: 'ClassAid App',
@@ -17,6 +18,7 @@ export default function RootLayout({ children }) {
       <body className={`${inter.variable} min-h-dvh`}>
         <Header />
         <section>{children}</section>
+        <Footer />
       </body>
     </html>
   );
