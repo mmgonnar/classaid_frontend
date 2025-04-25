@@ -61,7 +61,7 @@ function Header() {
         {menuItems.map((item) =>
           item.isButton ? (
             <Link key={item.text} href={item.href}>
-              <button className="rounded-full bg-blue-800 px-4 py-2 text-sm font-medium text-white hover:bg-blue-900">
+              <button className="bg-primary w-full rounded-full p-2 text-center text-sm font-medium text-white hover:bg-blue-900">
                 {item.text}
               </button>
             </Link>
