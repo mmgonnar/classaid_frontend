@@ -10,7 +10,8 @@ function Footer() {
 
   return (
     <footer className="w-full bg-neutral-700 p-6 pt-12 text-xs text-neutral-200">
-      <div className="flex flex-col items-center gap-4 md:flex-row md:justify-between">
+      <div className="w-full border-t border-solid bg-amber-50"></div>
+      <div className="flex flex-col items-center gap-4 pt-6 md:flex-row md:justify-between">
         <div className="flex flex-col items-center gap-4 md:flex-row">
           <p className="text-center">
             {' \u00A9'} {new Date().getFullYear()} | {'ClassAid'}
