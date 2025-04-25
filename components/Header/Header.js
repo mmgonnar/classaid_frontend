@@ -4,8 +4,10 @@ import { useState } from 'react';
 
 import BurgerIcon from '../../icons/burger.svg';
 import CloseIcon from '../../icons/close.svg';
-import { MenuBook } from '@mui/icons-material';
-import { Menu } from 'lucide-react';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+//import { Bars3Icon } from '@heroicons/react/24/outline';
+//import { MenuBook } from '@mui/icons-material';
+//import { HomeIcon } from 'lucide-react';
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,30 +24,32 @@ function Header() {
   ];
 
   return (
-    <header className="flex w-full items-center justify-between bg-white">
+    <header className="flex w-full items-center justify-between bg-white p-6 sm:bg-transparent">
       <h1 className="text-bg-blue-800 text-xl font-bold">ClassAid</h1>
       <div></div>
 
       {/* Burger */}
-      <button className="cursor-pointer p-2 sm:hidden" onClick={toggleMenu}>
-        {/* <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="size-6"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+      <button
+        className="grid cursor-pointer grid-cols-1 grid-rows-1 p-2 sm:hidden"
+        onClick={toggleMenu}
+      >
+        <Bars3Icon
+          className={`text-primary col-start-1 col-end-2 row-start-1 row-end-2 h-6 w-6 transition-all duration-300 ${isMenuOpen ? 'rotate-0 opacity-0' : 'rotate-0 opacity-100'}`}
+        />
+        <XMarkIcon
+          className={`text-primary col-start-1 col-end-2 row-start-1 row-end-2 h-6 w-6 rotate-180 transform transition-all duration-300 ${!isMenuOpen ? 'rotate-0 opacity-0' : 'rotate-90 opacity-100'}`}
+        />
+
+        {/* {isMenuOpen ? (
+          <XMarkIcon
+            className={`text-primary h-6 w-6 rotate-180 transform transition-all duration-300 ${isMenuOpen ? 'rotate-0 opacity-0' : 'rotate-90 opacity-100'}`}
           />
-        </svg> */}
-
-        <img src={BurgerIcon.src} alt="burger menu" />
-
-        <Menu />
+        ) : (
+          <Bars3Icon
+            className={`text-primary h-6 w-6 transition-all duration-300 ${!isMenuOpen ? 'rotate-0 opacity-0' : 'rotate-90 opacity-100'}`}
+          />
+        )} */}
+        {/*  */}
       </button>
 
       {/* Movil */}
