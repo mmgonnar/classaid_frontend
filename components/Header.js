@@ -14,7 +14,9 @@ function Header() {
 
   return (
     <header className="fixed top-0 flex w-full items-center justify-between bg-white p-6 sm:bg-transparent">
-      <h1 className="text-bg-blue-800 text-xl font-bold">ClassAid</h1>
+      <Link href="/">
+        <h1 className="text-bg-blue-800 text-xl font-bold">ClassAid</h1>
+      </Link>
 
       {/* Burger */}
       <button
@@ -32,24 +34,21 @@ function Header() {
       {/* Movil */}
       {isMenuOpen && (
         <nav className="e absolute top-16 left-0 z-50 flex w-full transform flex-col items-center gap-2 bg-white p-4 shadow-md transition-all duration-150">
-          {headerItems.map((item) =>
-            item.isButton ? (
-              <Link key={item.text} href={item.href} className="w-full">
-                <button className="w-full rounded-full bg-blue-800 p-2 text-center text-sm font-medium text-white hover:bg-blue-900">
+          {headerItems.map((item) => (
+            <Link
+              key={item.text}
+              href={item.href}
+              className={item.isButton ? 'w-full' : 'w-full p-2 text-center hover:bg-gray-100'}
+            >
+              {item.isButton ? (
+                <button className="bg-primary w-full rounded-full py-1 text-center text-sm font-medium text-white hover:bg-blue-800">
                   {item.text}
                 </button>
-              </Link>
-            ) : (
-              <Link
-                key={item.text}
-                href={item.href}
-                className="w-full p-2 text-center hover:bg-gray-100"
-                onClick={toggleMenu}
-              >
-                {item.text}
-              </Link>
-            ),
-          )}
+              ) : (
+                item.text
+              )}
+            </Link>
+          ))}
         </nav>
       )}
       {/* Desktop */}
@@ -57,7 +56,7 @@ function Header() {
         {headerItems.map((item) =>
           item.isButton ? (
             <Link key={item.text} href={item.href}>
-              <button className="bg-primary w-full rounded-full p-2 text-center text-sm font-medium text-white hover:bg-blue-900">
+              <button className="bg-primary w-full rounded-full p-2 px-10 text-center text-sm font-medium text-white hover:bg-blue-900">
                 {item.text}
               </button>
             </Link>

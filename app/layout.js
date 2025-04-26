@@ -14,7 +14,7 @@ const inter = Inter({ variable: '--font-inter', subsets: ['latin'] });
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} min-h-dvh`}>
+      <body className={`${inter.variable} bg-secondary flex min-h-dvh flex-col`}>
         <Header />
         <section>{children}</section>
         <Footer />
