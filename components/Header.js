@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { menuItems } from '../utils/constants';
+import MainButton from './MainButton';
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -55,11 +56,7 @@ function Header() {
       <nav className="hidden items-center gap-6 sm:flex">
         {headerItems.map((item) =>
           item.isButton ? (
-            <Link key={item.text} href={item.href}>
-              <button className="bg-primary w-full rounded-full p-2 px-10 text-center text-sm font-medium text-white hover:bg-blue-900">
-                {item.text}
-              </button>
-            </Link>
+            <MainButton variant="primary" text="Sign Up" key={item.text} href={item.href} />
           ) : (
             <Link key={item.text} href={item.href} className="hover:text-blue-800">
               {item.text}
@@ -70,5 +67,5 @@ function Header() {
     </header>
   );
 }
-
+//
 export default Header;
