@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { menuItems } from '../utils/constants';
 import MainButton from './MainButton';
+import { CTA } from '@/utils/enums';
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,7 +15,7 @@ function Header() {
   };
 
   return (
-    <header className="fixed top-0 flex w-full items-center justify-between bg-white p-6 sm:bg-transparent">
+    <header className="fixed top-0 flex h-[50px] w-full items-center justify-between bg-white p-6 px-10 text-sm sm:bg-transparent md:px-10">
       <Link href="/">
         <h1 className="text-bg-blue-800 text-xl font-bold">ClassAid</h1>
       </Link>
@@ -42,9 +43,12 @@ function Header() {
               className={item.isButton ? 'w-full' : 'w-full p-2 text-center hover:bg-gray-100'}
             >
               {item.isButton ? (
-                <button className="bg-primary w-full rounded-full py-1 text-center text-sm font-medium text-white hover:bg-blue-800">
-                  {item.text}
-                </button>
+                <MainButton
+                  variant="fullWidth"
+                  text={CTA.CREATE_ACCOUNT}
+                  key={item.text}
+                  href={item.href}
+                />
               ) : (
                 item.text
               )}
@@ -56,7 +60,12 @@ function Header() {
       <nav className="hidden items-center gap-6 sm:flex">
         {headerItems.map((item) =>
           item.isButton ? (
-            <MainButton variant="primary" text="Sign Up" key={item.text} href={item.href} />
+            <MainButton
+              variant="primary"
+              text={CTA.CREATE_ACCOUNT}
+              key={item.text}
+              href={item.href}
+            />
           ) : (
             <Link key={item.text} href={item.href} className="hover:text-blue-800">
               {item.text}
