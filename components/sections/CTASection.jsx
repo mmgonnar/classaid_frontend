@@ -11,8 +11,8 @@ function CTASection({
   return (
     <section className="flex h-[180px] flex-col justify-between gap-5 bg-white p-6 px-10 sm:flex-row md:items-center md:px-18">
       <div>
-        <h1 className="mb-2 text-2xl font-bold text-neutral-800">{title}</h1>
-        <h2 className="text-gray-600">{subtitle}</h2>
+        <h2 className="mb-2 text-2xl font-bold text-neutral-800">{title}</h2>
+        <h3 className="text-gray-600">{subtitle}</h3>
       </div>
       <div className="flex items-center sm:self-stretch">
         <MainButton variant="primary" text={buttonText} />
