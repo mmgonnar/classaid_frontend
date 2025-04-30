@@ -10,6 +10,7 @@
 @theme inline {
   --color-primary: #1E3A8A;
   --color-secondary: #F0F6FF;
+  --color-third: #DEEBFF;
   --font-main: var(--font-inter);
 }
 
