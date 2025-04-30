@@ -9,7 +9,7 @@ function Title() {
     <section className="bg-[linear-gradient(45deg,#659CF6,#F6F6F6 )] pt-5 pb-15 md:pt-2">
       <div className="mx-auto w-screen max-w-screen-xl pt-18 sm:px-6 sm:py-10 lg:px-8 lg:py-32">
         <div className="relative mx-auto max-w-prose text-center">
-          <h1 className="z-1 text-4xl font-bold text-gray-900 sm:text-5xl">
+          <h1 className="z-1 text-3xl font-bold text-gray-900 sm:text-5xl">
             Simplify.
             <strong className="text-primary"> Teach </strong>. Empower.
           </h1>
