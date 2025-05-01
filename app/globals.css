@@ -14,3 +14,7 @@
   --font-main: var(--font-inter);
 }
 
+html, body {
+  max-width: 100%;
+  /* overflow-x: hidden; */
+}
