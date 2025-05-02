@@ -1,21 +1,44 @@
 'use client';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { menuItems } from '../utils/constants';
 import MainButton from './MainButton';
 import { CTA } from '@/utils/enums';
+import { cn } from '@/utils/functions';
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const headerItems = menuItems.filter((item) => item.isHeader);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <header className="fixed top-0 flex h-[50px] w-full items-center justify-between bg-white p-6 px-10 text-sm sm:bg-transparent md:px-10">
+    <header
+      className={cn(
+        'sticky top-0 z-50 flex h-[50px] w-full items-center justify-between p-6 text-sm transition-all duration-100',
+        'bg-white shadow-md',
+        'sm:bg-transparent sm:shadow-none',
+        isScrolled && 'sm:bg-white sm:shadow-md',
+        !isScrolled && 'shadow-lg',
+      )}
+    >
       <Link href="/">
         <h1 className="text-bg-blue-800 text-xl font-bold">ClassAid</h1>
       </Link>
@@ -35,7 +58,7 @@ function Header() {
 
       {/* Movil */}
       {isMenuOpen && (
-        <nav className="e absolute top-16 left-0 z-50 flex w-full transform flex-col items-center gap-2 bg-white p-4 shadow-md transition-all duration-150">
+        <nav className="absolute top-10 left-0 z-50 flex w-full transform flex-col items-center gap-2 bg-white p-4 shadow-md transition-all duration-150">
           {headerItems.map((item) => (
             <Link
               key={item.text}

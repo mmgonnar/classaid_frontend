@@ -9,7 +9,7 @@ function Title() {
     <section className="bg-[linear-gradient(45deg,#659CF6,#F6F6F6 )] pt-5 pb-60 md:pt-2 md:pb-100">
       <div className="mx-auto w-screen max-w-screen-xl pt-18 sm:px-6 sm:py-10 lg:px-8 lg:py-32">
         <div className="relative mx-auto max-w-prose text-center">
-          <h1 className="z-1 text-3xl font-bold text-gray-900 sm:text-5xl">
+          <h1 className="text-3xl font-bold text-gray-900 sm:text-5xl">
             Simplify.
             <strong className="text-primary"> Teach </strong>. Empower.
           </h1>
@@ -24,7 +24,7 @@ function Title() {
           </div>
           <Image
             src={browserScreen}
-            className="md: absolute top-[220px] left-1/2 z-10 w-full max-w-6xl -translate-x-1/2 transform object-contain"
+            className="md: absolute top-[220px] left-1/2 w-full max-w-6xl -translate-x-1/2 transform object-contain"
             alt="Browser screen image"
           />
         </div>
