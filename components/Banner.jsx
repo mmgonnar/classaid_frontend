@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 function Title() {
   return (
-    <section className="bg-[linear-gradient(45deg,#659CF6,#F6F6F6 )] pt-5 pb-60 md:pt-2 md:pb-100">
+    <section className="bg-[linear-gradient(45deg,#659CF6,#F6F6F6 )] pt-5 pb-60 md:pt-20 md:pb-100">
       <div className="mx-auto w-screen max-w-screen-xl pt-18 sm:px-6 sm:py-10 lg:px-8 lg:py-32">
         <div className="relative mx-auto max-w-prose text-center">
           <h1 className="text-3xl font-bold text-gray-900 sm:text-5xl">
@@ -14,7 +14,7 @@ function Title() {
             <strong className="text-primary"> Teach </strong>. Empower.
           </h1>
 
-          <p className="mt-4 text-base text-pretty text-gray-700 sm:text-lg/relaxed">
+          <p className="mt-4 text-base text-pretty text-gray-700 md:text-lg/relaxed">
             Your digital ally to simplify your class management and transform teaching
           </p>
 
