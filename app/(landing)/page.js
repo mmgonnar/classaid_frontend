@@ -1,8 +1,16 @@
+import CTASection from '@/components/sections/CTASection';
+import Banner from '@/components/Banner';
+import { TextBlock } from '@/components/TextTemplate';
+import FeaturesSection from '@/components/sections/FeaturesSection';
+
 function Landing() {
   return (
-    <div className="p-6">
-      <h1>Text</h1>
-    </div>
+    <>
+      <Banner />
+      <TextBlock />
+      <FeaturesSection />
+      <CTASection />
+    </>
   );
 }
 

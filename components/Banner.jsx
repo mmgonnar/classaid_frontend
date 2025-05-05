@@ -6,13 +6,7 @@ import Image from 'next/image';
 
 function Title() {
   return (
-    <section
-      className="pt-5 pb-60 md:pt-20 md:pb-50"
-      style={{
-        background: 'linear-gradient(45deg, rgba(101, 156, 246, 0.9), rgba(246, 246, 246, 0.7))',
-        maskImage: 'linear-gradient(to bottom, black 70%, transparent 95%)',
-      }}
-    >
+    <section className="relative top-[-50px] bg-[linear-gradient(345deg,rgba(101,156,246,0.3),rgba(246,246,246,0.2))] pb-60 md:pt-20 md:pb-50">
       <div className="mx-auto w-screen max-w-screen-xl pt-18 sm:px-6 sm:py-10 lg:px-8 lg:py-32">
         <div className="relative mx-auto max-w-prose text-center">
           <h1 className="text-3xl font-bold text-gray-900 sm:text-5xl">
@@ -30,7 +24,7 @@ function Title() {
           </div>
           <Image
             src={browserScreen}
-            className="md: absolute top-[220px] left-1/2 w-full max-w-6xl -translate-x-1/2 transform object-contain"
+            className="absolute top-[180px] left-1/2 w-full max-w-6xl -translate-x-1/2 transform object-contain"
             alt="Browser screen image"
           />
         </div>
