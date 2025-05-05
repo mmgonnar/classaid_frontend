@@ -40,7 +40,9 @@ function Header() {
       )}
     >
       <Link href="/">
-        <h1 className="text-bg-blue-800 text-xl font-bold">ClassAid</h1>
+        <h1 className="text-primary text-xl font-bold">
+          Classs<spa className="font-black">Aid</spa>
+        </h1>
       </Link>
 
       {/* Burger */}
