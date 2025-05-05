@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import TextTemplate from '../TextTemplate';
+import { TextTemplate } from '../TextTemplate';
 import phoneScreen from '../../img/phone_screen.png';
 
 function FeaturesSection() {

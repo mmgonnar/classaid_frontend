@@ -6,7 +6,13 @@ import Image from 'next/image';
 
 function Title() {
   return (
-    <section className="bg-[linear-gradient(45deg,#659CF6,#F6F6F6 )] pt-5 pb-60 md:pt-20 md:pb-100">
+    <section
+      className="pt-5 pb-60 md:pt-20 md:pb-50"
+      style={{
+        background: 'linear-gradient(45deg, rgba(101, 156, 246, 0.9), rgba(246, 246, 246, 0.7))',
+        maskImage: 'linear-gradient(to bottom, black 70%, transparent 95%)',
+      }}
+    >
       <div className="mx-auto w-screen max-w-screen-xl pt-18 sm:px-6 sm:py-10 lg:px-8 lg:py-32">
         <div className="relative mx-auto max-w-prose text-center">
           <h1 className="text-3xl font-bold text-gray-900 sm:text-5xl">

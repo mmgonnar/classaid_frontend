@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
-      <body className={`${inter.variable} bg-secondary flex min-h-dvh flex-col`}>
+      <body className={`${inter.variable}flex min-h-dvh flex-col`}>
         <Header />
         <section>{children}</section>
         <Footer />
