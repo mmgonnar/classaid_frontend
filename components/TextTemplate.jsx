@@ -19,7 +19,7 @@ function TextTemplate({
 }
 
 function TextBlock({
-  title = 'An awesome catch line',
+  title = 'Awesome catch line',
   text = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
 }) {
   return (
