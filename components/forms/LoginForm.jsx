@@ -11,7 +11,7 @@ function LoginForm() {
   };
 
   return (
-    <>
+    <div className="flex flex-col gap-10">
       <form action="submit" className="flex flex-col gap-3" onSubmit={handleSubmit}>
         {loginInputs.map((item) => (
           <div
@@ -30,13 +30,12 @@ function LoginForm() {
             />
           </div>
         ))}
-
-        <button className="text-primary cursor-pointer text-left text-sm">
-          Forgot your password?
-        </button>
-        <MainButton type="submit" variant="primary" text={CTA.SIGN_IN} />
       </form>
-    </>
+      <button className="text-primary cursor-pointer text-left text-sm">
+        Forgot your password?
+      </button>
+      <MainButton type="submit" variant="primary" text={CTA.SIGN_IN} />
+    </div>
   );
 }
 

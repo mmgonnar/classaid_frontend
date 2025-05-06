@@ -9,7 +9,7 @@ export const menuItems = [
   { text: 'About', href: '/', isFooter: true, icon: '' },
   { text: 'Privacy', href: '/', isFooter: true, icon: '' },
   { text: 'Terms', href: '/', isFooter: true, icon: '' },
-  { text: 'Contact', href: '/contact', isFooter: true, icon: AccountCircleOutlinedIcon },
+  { text: 'Contact', href: '/contact', isFooter: true },
 ];
 
 export const formInputs = [
