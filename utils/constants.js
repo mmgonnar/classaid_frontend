@@ -1,6 +1,7 @@
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import AlternateEmailOutlinedIcon from '@mui/icons-material/AlternateEmailOutlined';
 import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
+import { Truculenta } from 'next/font/google';
 
 export const menuItems = [
   { text: 'Pricing', href: '/pricing', isHeader: true },
@@ -13,7 +14,14 @@ export const menuItems = [
 ];
 
 export const formInputs = [
-  { type: 'text', name: 'name', id: 'name', placeholder: 'Name', icon: AccountCircleOutlinedIcon },
+  {
+    type: 'text',
+    name: 'name',
+    id: 'name',
+    placeholder: 'Name',
+    icon: AccountCircleOutlinedIcon,
+    isRegister: true,
+  },
   {
     type: 'text',
     name: 'email',
@@ -21,6 +29,7 @@ export const formInputs = [
     placeholder: 'Email',
     icon: AlternateEmailOutlinedIcon,
     isLogin: true,
+    isRegister: true,
   },
   {
     type: 'password',
@@ -29,6 +38,7 @@ export const formInputs = [
     placeholder: 'Password',
     icon: LockOpenOutlinedIcon,
     isLogin: true,
+    isRegister: true,
   },
   {
     type: 'password',
@@ -36,6 +46,6 @@ export const formInputs = [
     id: 'confirmPassword',
     placeholder: 'Confirm Password',
     icon: LockOpenOutlinedIcon,
-    isLogin: true,
+    isRegister: true,
   },
 ];

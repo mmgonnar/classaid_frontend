@@ -1,8 +1,9 @@
 import MainButton from '@/components/MainButton';
 import { CTA } from '@/utils/enums';
 import Link from 'next/link';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import SubmitForm from '@/components/SubmitForm';
+
+import LoginForm from '@/components/forms/LoginForm';
+import RegisterForm from '@/components/forms/RegisterForm';
 
 function Login() {
   return (
@@ -29,18 +30,7 @@ function Login() {
           </p>
         </div>
 
-        <form action="submit" className="flex flex-col gap-3">
-          {/* Mapear inputs */}
-          <div className="w-[250px] rounded-md border border-neutral-400">
-            <AccountCircleOutlinedIcon className="mr-1 text-sm text-neutral-400" />
-            <input type="text" name="name" id="name" placeholder="Name" />
-          </div>
-
-          <Link href="/" />
-          <p className="text-primary cursor-pointer text-sm"> Forgot your password?</p>
-          <MainButton variant="primary" text={CTA.SIGN_IN} />
-        </form>
-        <SubmitForm />
+        <LoginForm />
       </div>
     </section>
   );
