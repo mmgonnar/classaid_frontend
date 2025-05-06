@@ -1,11 +1,10 @@
 'use client';
 import { formInputs } from '@/utils/constants';
 import { CTA } from '@/utils/enums';
-import Link from 'next/link';
 import MainButton from '../MainButton';
 
 function RegisterForm() {
-  const submitInputs = formInputs.filter((item) => item.isRegister);
+  const registerInputs = formInputs.filter((item) => item.isRegister);
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('x');
@@ -14,7 +13,7 @@ function RegisterForm() {
   return (
     <div>
       <form action="submit" className="flex w-[550px] flex-col gap-3" onSubmit={handleSubmit}>
-        {submitInputs.map((item) => (
+        {registerInputs.map((item) => (
           <div
             key={item.id}
             className="flex w-[250px] items-center rounded-md border border-neutral-400 p-1 text-xs"
@@ -31,9 +30,6 @@ function RegisterForm() {
           </div>
         ))}
 
-        <Link href="/">
-          <p className="text-primary cursor-pointer text-sm">Forgot your password?</p>
-        </Link>
         <MainButton type="submit" variant="primary" text={CTA.SIGN_IN} />
       </form>
     </div>
