@@ -1,7 +1,8 @@
 'use client';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import { menuItems } from '../utils/constants';
 import MainButton from './MainButton';
 import { CTA } from '@/utils/enums';
@@ -41,7 +42,7 @@ function Header() {
     >
       <Link href="/">
         <h1 className="text-primary text-xl font-bold">
-          Classs<spa className="font-black">Aid</spa>
+          Classs<span className="font-black">Aid</span>
         </h1>
       </Link>
 
@@ -50,10 +51,10 @@ function Header() {
         className="grid cursor-pointer grid-cols-1 grid-rows-1 p-2 sm:hidden"
         onClick={toggleMenu}
       >
-        <Bars3Icon
+        <MenuOutlinedIcon
           className={`text-primary col-start-1 col-end-2 row-start-1 row-end-2 h-6 w-6 transition-all duration-100 ${isMenuOpen ? 'rotate-0 opacity-0' : 'rotate-0 opacity-100'}`}
         />
-        <XMarkIcon
+        <CloseOutlinedIcon
           className={`text-primary col-start-1 col-end-2 row-start-1 row-end-2 h-6 w-6 rotate-180 transform transition-all duration-150 ${!isMenuOpen ? 'rotate-0 opacity-0' : 'rotate-90 opacity-100'}`}
         />
       </button>

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { menuItems } from '../utils/constants';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 
 function Footer() {
   const footerItems = menuItems.filter((item) => item.isFooter);
@@ -16,6 +17,7 @@ function Footer() {
           <ul className="flex flex-wrap justify-center gap-2 md:gap-4">
             {footerItems.map((item) => (
               <li key={item.text}>
+                {item.icon && <item.icon />}
                 <Link href={item.href} className="block p-2 transition-colors hover:text-gray-300">
                   {item.text}
                 </Link>
