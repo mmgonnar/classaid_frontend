@@ -1,10 +1,9 @@
-import MainButton, { ButtonSection } from '@/components/MainButton';
+import Landing from './(landing)/page';
 
 export default function Home() {
   return (
-    <main>
-      <div className="font-main h-60 pt-30">Hello world!</div>
-      <ButtonSection />
+    <main className="">
+      <Landing />
     </main>
   );
 }

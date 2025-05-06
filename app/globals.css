@@ -1,8 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0');
+/* @import "tailwindcss/preflight"; */
 @import "tailwindcss";
+/* @tailwind base;
+@tailwind components; */
+/* @tailwind utilities; */
+
+
 
 @theme inline {
   --color-primary: #1E3A8A;
   --color-secondary: #F0F6FF;
+  --color-third: #DEEBFF;
   --font-main: var(--font-inter);
+}
+
+html, body {
+  max-width: 100%;
+  /* overflow-x: hidden; */
 }
