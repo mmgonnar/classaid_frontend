@@ -84,20 +84,24 @@ function Header() {
       )}
       {/* Desktop */}
       <nav className="hidden items-center gap-6 sm:flex">
-        {headerItems.map((item) =>
-          item.isButton ? (
-            <MainButton
-              variant="primary"
-              text={CTA.CREATE_ACCOUNT}
-              key={item.text}
-              href={item.href}
-            />
-          ) : (
-            <Link key={item.text} href={item.href} className="hover:text-blue-800">
-              {item.text}
-            </Link>
-          ),
-        )}
+        {headerItems.map((item) => (
+          <Link
+            key={item.text}
+            href={item.href}
+            className={item.isButton ? 'w-full' : 'w-full p-2 text-center hover:bg-gray-100'}
+          >
+            {item.isButton ? (
+              <MainButton
+                variant="primary"
+                text={CTA.CREATE_ACCOUNT}
+                key={item.text}
+                href={item.href}
+              />
+            ) : (
+              item.text
+            )}
+          </Link>
+        ))}
       </nav>
     </header>
   );
