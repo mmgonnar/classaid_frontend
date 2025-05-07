@@ -34,7 +34,9 @@ function LoginForm() {
       <button className="text-primary cursor-pointer text-left text-sm">
         Forgot your password?
       </button>
-      <MainButton type="submit" variant="primary" text={CTA.SIGN_IN} />
+      <div className="flex justify-center sm:justify-start">
+        <MainButton type="submit" variant="primary" text={CTA.SIGN_IN} />
+      </div>
     </div>
   );
 }

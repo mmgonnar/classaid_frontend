@@ -13,7 +13,7 @@ function RegisterForm() {
   return (
     <div className="flex flex-col gap-10">
       <form action="submit" className="flex flex-col gap-3" onSubmit={handleSubmit}>
-        {loginInputs.map((item) => (
+        {registerInputs.map((item) => (
           <div
             key={item.id}
             className="flex w-[250px] items-center rounded-md border border-neutral-400 p-1 text-sm"
@@ -31,10 +31,9 @@ function RegisterForm() {
           </div>
         ))}
       </form>
-      <button className="text-primary cursor-pointer text-left text-sm">
-        Forgot your password?
-      </button>
-      <MainButton type="submit" variant="primary" text={CTA.SIGN_IN} />
+      <div className="flex justify-center sm:justify-start">
+        <MainButton type="submit" variant="primary" text={CTA.SIGN_IN} />
+      </div>
     </div>
   );
 }
