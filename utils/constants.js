@@ -52,3 +52,8 @@ export const formInputs = [
     autoComplete: 'off',
   },
 ];
+
+//TODO
+// var text = {
+//   texto1: 'asdasd',
+// };
