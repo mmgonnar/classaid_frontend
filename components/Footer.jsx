@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { menuItems } from '../utils/constants';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 
 function Footer() {
   const footerItems = menuItems.filter((item) => item.isFooter);
