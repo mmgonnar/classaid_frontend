@@ -4,8 +4,8 @@ import 'react-loading-skeleton/dist/skeleton.css';
 
 function Loader() {
   return (
-    <div>
-      <Skeleton />
+    <div className="w-[200px]">
+      <Skeleton count={2} />
     </div>
   );
 }

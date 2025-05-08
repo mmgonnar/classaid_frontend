@@ -27,7 +27,7 @@ function Footer() {
 
         <div className="text-center text-neutral-500 md:text-right">
           <p>
-            Created by:
+            Created by
             <Link
               href="https://github.com/mmgonnar"
               target="_blank"

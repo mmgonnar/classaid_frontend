@@ -3,10 +3,10 @@
 import { useEffect, useState } from 'react';
 
 import api from '../utils/Api';
-import Loader from './Loader';
+import Loader from './SkeletonLoader';
 
 function Weather() {
-  const [weatherData, setWeatherData] = useState(null);
+  const [temp, setTemp] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -19,7 +19,7 @@ function Weather() {
         api
           .getCurrentWeather(position.coords.latitude, position.coords.longitude)
           .then((data) => {
-            setWeatherData(data);
+            setTemp(data);
             setTimeout(() => {
               setLoading(false);
             }, 2000);
@@ -36,15 +36,15 @@ function Weather() {
       },
     );
   }, []);
-
+  // TODO ternario
   if (loading) return <Loader />;
   if (error) return <div className="error">{error}</div>;
-  if (!weatherData) return null;
+  if (!temp) return null;
 
   return (
-    <div className="text-whit flex flex-col pb-8 text-right">
+    <div className="flex flex-col pb-8 text-right text-neutral-400">
       <h2>Current weather</h2>
-      <p>Temperature: {weatherData.temperature}°C</p>
+      <p>Temperature: {temp.temperature}°C</p>
     </div>
   );
 }

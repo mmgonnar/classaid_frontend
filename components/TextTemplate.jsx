@@ -23,7 +23,7 @@ function TextBlock({
   text = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
 }) {
   return (
-    <div className="m-auto flex flex-col p-6 py-10 text-center md:w-[70%] md:pt-55">
+    <div className="m-auto flex flex-col py-10 text-center md:w-[70%] md:pt-55">
       <h1 className="text-primary mb-4 text-3xl font-bold">{title}</h1>
       <p className="text-gray-600">{text}</p>
     </div>
