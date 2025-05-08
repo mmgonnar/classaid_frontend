@@ -1,8 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import PreLoader from './PreLoader';
+
 import api from '../utils/Api';
+import Loader from './Loader';
 
 function Weather() {
   const [weatherData, setWeatherData] = useState(null);
@@ -14,6 +15,7 @@ function Weather() {
 
     navigator.geolocation.getCurrentPosition(
       (position) => {
+        console.log(api);
         api
           .getCurrentWeather(position.coords.latitude, position.coords.longitude)
           .then((data) => {
@@ -30,19 +32,19 @@ function Weather() {
       (error) => {
         setError('Error getting location');
         setLoading(false);
+        console.error('Weather error', error);
       },
     );
   }, []);
 
-  if (loading) return <PreLoader />;
+  if (loading) return <Loader />;
   if (error) return <div className="error">{error}</div>;
   if (!weatherData) return null;
 
   return (
-    <div className="weather-container">
-      <h2>Clima Actual</h2>
-      <p>Temperatura: {weatherData.temperature}°C</p>
-      <p>Velocidad del viento: {weatherData.windSpeed} km/h</p>
+    <div className="text-whit flex flex-col pb-8 text-right">
+      <h2>Current weather</h2>
+      <p>Temperature: {weatherData.temperature}°C</p>
     </div>
   );
 }

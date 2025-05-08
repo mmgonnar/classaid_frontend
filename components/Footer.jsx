@@ -38,7 +38,7 @@ function Footer() {
           </p>
         </div>
       </div>
-      <div>
+      <div className="pt-8">
         <Weather />
       </div>
     </footer>
