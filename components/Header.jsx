@@ -33,7 +33,7 @@ function Header() {
   return (
     <header
       className={cn(
-        'sticky top-0 z-50 flex h-[50px] w-full items-center justify-between p-6 text-sm transition-all duration-100',
+        'sticky top-0 z-50 mx-auto flex h-[50px] w-full items-center justify-between p-6 text-sm transition-all duration-100 md:place-content-evenly',
         'bg-white shadow-xs',
         'sm:bg-transparent sm:shadow-none',
         isScrolled && 'sm:bg-white sm:shadow-md',
@@ -88,7 +88,11 @@ function Header() {
           <Link
             key={item.text}
             href={item.href}
-            className={item.isButton ? 'w-full' : 'w-full p-2 text-center hover:bg-gray-100'}
+            className={
+              item.isButton
+                ? 'w-full'
+                : 'w-full p-2 text-center whitespace-nowrap hover:bg-gray-100'
+            }
           >
             {item.isButton ? (
               <MainButton

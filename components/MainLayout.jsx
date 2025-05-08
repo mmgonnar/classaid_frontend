@@ -6,7 +6,9 @@ function MainLayout({ children }) {
   return (
     <>
       <Header />
-      <section>{children}</section>
+      <main>
+        <section>{children}</section>
+      </main>
       <Footer />
     </>
   );

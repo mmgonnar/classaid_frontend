@@ -14,9 +14,9 @@
   --font-main: var(--font-inter);
 }
 
-body {
-  width: 100%;
-  max-width: 1000px;
+html, body {
+  /* width: 100%; */
+  /* max-width: 1023px; */
   flex-direction: column;
   align-items: center;
   flex-wrap: wrap;
@@ -24,3 +24,7 @@ body {
   margin: auto
   /* overflow-x: hidden; */
 }
+
+/* .inherit-md-to-lg {
+  @apply md:text-lg lg:text-lg;
+} */

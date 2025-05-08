@@ -9,7 +9,7 @@ function CTASection({
   buttonText = CTA.START_NOW,
 }) {
   return (
-    <section className="flex h-[180px] flex-col justify-between gap-5 bg-white p-6 px-10 sm:flex-row md:items-center md:px-18">
+    <section className="mx-auto flex h-[180px] max-w-7xl flex-col justify-between gap-5 bg-white p-6 px-10 sm:flex-row md:items-center md:px-18">
       <div>
         <h2 className="mb-2 text-2xl font-bold text-neutral-800">{title}</h2>
         <h3 className="text-gray-600">{subtitle}</h3>
