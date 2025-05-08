@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { menuItems } from '../utils/constants';
+import Weather from './Weather';
 
 function Footer() {
   const footerItems = menuItems.filter((item) => item.isFooter);
@@ -36,6 +37,9 @@ function Footer() {
             </Link>
           </p>
         </div>
+      </div>
+      <div>
+        <Weather />
       </div>
     </footer>
   );
