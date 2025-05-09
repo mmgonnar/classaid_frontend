@@ -11,7 +11,7 @@ function Title() {
         <div className="relative text-center">
           <h1 className="text-3xl font-bold text-gray-900 sm:text-5xl">
             Simplify.
-            <strong className="text-primary md:text-neutral-500"> Teach </strong>. Empower.
+            <strong className="text-primary"> Teach </strong>. Empower.
           </h1>
 
           <p className="mt-4 text-base text-pretty text-gray-700 md:text-lg/relaxed">

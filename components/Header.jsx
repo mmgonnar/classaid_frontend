@@ -33,7 +33,7 @@ function Header() {
   return (
     <header
       className={cn(
-        'sticky top-0 z-50 mx-auto flex h-[50px] w-full items-center justify-between p-6 text-sm transition-all duration-100 md:place-content-evenly',
+        'sticky top-0 z-50 mx-auto flex h-[50px] w-full items-center justify-between p-6 text-sm transition-all duration-100 md:place-content-evenly md:p-0',
         'bg-white shadow-xs',
         'sm:bg-transparent sm:shadow-none',
         isScrolled && 'sm:bg-white sm:shadow-md',
