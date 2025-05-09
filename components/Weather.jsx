@@ -3,7 +3,9 @@
 import { useEffect, useState } from 'react';
 
 import api from '../utils/Api';
-import Loader from './SkeletonLoader';
+import Loader from './loaders/SpinnerLoader';
+import SpinnerLoader from './loaders/SpinnerLoader';
+//import SkeletonLoader from './loaders/SkeletonLoader';
 
 function Weather() {
   const [temp, setTemp] = useState(null);
@@ -37,12 +39,12 @@ function Weather() {
     );
   }, []);
   // TODO ternario
-  if (loading) return <Loader />;
+  if (loading) return <SpinnerLoader />;
   if (error) return <div className="error">{error}</div>;
   if (!temp) return null;
 
   return (
-    <div className="flex flex-col pb-8 text-right text-neutral-400">
+    <div className="flex flex-col pb-8 text-left text-neutral-400">
       <h2>Current weather</h2>
       <p>Temperature: {temp.temperature}°C</p>
     </div>
