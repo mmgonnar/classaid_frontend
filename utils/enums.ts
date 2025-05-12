@@ -5,5 +5,6 @@ export enum CTA {
   SIGN_UP = "Sign up",
   SIGN_IN = "Sign in",
   LEARN_MORE = "Learn More",
-  START_NOW = "Start now!"
+  START_NOW = "Start now!",
+  TRY_NOW = "Try now"
 }

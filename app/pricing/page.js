@@ -1,3 +1,4 @@
+import PricingCard from '@/components/cards/PricingCard';
 import MainLayout from '@/components/MainLayout';
 import FAQSection from '@/components/sections/FAQSection';
 import React from 'react';
@@ -9,6 +10,10 @@ function Pricing() {
         <h3 className="text-primary mx-auto my-5 text-center text-4xl font-bold">
           Find a plan that fits your goals
         </h3>
+
+        <PricingCard />
+
+        <h3 className="text-primary mx-auto my-5 text-center text-4xl font-bold">FAQ</h3>
         <FAQSection />
       </MainLayout>
     </div>

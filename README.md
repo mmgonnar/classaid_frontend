@@ -85,6 +85,7 @@ The application uses the Open-Meteo API for weather data to help teachers plan o
 - Modular API class for weather data
 - Error handling
 - Data transformation
+  (TODO falta implemtar la api, esta es temporal)
 
 ## Development
 

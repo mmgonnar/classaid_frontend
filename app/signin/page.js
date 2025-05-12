@@ -8,7 +8,7 @@ import Copyright from '@/components/Copyright';
 function Login() {
   return (
     <section className="flex min-h-screen flex-col items-center justify-center bg-[linear-gradient(345deg,rgba(101,156,246,0.3),rgba(246,246,246,0.2))] md:relative md:flex-row">
-      <div className="container mx-auto hidden max-w-4xl flex-col gap-6 px-30 text-neutral-700 md:flex md:w-3/5">
+      <div className="mx-auto hidden max-w-4xl flex-col gap-6 px-30 text-neutral-700 md:flex md:w-3/5">
         <h1 className="text-3xl font-semibold">A cool base line goes here!</h1>
         <h2 className="text-xl font-semibold">Another catch phrase to punch the message</h2>
         <p className="font-base w-auto pb-10 text-lg">
