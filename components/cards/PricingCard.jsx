@@ -8,9 +8,9 @@ console.log(pricingPlans);
 
 function PricingCard({ props }) {
   return (
-    <BaseCard>
+    <BaseCard border={props == 'pro' ? 'blue' : 'gray'}>
       <h3
-        className={`w-full rounded-t-xl border-b-2 px-3 pt-2 pb-1 text-xl font-semibold ${pricingPlans[props]?.style}`}
+        className={`w-full rounded-t-[0.80rem] border-b-2 px-3 pt-2 pb-1 text-xl font-semibold ${pricingPlans[props]?.style}`}
       >
         {pricingPlans[props]?.plan}
       </h3>
