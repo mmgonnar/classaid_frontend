@@ -1,6 +1,7 @@
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import AlternateEmailOutlinedIcon from '@mui/icons-material/AlternateEmailOutlined';
 import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
+import { CTA } from './enums';
 
 export const menuItems = [
   { text: 'Pricing', href: '/pricing', isHeader: true },
@@ -52,6 +53,31 @@ export const formInputs = [
     autoComplete: 'off',
   },
 ];
+
+export const pricingPlans = {
+  basic: {
+    plan: 'Basic',
+    price: '10',
+    text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident ab nulla quod.',
+    style: 'bg-neutral-100 text-neutral-500',
+    button: CTA.TRY_NOW,
+  },
+  plus: {
+    plan: 'Plus',
+    price: '15',
+    text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident ab nulla quod.',
+    style: 'bg-third text-neutral-800',
+    button: CTA.TRY_FREE,
+  },
+  pro: {
+    plan: 'Pro',
+    price: '20',
+    text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident ab nulla quod.',
+    style: 'bg-primary text-white',
+    button: CTA.TRY_FREE,
+  },
+};
+// export const pricingPlans = [{ text: 'Pricing', href: '/pricing', isHeader: true }];
 
 //TODO
 // var text = {

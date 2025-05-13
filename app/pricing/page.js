@@ -7,11 +7,14 @@ function Pricing() {
   return (
     <div>
       <MainLayout>
-        <h3 className="text-primary mx-auto my-5 text-center text-4xl font-bold">
+        <h3 className="text-primary px-auto my-15 text-center text-3xl font-bold">
           Find a plan that fits your goals
         </h3>
-
-        <PricingCard />
+        <div className="mx-auto flex flex-col gap-6 md:flex-row">
+          <PricingCard props="basic" />
+          <PricingCard props="plus" />
+          <PricingCard props="pro" />
+        </div>
 
         <h3 className="text-primary mx-auto my-5 text-center text-4xl font-bold">FAQ</h3>
         <FAQSection />

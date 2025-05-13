@@ -6,9 +6,7 @@ function MainLayout({ children }) {
   return (
     <>
       <Header />
-      <main>
-        <section>{children}</section>
-      </main>
+      <main className="flex flex-col">{children}</main>
       <Footer />
     </>
   );
