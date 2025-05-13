@@ -10,7 +10,7 @@ function PricingCard({ props }) {
   return (
     <BaseCard>
       <h3
-        className={`w-full rounded-t-xl border-b-2 border-neutral-400 px-3 pt-2 pb-1 text-xl font-semibold ${pricingPlans[props]?.style}`}
+        className={`w-full rounded-t-xl border-b-2 px-3 pt-2 pb-1 text-xl font-semibold ${pricingPlans[props]?.style}`}
       >
         {pricingPlans[props]?.plan}
       </h3>
