@@ -1,9 +1,8 @@
 import MainButton from '@/components/MainButton';
 import { CTA } from '@/utils/enums';
-import Link from 'next/link';
-
 import LoginForm from '@/components/forms/LoginForm';
 import Copyright from '@/components/Copyright';
+import Logo from '@/components/Logo';
 
 function Login() {
   return (
@@ -19,11 +18,7 @@ function Login() {
         <MainButton variant="secondary" text={CTA.LEARN_MORE} />
       </div>
       <div className="flex flex-col justify-center gap-4 rounded rounded-s-xl bg-white p-6 shadow-2xl md:min-h-screen md:w-2/5 md:p-20">
-        <Link href="/">
-          <h2 className="text-primary text-base font-bold">
-            Classs<span className="font-black">Aid</span>
-          </h2>
-        </Link>
+        <Logo />
         <div className="pb-7 text-neutral-700">
           <h3 className="pb-2 text-xl font-medium md:pb-4">Welcome back!</h3>
           <p className="text-base">

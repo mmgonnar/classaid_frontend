@@ -7,6 +7,7 @@ import { menuItems } from '../utils/constants';
 import MainButton from './MainButton';
 import { CTA } from '@/utils/enums';
 import { cn } from '@/utils/functions';
+import Logo from './Logo';
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -40,11 +41,7 @@ function Header() {
         !isScrolled && 'shadow-lg',
       )}
     >
-      <Link href="/">
-        <h1 className="text-primary text-xl font-bold">
-          Classs<span className="font-black">Aid</span>
-        </h1>
-      </Link>
+      <Logo />
 
       {/* Burger */}
       <button
