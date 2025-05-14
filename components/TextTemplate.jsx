@@ -11,9 +11,9 @@ function TextTemplate({
     justify: 'text-center md:text-justify',
   };
   return (
-    <div className={`${alignment[align]} w-[280px] px-4 py-6`}>
+    <div className={`${alignment[align]} w-[280px]`}>
       <h4 className="text-primary text-base font-semibold md:text-xl">Cool feature here</h4>
-      <p className="text-sm text-gray-600 md:text-base">{text}</p>
+      <p className="text-sm text-balance text-gray-600 md:text-base">{text}</p>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 'use client';
 
-function MainButton({ variant = 'primary', text = '', link, type }) {
+function MainButton({ variant = 'primary', text = '' }) {
   //const { variant = 'primary', text = '', link } = props;
 
   const variants = {
