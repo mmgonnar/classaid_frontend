@@ -6,14 +6,7 @@ import Link from 'next/link';
 function Logo({ className = '' }) {
   return (
     <Link href="/" className="inline-block">
-      <Image
-        src={ClassAidLogo}
-        alt="ClassAid's logo"
-        priority
-        width={120}
-        height={22}
-        className={` ${className}`}
-      />
+      <Image src={ClassAidLogo} alt="ClassAid's logo" priority className={` ${className}`} />
     </Link>
   );
 }

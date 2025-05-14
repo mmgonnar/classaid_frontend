@@ -18,7 +18,7 @@ function Login() {
         <MainButton variant="secondary" text={CTA.LEARN_MORE} />
       </div>
       <div className="flex flex-col justify-center gap-4 rounded bg-white p-4 shadow-2xl md:min-h-screen md:w-2/5 md:rounded-s-xl md:p-20">
-        <Logo className="w-[150px]" />
+        <Logo />
         <div className="pb-7 text-neutral-700">
           <h3 className="pb-2 text-xl font-medium md:pb-4">
             Welcome, <br /> let's get started!!
