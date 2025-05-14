@@ -37,7 +37,7 @@ function Footer() {
                 target="_blank"
                 className="transition-colors hover:text-gray-300"
               >
-                <strong> Mariela González</strong>
+                <p className="font-medium"> Mariela González</p>
               </Link>
             </p>
           </div>
