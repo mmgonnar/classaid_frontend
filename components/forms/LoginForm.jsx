@@ -3,16 +3,24 @@
 import MainButton from '../MainButton';
 import { CTA } from '@/utils/enums';
 import { formInputs } from '@/utils/constants';
+import { useForm } from 'react-hook-form';
 
 function LoginForm() {
   const loginInputs = formInputs.filter((item) => item.isLogin);
-  const handleSubmit = (e) => {
+  const handleSubmitMine = (e) => {
     e.preventDefault();
+    console.log('x');
   };
+
+  const { register, handleSubmit } = useForm();
 
   return (
     <div className="flex flex-col gap-10">
-      <form action="submit" className="flex flex-col gap-3" onSubmit={handleSubmit}>
+      <form
+        action="submit"
+        className="flex flex-col gap-3"
+        onSubmit={handleSubmit(handleSubmitMine)}
+      >
         {loginInputs.map((item) => (
           <div
             key={item.id}
@@ -22,21 +30,22 @@ function LoginForm() {
 
             <input
               type={item.type}
-              name={item.name}
-              id={item.id}
+              // name={item.name}
+              // id={item.id}
               placeholder={item.placeholder}
               autoComplete={item.autoComplete}
               className="flex-1 outline-none"
+              {...register(item.id, { required: true })}
             />
           </div>
         ))}
+        <button className="text-primary cursor-pointer text-left text-sm">
+          Forgot your password?
+        </button>
+        <div className="flex justify-center sm:justify-start">
+          <MainButton type="submit" variant="primary" text={CTA.SIGN_IN} />
+        </div>
       </form>
-      <button className="text-primary cursor-pointer text-left text-sm">
-        Forgot your password?
-      </button>
-      <div className="flex justify-center sm:justify-start">
-        <MainButton type="submit" variant="primary" text={CTA.SIGN_IN} />
-      </div>
     </div>
   );
 }
