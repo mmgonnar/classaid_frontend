@@ -41,7 +41,7 @@ function Header() {
         !isScrolled && 'shadow-lg',
       )}
     >
-      <Logo />
+      <Logo className="w-[120px]" />
 
       {/* Burger */}
       <button
