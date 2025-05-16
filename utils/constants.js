@@ -3,6 +3,9 @@ import AlternateEmailOutlinedIcon from '@mui/icons-material/AlternateEmailOutlin
 import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
 import { CTA } from './enums';
 
+export const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+export const passwordPattern = /^(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{5}$/;
+
 export const menuItems = [
   { text: 'Pricing', href: '/pricing', isHeader: true },
   { text: 'Sign In', href: '/signin', isHeader: true },
@@ -24,7 +27,7 @@ export const formInputs = [
     autoComplete: 'off',
   },
   {
-    type: 'text',
+    type: 'email',
     name: 'email',
     id: 'email',
     placeholder: 'Email',
@@ -77,9 +80,3 @@ export const pricingPlans = {
     button: CTA.TRY_FREE,
   },
 };
-// export const pricingPlans = [{ text: 'Pricing', href: '/pricing', isHeader: true }];
-
-//TODO
-// var text = {
-//   texto1: 'asdasd',
-// };
