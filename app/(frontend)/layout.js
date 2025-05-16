@@ -7,9 +7,9 @@ export const metadata = {
   author: 'Mariela González',
   icons: {
     icon: [
-      { url: '/icons/classaid_favicon.ico' },
-      { url: '/icons/classaid_favicon.ico', sizes: '32x32', type: 'image/png' },
-      { url: '/icons/classaid_favicon.ico', sizes: '16x16', type: 'image/png' },
+      { url: '/icons/favicon.ico' },
+      { url: '/icons/favicon.ico', sizes: '32x32', type: 'image/png' },
+      { url: '/icons/favicon.ico', sizes: '16x16', type: 'image/png' },
     ],
     apple: '/icons/apple-touch-icon.png',
   },

@@ -17,11 +17,11 @@ function Login() {
         </p>
         <MainButton variant="secondary" text={CTA.LEARN_MORE} />
       </div>
-      <div className="flex flex-col justify-center gap-4 rounded rounded-s-xl bg-white p-6 shadow-2xl md:min-h-screen md:w-2/5 md:p-20">
-        <Logo className="w-[120px] pb-3 md:w-[150px]" />
+      <div className="flex flex-col justify-center gap-4 rounded bg-white p-6 shadow-2xl md:min-h-screen md:w-2/5 md:rounded-s-xl md:p-20">
+        <Logo className="w-[120px] pb-3 md:w-[130px]" />
         <div className="pb-4 text-neutral-700">
-          <h3 className="pb-2 text-xl font-medium md:pb-4">Welcome back!</h3>
-          <p className="text-base">
+          <h3 className="text-primary pb-2 text-xl font-medium md:pb-4">Welcome back!</h3>
+          <p className="text-sm">
             Please use your credentials to login. <br />
             If you are not a member, please{' '}
             <a className="text-primary cursor-pointer font-medium" href="/register">
@@ -33,8 +33,8 @@ function Login() {
 
         <LoginForm />
       </div>
-      <div className="flex justify-center opacity-30 md:absolute md:bottom-0 md:left-0">
-        <Copyright variant="xs" />
+      <div className="w-full px-4 pb-4 opacity-30 md:absolute md:bottom-0 md:left-0 md:px-0 md:pb-0">
+        <Copyright variant="sm" />
       </div>
     </section>
   );

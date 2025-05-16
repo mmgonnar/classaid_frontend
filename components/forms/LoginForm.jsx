@@ -11,7 +11,7 @@ function LoginForm() {
   const loginInputs = formInputs.filter((item) => item.isLogin);
   const onSubmit = (data) => {
     console.log(data);
-    console.log('x');
+    console.log('data');
   };
 
   const { handleSubmit, register, formState } = useForm({ resolver: yupResolver(userSchema) });
@@ -44,10 +44,10 @@ function LoginForm() {
         </div>
       ))}
 
-      <button className="text-primary cursor-pointer text-left text-sm">
+      <button type="button" className="text-primary cursor-pointer text-left text-sm">
         Forgot your password?
       </button>
-      <div className="flex justify-center sm:justify-start">
+      <div className="flex justify-center pt-4 sm:justify-start">
         <MainButton type="submit" variant="primary" text={CTA.SIGN_IN} />
       </div>
     </form>
