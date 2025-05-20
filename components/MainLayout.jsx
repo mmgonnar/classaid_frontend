@@ -4,11 +4,11 @@ import Footer from './Footer';
 
 function MainLayout({ children }) {
   return (
-    <>
+    <div className="grid min-h-dvh grid-rows-[auto,1fr,auto]">
       <Header />
       <main className="flex flex-col">{children}</main>
       <Footer />
-    </>
+    </div>
   );
 }
 
