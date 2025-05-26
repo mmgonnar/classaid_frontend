@@ -8,3 +8,24 @@ export enum CTA {
   START_NOW = "Start now!",
   TRY_NOW = "Try now"
 }
+
+export enum ROL {
+  ADMIN = "admin",
+  USER = "user",
+  TEST = "test",
+  TEACHER = "teacher",
+  STUDENT = "student",
+}
+
+export enum ATTENDANCE {
+  PRESENT = "present",
+  ABSENT =  "absent",
+  JUSTIFIED = "justified",
+  LATE= "late"
+}
+
+export enum EVALUATION {
+  EXAM = "exam",
+  PROJECT = "project",
+
+}
