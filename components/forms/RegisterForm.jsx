@@ -4,7 +4,7 @@ import { CTA } from '@/utils/enums';
 import MainButton from '../MainButton';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { userSchema } from '@/lib/schemas';
+import { validationFront } from '@/lib/schemas';
 
 function RegisterForm() {
   const registerInputs = formInputs.filter((item) => item.isRegister);
@@ -13,7 +13,9 @@ function RegisterForm() {
     console.log('data');
   };
 
-  const { handleSubmit, register, formState } = useForm({ resolver: yupResolver(userSchema) });
+  const { handleSubmit, register, formState } = useForm({
+    resolver: yupResolver(validationFront),
+  });
 
   return (
     <form

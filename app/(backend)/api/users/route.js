@@ -4,7 +4,7 @@
 import { NextResponse } from 'next/server';
 import Users from '@/models/user';
 import connectDB from '@/lib/mongodb';
-import { baseBack, validationFont } from '@/lib/schemas';
+import { baseBack, validationFront } from '@/lib/schemas';
 
 //*connection to DB
 
