@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import validator from 'validator';
-import { userSchema as yupUserSchema } from '../lib/schemas';
+import { userValidationSchema as yupUserSchema } from '../lib/schemas';
 import { ROL } from '@/utils/enums';
 
 const userSchema = new mongoose.Schema(
@@ -11,10 +11,9 @@ const userSchema = new mongoose.Schema(
       maxlength: 30,
       required: true,
     },
-    lastName: { type: String, minlength: 2, maxlength: 30 },
+    lastName: { type: String },
     email: {
       type: String,
-      required: true,
       unique: true,
       validate: {
         validator: (email) => {
@@ -22,6 +21,7 @@ const userSchema = new mongoose.Schema(
         },
         message: 'Invalid email format',
       },
+      required: true,
     },
     password: {
       type: String,
@@ -41,27 +41,27 @@ const userSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-userSchema.pre('save', async function (next) {
-  try {
-    const userData = this.toObject();
-    delete userData.__v;
-    delete userData._id;
+// userSchema.pre('save', async function (next) {
+//   try {
+//     const userData = this.toObject();
+//     delete userData.__v;
+//     delete userData._id;
 
-    await yupUserSchema.validate(userData, { abortEarly: false });
-    next();
-  } catch (error) {
-    next(error);
-  }
-});
+//     await yupUserSchema.validate(userData, { abortEarly: false });
+//     next();
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
-userSchema.pre('findOneAndUpdate', async function (next) {
-  try {
-    const update = this.getUpdate();
-    await yupUserSchema.validate(update, { abortEarly: false });
-    next();
-  } catch (error) {
-    next(error);
-  }
-});
+// userSchema.pre('findOneAndUpdate', async function (next) {
+//   try {
+//     const update = this.getUpdate();
+//     await yupUserSchema.validate(update, { abortEarly: false });
+//     next();
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
 export default mongoose.models.User || mongoose.model('User', userSchema);
