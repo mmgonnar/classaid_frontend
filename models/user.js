@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import validator from 'validator';
-import { userValidationSchema as yupUserSchema } from '../lib/schemas';
+import { validationFront as yupUserSchema } from '../lib/schemas';
 import { ROL } from '@/utils/enums';
 
 const userSchema = new mongoose.Schema(
@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema(
       maxlength: 30,
       required: true,
     },
-    lastName: { type: String },
+    lastName: { type: String, default: 'test' },
     email: {
       type: String,
       unique: true,

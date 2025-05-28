@@ -1,12 +1,9 @@
-// folder users
-// get, put, patch
-
 import { NextResponse } from 'next/server';
 import Users from '@/models/user';
 import connectDB from '@/lib/mongodb';
-import { baseBack, validationFront } from '@/lib/schemas';
-
-//*connection to DB
+import { validationFront } from '@/lib/schemas';
+import bcrypt from 'bcryptjs';
+//import jwt from 'jsonwebtoken';
 
 export async function GET() {
   await connectDB();
@@ -15,43 +12,60 @@ export async function GET() {
 }
 
 //* CREATE User
-export async function POST(request) {
+export async function POST(req) {
   await connectDB();
   try {
-    const body = await request.json();
-    //await validationFont.validate(body, { abortEarly: false });
+    const body = await req.json();
+    const validatedData = await validationFront.validate(body, {
+      abortEarly: false,
+      stripUnknown: true,
+    });
 
-    const { confirmPassword, ...userData } = body;
+    const { confirmPassword, ...data } = validatedData;
+    console.log(validatedData);
+
+    const hash = await bcrypt.hash(data.password, 10);
+
+    const userData = { ...data, password: hash };
+
     console.log(userData, 'userData', 'a');
 
-    await baseBack.validate(userData);
-
     const newUser = await Users.create(userData);
-    console.log(userData, 'userData', 'b');
-    // const newUser = await Users.create({
-    //   name,
-    //   lastName,
-    //   email,
-    //   password,
-    //   confirmPassword,
-    // });
 
     return NextResponse.json(
-      { message: 'User created successfully', user: newUser },
+      { success: true, message: 'User created successfully', data: newUser },
       { status: 201 },
     );
   } catch (error) {
-    console.log(error, 'x');
-    if (error.name === 'ValidationError' && error.inner) {
-      const errors = {};
-      error.inner.forEach((err) => {
-        errors[err.path] = err.errors;
-      });
-      return NextResponse.json({ message: 'Validation failed', errors }, { status: 400 });
+    console.error('Error creating user:', error);
+    if (error.name === 'ValidationError') {
+      const errors = error.inner?.reduce(
+        (acc, err) => ({
+          ...acc,
+          [err.path]: err.errors[0],
+        }),
+        {},
+      ) || { [error.path]: error.message };
+
+      console.log(error.inner, 'error inner');
+
+      return NextResponse.json(
+        {
+          success: false,
+          message: 'Validation failed',
+          errors,
+        },
+        { status: 400 },
+      );
+      //condiciconales ternarios?
     }
 
     return NextResponse.json(
-      { message: 'Error creating user', error: error.message },
+      {
+        success: false,
+        message: 'Error creating user',
+        error: process.env.NODE_ENV === 'development' ? error.message : 'Internal server error',
+      },
       { status: 400 },
     );
   }
