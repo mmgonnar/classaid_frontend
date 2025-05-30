@@ -1,0 +1,7 @@
+{
+  "name": "Nombre",
+  "lastName": "",
+  "email": "mal@mail.com",
+  "password": "12345",
+  "confirmPassword": "12345"
+}

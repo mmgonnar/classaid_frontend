@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import Users from '@/models/user';
-import connectDB from '@/lib/mongodb';
 import { validationFront } from '@/lib/schemas';
 import bcrypt from 'bcryptjs';
 //import jwt from 'jsonwebtoken';

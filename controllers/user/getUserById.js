@@ -1,12 +1,6 @@
 import { NextResponse } from 'next/server';
 import Users from '@/models/user';
 
-// export async function GET() {
-//   await connectDB();
-//   const users = await Users.find();
-//   return NextResponse.json({ message: users });
-// }
-
 export async function getUserById(id) {
   try {
     const user = await Users.findById(id)
@@ -22,12 +16,12 @@ export async function getUserById(id) {
       { status: 200 },
     );
   } catch (error) {
-    console.error('Error fetching user:', error);
+    console.error('Error finding user:', error);
 
     return NextResponse.json(
       {
         success: false,
-        message: 'Error fetching user',
+        message: 'Error finding user with this ID',
         error: process.env.NODE_ENV === 'development' ? error.message : 'Internal server error',
       },
       { status: 500 },
