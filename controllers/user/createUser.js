@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import Users from '@/models/user';
 import { validationFront } from '@/lib/schemas';
 import bcrypt from 'bcryptjs';
+import { handleErrorMessage } from '@/utils/functions';
+import mongoose from 'mongoose';
 //import jwt from 'jsonwebtoken';
 
 export async function createUser(req) {
@@ -15,14 +17,34 @@ export async function createUser(req) {
     const hash = await bcrypt.hash(data.password, 12);
     const userData = { ...data, password: hash };
     const newUser = await Users.create(userData);
-    console.log(userData, 'user data');
+    console.log(newUser);
 
     return NextResponse.json(
-      { success: true, message: 'User created successfully', data: newUser },
+      {
+        success: true,
+        message: 'User created successfully',
+        data: { name: newUser.name, email: newUser.email },
+      },
       { status: 201 },
     );
   } catch (error) {
-    console.error('Error creating user:', error);
+    if (error.name === 'MongoServerError') {
+      const errorMessage = handleErrorMessage(error);
+
+      return NextResponse.json(
+        {
+          success: false,
+          message: errorMessage,
+          //error
+          errors: {
+            code: 11000,
+            message: 'AUTH_DUPLICATE',
+          },
+        },
+        { status: 400 },
+      );
+    }
+
     if (error.name === 'ValidationError') {
       const errors = error.inner?.reduce(
         (acc, err) => ({
@@ -31,7 +53,6 @@ export async function createUser(req) {
         }),
         {},
       ) || { [error.path]: error.message };
-
       return NextResponse.json(
         {
           success: false,
@@ -40,7 +61,6 @@ export async function createUser(req) {
         },
         { status: 400 },
       );
-      //condiciconales ternarios?
     }
 
     return NextResponse.json(
