@@ -5,17 +5,34 @@ import MainButton from '../MainButton';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { validationFront } from '@/lib/schemas';
+import api from '@/utils/Api';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 function RegisterForm() {
+  const [error, setError] = useState(false);
+  const route = useRouter();
+
   const registerInputs = formInputs.filter((item) => item.isRegister);
-  const onSubmit = (data) => {
-    console.log(data);
-    console.log('data');
-  };
 
   const { handleSubmit, register, formState } = useForm({
     resolver: yupResolver(validationFront),
   });
+
+  const onSubmit = async (userData) => {
+    console.log(userData, 'DATA');
+    try {
+      setError(null);
+
+      const response = await api.createUser(userData);
+
+      if (response.success) {
+        route.push('signin');
+      }
+    } catch (error) {
+      setError(error.message || 'Error');
+    }
+  };
 
   return (
     <form
@@ -44,7 +61,8 @@ function RegisterForm() {
           )}
         </div>
       ))}
-
+      {/* ERROR */}
+      {error && <p className="text-center text-xs text-red-500">{error}</p>}
       <div className="flex justify-center pt-4 sm:justify-start">
         <MainButton type="submit" variant="primary" text={CTA.SIGN_IN} />
       </div>

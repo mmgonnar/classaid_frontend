@@ -2,8 +2,7 @@ import { NextResponse } from 'next/server';
 import Users from '@/models/user';
 import { validationFront } from '@/lib/schemas';
 import bcrypt from 'bcryptjs';
-import { handleErrorMessage } from '@/utils/functions';
-import mongoose from 'mongoose';
+import { handleError } from '@/utils/functions';
 //import jwt from 'jsonwebtoken';
 
 export async function createUser(req) {
@@ -29,7 +28,7 @@ export async function createUser(req) {
     );
   } catch (error) {
     if (error.name === 'MongoServerError') {
-      const errorMessage = handleErrorMessage(error);
+      const errorMessage = handleError(error);
 
       return NextResponse.json(
         {

@@ -5,7 +5,7 @@ export function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
 
-export const handleError = (error) => {
+export function handleError(error) {
   let errorMessage;
   if (!error || !error.message) {
     return 'An unexpected error occurred. Please try again.';
@@ -23,8 +23,8 @@ export const handleError = (error) => {
       errorMessage = 'Something wrong happened';
       return errorMessage;
   }
-};
+}
 
-export const generalErrorMessage = (er) => {
-  handleError(error);
-};
+// export const generalErrorMessage = (er) => {
+//   handleErrorMessage(error);
+// };

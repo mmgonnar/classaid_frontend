@@ -42,9 +42,7 @@ function Footer() {
             </p>
           </div>
         </div>
-        <div className="pt-8">
-          <Weather />
-        </div>
+        <div className="pt-8">{/* <Weather /> */}</div>
       </div>
     </footer>
   );
