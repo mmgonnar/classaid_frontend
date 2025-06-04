@@ -1,4 +1,5 @@
 import { clsx } from 'clsx';
+import toast from 'react-hot-toast';
 import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs) {
@@ -25,6 +26,24 @@ export function handleError(error) {
   }
 }
 
+export function toastApiCall(fetch, { loading, redirectTo, successMessage, errorMessage, router }) {
+  return toast.promise(fetch, {
+    loading: loading,
+    success: (response) => {
+      if (!response.success) {
+        throw new Error(response.message);
+      }
+      if (redirectTo && router) {
+        router.push(redirectTo);
+      }
+      return successMessage;
+    },
+    error: (error) => error.message || errorMessage,
+  });
+}
+
 // export const generalErrorMessage = (er) => {
 //   handleErrorMessage(error);
 // };
+
+//

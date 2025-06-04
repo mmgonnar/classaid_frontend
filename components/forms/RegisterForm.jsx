@@ -5,12 +5,14 @@ import MainButton from '../MainButton';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { validationFront } from '@/lib/schemas';
-import api from '@/utils/Api';
+import api from '@/utils/Api/Api';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { toastApiCall } from '@/utils/functions';
 
 function RegisterForm() {
   const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const route = useRouter();
 
   const registerInputs = formInputs.filter((item) => item.isRegister);
@@ -20,18 +22,26 @@ function RegisterForm() {
   });
 
   const onSubmit = async (userData) => {
-    console.log(userData, 'DATA');
-    try {
-      setError(null);
+    toastApiCall(api.createUser(userData), {
+      loading: 'Creating user...',
+      redirectTo: 'signin',
+      successMessage: 'User created correctly',
+      errorMessage: 'Error creating user',
+      router: route,
+    });
 
-      const response = await api.createUser(userData);
+    // try {
+    //   setIsLoading(true);
+    //   setError(null);
 
-      if (response.success) {
-        route.push('signin');
-      }
-    } catch (error) {
-      setError(error.message || 'Error');
-    }
+    //   const response = await api.createUser(userData);
+
+    //   if (response.success) {
+    //     route.push('signin');
+    //   }
+    // } catch (error) {
+    //   setError(error.message || 'Error');
+    // }
   };
 
   return (
@@ -64,7 +74,12 @@ function RegisterForm() {
       {/* ERROR */}
       {error && <p className="text-center text-xs text-red-500">{error}</p>}
       <div className="flex justify-center pt-4 sm:justify-start">
-        <MainButton type="submit" variant="primary" text={CTA.SIGN_IN} />
+        <MainButton
+          type="submit"
+          variant="primary"
+          //text={CTA.SIGN_IN}
+          text={isLoading ? 'Creating...' : CTA.SIGN_IN}
+        />
       </div>
     </form>
   );

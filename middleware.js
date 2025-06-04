@@ -1,6 +1,6 @@
-import middleware from './middlewares/middleware';
+import middleware from './middlewares/composedMiddleware';
 
-export default await middleware;
+export { middleware as default };
 
 export const config = {
   matcher: ['/api/:path*', '/((?!_next/static|_next/image|favicon.ico).*)'],

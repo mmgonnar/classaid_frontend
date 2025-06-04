@@ -5,24 +5,44 @@ import { CTA } from '@/utils/enums';
 import { formInputs } from '@/utils/constants';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { validationFront } from '@/lib/schemas';
+import { loginValidationSchema } from '@/lib/schemas';
+import { useRouter } from 'next/navigation';
+import { toast } from 'react-hot-toast';
+import api from '@/utils/Api/Api';
+import { setToken } from '@/utils/token';
 
 function LoginForm() {
+  const router = useRouter();
   const loginInputs = formInputs.filter((item) => item.isLogin);
-  const onSubmit = (data) => {
-    console.log(data);
-    console.log('data');
+
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    resolver: yupResolver(loginValidationSchema),
+    mode: 'onSubmit',
+  });
+
+  const onSubmit = async (credentials) => {
+    try {
+      const response = await api.login(credentials.email, credentials.password);
+
+      if (response.success && response.data?.token) {
+        setToken(response.data.token);
+        toast.success('Welcome back!');
+        router.push('/dashboard');
+      } else {
+        toast.error(response.message || 'Error signing in');
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      toast.error(error.message || 'Error signing in');
+    }
   };
 
-  const { handleSubmit, register, formState } = useForm({ resolver: yupResolver(validationFront) });
-
   return (
-    <form
-      action="submit"
-      noValidate
-      className="flex flex-col gap-2"
-      onSubmit={handleSubmit(onSubmit)}
-    >
+    <form onSubmit={handleSubmit(onSubmit)} noValidate className="flex flex-col gap-2">
       {loginInputs.map((item) => (
         <div key={item.id} className="mb-1">
           <div className="mx-auto flex items-center rounded-md border border-neutral-400 p-1 text-sm">
@@ -38,9 +58,7 @@ function LoginForm() {
               {...register(item.name)}
             />
           </div>
-          {formState.errors[item.name] && (
-            <p className="text-xs text-red-500">{formState.errors[item.name].message}</p>
-          )}
+          {errors[item.name] && <p className="text-xs text-red-500">{errors[item.name].message}</p>}
         </div>
       ))}
 
@@ -48,7 +66,12 @@ function LoginForm() {
         Forgot your password?
       </button>
       <div className="flex justify-center pt-4 sm:justify-start">
-        <MainButton type="submit" variant="primary" text={CTA.SIGN_IN} />
+        <MainButton
+          type="submit"
+          variant="primary"
+          text={isSubmitting ? 'Signing in...' : CTA.SIGN_IN}
+          disabled={isSubmitting}
+        />
       </div>
     </form>
   );
