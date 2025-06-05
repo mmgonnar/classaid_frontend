@@ -1,90 +1,67 @@
 import { NextResponse } from 'next/server';
-//import { decrypt } from '@/app/lib/session';
 import jwt from 'jsonwebtoken';
-//import { cookies } from 'next/headers';
+import { jwtVerify } from 'jose';
+import { getToken } from '@/utils/token';
+import { cookies } from 'next/headers';
 
 const JWT_SECRET = process.env.JWT_SECRET;
-const PROTECTED_ROUTES = ['/dashboard', '/api/'];
-const PUBLIC_ROUTES = ['/login', '/signup', '/'];
+const secret = new TextEncoder().encode(JWT_SECRET);
+//const PROTECTED_ROUTES = ['/dashboard', '/api/'];
+const PROTECTED_ROUTES = ['/dashboard'];
+const PUBLIC_ROUTES = ['/login', '/signup', '/', '/signin'];
 
 export async function protectedRoutesMiddleware(req) {
   const path = req.nextUrl.pathname;
-  const authorizationHeader = req.headers.get('authorization');
-  const token = authorizationHeader?.replace('Bearer ', '');
+  const cookieStore = await cookies();
+  const authorizationHeader = cookieStore.get('token');
 
-  console.log('Path:', path);
-  console.log('Authorization header:', authorizationHeader);
-  console.log('Token:', token);
+  console.log(authorizationHeader, 'aaaaa');
+  const token = authorizationHeader?.value.replace('Bearer ', '');
+  console.log(token, 'bbbbbbb');
 
   const isPublicRoute = PUBLIC_ROUTES.includes(path);
-  if (isPublicRoute && token) {
-    try {
-      jwt.verify(token, JWT_SECRET);
-      console.log(
-        `Authenticated user trying to access public route (${path}). Redirecting to /dashboard.`,
-      );
-      return NextResponse.redirect(new URL('/dashboard', req.nextUrl));
-    } catch (error) {
-      console.warn(
-        `Invalid or expired token for user trying to access public route (${path}). Allowing access.`,
-      );
+  if (isPublicRoute) {
+    console.log('YYYYYYYYYY');
+    if (token) {
+      try {
+        //jwt.verify(token, JWT_SECRET);
+        const { payload } = await jwtVerify(token, secret);
+        console.log('Middleware - Valid token on public route, redirecting to dashboard');
+        return NextResponse.redirect(new URL('/dashboard', req.nextUrl));
+      } catch (error) {
+        return NextResponse.next();
+      }
     }
+
+    return NextResponse.next();
   }
 
   const isProtectedRoute = PROTECTED_ROUTES.some((route) => path.startsWith(route));
-  //const isPublicRoute = publicRoutes.includes(path);
-  if (!isProtectedRoute) {
-    return NextResponse.redirect(new URL('/', req.nextUrl));
-  }
-  if (!token) {
-    console.log(`No token found for protected route: ${path}.`);
-    if (path.startsWith('/api/')) {
-      return NextResponse.json({ message: 'Authentication required' }, { status: 401 });
+  if (isProtectedRoute) {
+    console.log('ZZZZZZZZ');
+    if (!token) {
+      console.log(token, 'xxxxxxxx');
+      //return NextResponse.redirect(new URL('/signin', req.nextUrl));
     }
-    console.log('bbbbbbb');
-    return NextResponse.redirect(new URL('/login', req.nextUrl));
+
+    try {
+      console.log('VVVVVVVVVVVVVV');
+      console.log('token', token);
+      console.log('JWT', JWT_SECRET);
+
+      // const payload = jwt.verify(
+      //   token,
+      //   '$2a$12$y/JYjfs1EFu2rVVCXR/go.wXaNfMmBckcg5VK.2t6hXPgs5aT0bb2',
+      // );
+
+      const { payload } = await jwtVerify(token, secret);
+      req.user = payload;
+      return NextResponse.next();
+    } catch (error) {
+      console.log(error);
+      return NextResponse.redirect(new URL('/signin', req.nextUrl));
+    }
   }
 
-  try {
-    const payload = jwt.verify(token, JWT_SECRET);
-    req.user = payload;
-    console.log('Token verified successfully:', payload);
-    return true;
-  } catch (error) {
-    console.error('JWT Verification Failed:', error.message);
-    if (path.startsWith('/api/')) {
-      return NextResponse.json({ message: 'Invalid or expired token' }, { status: 401 });
-    }
-    return NextResponse.redirect(new URL('/login', req.nextUrl));
-  }
+  return NextResponse.next();
 }
-
-// export async function protectedRoutesMiddleware(req) {
-//   const { authorization } = req.headers;
-//   console.log('algo');
-//   if (!authorization) {
-//     //! trabajar en la respuesta
-//     return NextResponse.json({ message: 'Need Authorization' }, { status: 401 });
-//   }
-
-//   const path = req.nextUrl.pathname;
-//   const isProtectedRoute = protectedRoutes.includes(path);
-//   const isPublicRoute = publicRoutes.includes(path);
-
-//   //const token = (await cookies()).get('token')?.value;
-//   const token = authorization.replace('Bearer ', '');
-
-//   const payload = jwt.verify(token, JWT_SECRET);
-
-//   //const session = await decrypt(cookie);
-
-//   if (isProtectedRoute && !token?.userId) {
-//     return NextResponse.redirect(new URL('/login', req.nextUrl));
-//   }
-
-//   if (isPublicRoute && token?.userId && !req.nextUrl.pathname.startsWith('/dashboard')) {
-//     return NextResponse.redirect(new URL('/dashboard', req.nextUrl));
-//   }
-
-//   return NextResponse.next();
-// }

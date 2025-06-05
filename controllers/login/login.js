@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server';
-import { jwt } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import Users from '@/models/user';
 import bcrypt from 'bcryptjs';
+import { cookies } from 'next/headers';
 
 const { JWT_SECRET = 'secret-token' } = process.env;
 
@@ -16,7 +17,7 @@ export async function login(req) {
           success: false,
           message: 'Credentials needed',
         },
-        { status: 201 },
+        { status: 400 },
       );
     }
 
@@ -36,6 +37,8 @@ export async function login(req) {
     }
 
     const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: '7d' });
+    const cookieStore = await cookies();
+    cookieStore.set('token', token);
 
     return NextResponse.json(
       {
@@ -55,6 +58,16 @@ export async function login(req) {
     );
   } catch (error) {
     console.error('Error finding user:', error);
+
+    if (error.message === 'No user found') {
+      return NextResponse.json(
+        {
+          success: false,
+          message: 'Invalid credentials',
+        },
+        { status: 401 },
+      );
+    }
 
     return NextResponse.json(
       {

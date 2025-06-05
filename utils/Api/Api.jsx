@@ -58,26 +58,26 @@ class Api {
     }
   }
 
-  async login(email, password) {
-    try {
-      const response = await fetch(`${this.baseUrl}/signin`, {
-        method: 'POST',
-        headers: this.getHeaders(),
-        body: JSON.stringify({ email, password }),
-      });
+  // async login(email, password) {
+  //   try {
+  //     const response = await fetch(`${this.baseUrl}/signin`, {
+  //       method: 'POST',
+  //       headers: this.getHeaders(),
+  //       body: JSON.stringify({ email, password }),
+  //     });
 
-      const data = await response.json();
+  //     const data = await response.json();
 
-      if (!response.ok) {
-        throw new Error(data.message || 'Error signing in');
-      }
+  //     if (!response.ok) {
+  //       throw new Error(data.message || 'Error signing in');
+  //     }
 
-      return data;
-    } catch (error) {
-      console.error('Error signing in:', error);
-      throw error;
-    }
-  }
+  //     return data;
+  //   } catch (error) {
+  //     console.error('Error signing in:', error);
+  //     throw error;
+  //   }
+  // }
 
   async deleteAllUsers() {
     try {

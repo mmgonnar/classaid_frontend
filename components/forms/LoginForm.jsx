@@ -8,8 +8,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { loginValidationSchema } from '@/lib/schemas';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-hot-toast';
-import api from '@/utils/Api/Api';
 import { setToken } from '@/utils/token';
+import auth from '@/utils/Api/Auth';
 
 function LoginForm() {
   const router = useRouter();
@@ -26,13 +26,19 @@ function LoginForm() {
 
   const onSubmit = async (credentials) => {
     try {
-      const response = await api.login(credentials.email, credentials.password);
+      console.log(credentials.email, 'EMAIL');
+      const response = await auth.login(credentials.email, credentials.password);
+      console.log(response, 'RESPONSE');
 
       if (response.success && response.data?.token) {
+        console.log(response.data.token, 'DATA TOKEN');
         setToken(response.data.token);
         toast.success('Welcome back!');
+        console.log('GO TO DASHBOARD');
         router.push('/dashboard');
+        router.refresh();
       } else {
+        console.error(response.message, 'AAAAAA');
         toast.error(response.message || 'Error signing in');
       }
     } catch (error) {

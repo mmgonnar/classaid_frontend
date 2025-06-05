@@ -1,11 +1,21 @@
-const TOKEN_KEY = 'jwt';
+import Cookies from 'js-cookie';
 
-export const setToken = (token) => localStorage.setItem(TOKEN_KEY, token);
+const TOKEN_KEY = 'token';
+
+export const setToken = (token) => {
+  Cookies.set(TOKEN_KEY, token, {
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'strict',
+    path: '/',
+  });
+};
 
 export const getToken = () => {
-  return localStorage.getItem(TOKEN_KEY);
+  return Cookies.get(TOKEN_KEY);
 };
 
 export const removeToken = () => {
-  localStorage.removeItem(TOKEN_KEY);
+  Cookies.remove(TOKEN_KEY, {
+    path: '/',
+  });
 };

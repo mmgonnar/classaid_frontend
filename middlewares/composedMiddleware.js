@@ -3,16 +3,14 @@ import { authMiddleware } from './auth';
 import { corsMiddleware } from './cors';
 import { protectedRoutesMiddleware } from './protectedRoutes';
 
-const middlewares = [corsMiddleware, protectedRoutesMiddleware];
-
 export default async function middleware(req) {
-  for (const middleware of middlewares) {
-    const result = await middleware(req);
-    if (result instanceof NextResponse) {
-      console.log('xxxxx');
-      //return result;
-    } else {
-    }
+  const corsResult = await corsMiddleware(req);
+  const request = corsResult instanceof NextResponse ? req : corsResult;
+
+  const protectedResult = await protectedRoutesMiddleware(request);
+  if (protectedResult instanceof NextResponse) {
+    return protectedResult;
   }
+
   return NextResponse.next();
 }
