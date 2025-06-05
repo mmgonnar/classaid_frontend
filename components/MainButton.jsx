@@ -1,6 +1,6 @@
 'use client';
 
-function MainButton({ variant = 'primary', text = '' }) {
+function MainButton({ variant = 'primary', text = '', type = 'button', onClick = () => {} }) {
   //const { variant = 'primary', text = '', link } = props;
 
   const variants = {
@@ -14,7 +14,11 @@ function MainButton({ variant = 'primary', text = '' }) {
       'bg-primary w-full rounded-full py-1 text-center text-sm font-medium text-white hover:bg-blue-800 cursor-pointer',
   };
 
-  return <button className={`${variants[variant]}`}>{text}</button>;
+  return (
+    <button type={type} className={`${variants[variant]}`} onClick={onClick}>
+      {text}
+    </button>
+  );
 }
 
 export function ButtonSection() {

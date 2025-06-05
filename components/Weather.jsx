@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-import api from '../utils/Api';
+import api from '../utils/Api/Api';
 import Loader from './loaders/SpinnerLoader';
 import SpinnerLoader from './loaders/SpinnerLoader';
 //import SkeletonLoader from './loaders/SkeletonLoader';
