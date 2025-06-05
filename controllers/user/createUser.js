@@ -27,6 +27,11 @@ export async function createUser(req) {
       { status: 201 },
     );
   } catch (error) {
+    console.error('Error creating user:', {
+      name: error.name,
+      code: error.code,
+      message: error.message,
+    });
     if (error.name === 'MongoServerError') {
       const errorMessage = handleError(error);
 
