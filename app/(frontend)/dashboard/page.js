@@ -1,6 +1,7 @@
 'use client';
 import MainButton from '@/components/MainButton';
 import MainLayout from '@/components/MainLayout';
+import Sidebar from '@/components/Sidebar';
 import { CTA } from '@/utils/enums';
 import { removeToken, getToken } from '@/utils/token';
 import { useRouter } from 'next/navigation';
@@ -30,9 +31,12 @@ function Dashboard() {
 
   return (
     <MainLayout>
-      <div>
-        <h1>Hola</h1>
-        <MainButton type="primary" text={CTA.LOGOUT} onClick={handleLogout} />
+      <div className="grid h-full grid-cols-[auto_1fr]">
+        <Sidebar />
+        <div className="flex flex-col p-6">
+          <h1>Hola</h1>
+          <MainButton type="primary" text={CTA.LOGOUT} onClick={handleLogout} />
+        </div>
       </div>
     </MainLayout>
   );

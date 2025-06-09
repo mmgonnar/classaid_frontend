@@ -6,7 +6,7 @@ function Footer() {
   const footerItems = menuItems.filter((item) => item.isFooter);
 
   return (
-    <footer className="w-full bg-neutral-700 p-6 pt-12 text-xs text-neutral-200">
+    <footer className="max-h-54 w-full overflow-y-auto bg-neutral-700 p-6 pt-12 text-xs text-neutral-200">
       <div className="mx-auto max-w-7xl">
         <div className="w-full border-t border-solid bg-amber-50"></div>
         <div className="flex flex-col items-center gap-4 pt-6 md:flex-row md:justify-between">

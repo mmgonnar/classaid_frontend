@@ -2,10 +2,14 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import AlternateEmailOutlinedIcon from '@mui/icons-material/AlternateEmailOutlined';
 import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
 import AddIcon from '@mui/icons-material/Add';
-import NotificationsIcon from '@mui/icons-material/Notifications';
+import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import SettingsIcon from '@mui/icons-material/Settings';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
+import Groups2OutlinedIcon from '@mui/icons-material/Groups2Outlined';
+import AssignmentTurnedInOutlinedIcon from '@mui/icons-material/AssignmentTurnedInOutlined';
 import { CTA } from './enums';
 
 export const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -23,10 +27,15 @@ export const menuItems = [
   { text: 'Terms', href: '/', isFooter: true, icon: '' },
   { text: 'Contact', href: '/contact', isFooter: true },
   { text: 'Add', href: '/', icon: AddIcon, isDashboard: true },
-  { text: 'Notifications', href: '/', icon: NotificationsIcon, isDashboard: true },
   { text: 'Calendar', href: '/', icon: CalendarTodayIcon, isDashboard: true },
-  { text: 'Settings', href: '/', icon: SettingsIcon, isDashboard: true },
+  { text: 'Notifications', href: '/', icon: NotificationsNoneOutlinedIcon, isDashboard: true },
   { text: 'Profile', href: '/', icon: AccountCircleIcon, isDashboard: true, isButton: true },
+  { text: 'Dashboard', href: '/', icon: DashboardIcon, isSidebar: true },
+  { text: 'Classes', href: '/', icon: SchoolOutlinedIcon, isSidebar: true },
+  { text: 'Groups', href: '/', icon: Groups2OutlinedIcon, isSidebar: true },
+  { text: 'Attendance', href: '/', icon: AssignmentTurnedInOutlinedIcon, isSidebar: true },
+  { text: 'Calendar', href: '/', icon: CalendarTodayIcon, isSidebar: true },
+  // { text: 'Settings', href: '/', icon: SettingsIcon, isSidebar: true },
 ];
 
 export const formInputs = [

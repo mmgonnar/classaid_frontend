@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0');
 /* @import "tailwindcss/preflight"; */
 @import "tailwindcss";
+
+/* @import "tailwindcsss/preflight"; */
+/* @tailwind utilities; */
 /* @tailwind base;
 @tailwind components; */
 /* @tailwind utilities; */
@@ -21,7 +24,11 @@ html, body {
   align-items: center;
   flex-wrap: wrap;
   align-content: center;
-  margin: auto
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  box-sizing: border-box;
+
   /* overflow-x: hidden; */
 }
 
