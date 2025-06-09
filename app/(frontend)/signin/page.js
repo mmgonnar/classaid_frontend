@@ -31,7 +31,7 @@ function Login() {
           </p>
         </div>
 
-        <LoginForm />
+        <LoginForm className="max-w-lg" />
       </div>
       <div className="w-full px-4 pb-4 opacity-30 md:absolute md:bottom-0 md:left-0 md:px-0 md:pb-0">
         <Copyright variant="sm" />

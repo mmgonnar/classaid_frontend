@@ -1,12 +1,14 @@
 import { NextResponse } from 'next/server';
 import { jwtVerify } from 'jose';
 import { cookies } from 'next/headers';
+import { PROTECTED_ROUTES, PUBLIC_ROUTES } from '@/utils/constants';
 
 const JWT_SECRET = process.env.JWT_SECRET;
 const secret = new TextEncoder().encode(JWT_SECRET);
 //const PROTECTED_ROUTES = ['/dashboard', '/api/']; //! Activar al final
-const PROTECTED_ROUTES = ['/dashboard'];
-const PUBLIC_ROUTES = ['/login', '/signup', '/', '/signin', '/api/users/'];
+//const PROTECTED_ROUTES = ['/dashboard', '/api/'];
+//const PROTECTED_ROUTES = process.env.PROTECTED_ROUTES;
+//export const PUBLIC_ROUTES = ['/login', '/signup', '/', '/signin', '/api/users/'];
 
 export async function protectedRoutesMiddleware(req) {
   const path = req.nextUrl.pathname;

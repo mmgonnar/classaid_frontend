@@ -1,10 +1,18 @@
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import AlternateEmailOutlinedIcon from '@mui/icons-material/AlternateEmailOutlined';
 import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
+import AddIcon from '@mui/icons-material/Add';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import SettingsIcon from '@mui/icons-material/Settings';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { CTA } from './enums';
 
 export const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 export const passwordPattern = /^(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{5}$/;
+
+export const PROTECTED_ROUTES = ['/dashboard'];
+export const PUBLIC_ROUTES = ['/login', '/signup', '/', '/signin', '/api/users/'];
 
 export const menuItems = [
   { text: 'Pricing', href: '/pricing', isHeader: true },
@@ -14,6 +22,11 @@ export const menuItems = [
   { text: 'Privacy', href: '/', isFooter: true, icon: '' },
   { text: 'Terms', href: '/', isFooter: true, icon: '' },
   { text: 'Contact', href: '/contact', isFooter: true },
+  { text: 'Add', href: '/', icon: AddIcon, isDashboard: true },
+  { text: 'Notifications', href: '/', icon: NotificationsIcon, isDashboard: true },
+  { text: 'Calendar', href: '/', icon: CalendarTodayIcon, isDashboard: true },
+  { text: 'Settings', href: '/', icon: SettingsIcon, isDashboard: true },
+  { text: 'Profile', href: '/', icon: AccountCircleIcon, isDashboard: true, isButton: true },
 ];
 
 export const formInputs = [

@@ -7,7 +7,8 @@ export enum CTA {
   LEARN_MORE = "Learn More",
   START_NOW = "Start now!",
   TRY_NOW = "Try now",
-  LOGOUT = "Logout"
+  LOGOUT = "Logout",
+  PROFILE = "Profile"
 }
 
 export enum ROL {
