@@ -24,7 +24,8 @@ export async function protectedRoutesMiddleware(req) {
       try {
         const { payload } = await jwtVerify(token, secret);
         req.user = payload;
-        return NextResponse.redirect(new URL('/dashboard', req.nextUrl));
+        //return NextResponse.redirect(new URL('/dashboard', req.nextUrl));
+        return NextResponse.next();
       } catch (error) {
         return NextResponse.next();
       }

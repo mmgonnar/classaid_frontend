@@ -31,7 +31,7 @@ function Dashboard() {
 
   return (
     <MainLayout>
-      <div className="grid h-full grid-cols-[auto_1fr]">
+      <div className="bg-secondary bg-opacity-90 grid h-full grid-cols-[auto_1fr]">
         <Sidebar />
         <div className="flex flex-col p-6">
           <h1>Hola</h1>

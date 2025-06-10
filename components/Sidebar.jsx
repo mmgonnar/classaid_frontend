@@ -6,7 +6,7 @@ import Link from 'next/link';
 function Sidebar() {
   const sidebarItems = menuItems.filter((item) => item.isSidebar);
   return (
-    <aside className="flex h-full cursor-pointer flex-col items-center justify-between border-r-1 border-neutral-300">
+    <aside className="flex h-full cursor-pointer flex-col items-center justify-between border-r-1 border-neutral-300 bg-white">
       <nav>
         <div className="flex w-16 flex-col gap-2 bg-white py-8">
           {sidebarItems.map((item) => (

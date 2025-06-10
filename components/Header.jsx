@@ -5,10 +5,15 @@ import { cn } from '@/utils/functions';
 import Logo from './Logo';
 import { getToken } from '@/utils/token';
 import SearchBar from './SearchBar';
+import { PROTECTED_ROUTES } from '@/utils/constants';
+import { usePathname } from 'next/navigation';
 
 function Header({ children }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const pathname = usePathname();
+
+  const isProtectedRoute = PROTECTED_ROUTES.some((route) => pathname.startsWith(route));
 
   useEffect(() => {
     const token = getToken();
@@ -37,11 +42,11 @@ function Header({ children }) {
           'sm:bg-transparent sm:shadow-none',
           isScrolled && 'sm:bg-white sm:shadow-md',
           !isScrolled && 'shadow-lg',
-          isLoggedIn && 'border-b-1 border-neutral-300',
+          isProtectedRoute && 'border-b-1 border-neutral-300',
         )}
       >
         <Logo className="mr-2 w-[110px]" />
-        {isLoggedIn && <SearchBar />}
+        {isProtectedRoute && <SearchBar />}
         <div>{children}</div>
       </header>
     </>
