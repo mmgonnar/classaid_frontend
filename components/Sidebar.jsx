@@ -20,7 +20,7 @@ function Sidebar() {
           ))}
         </div>
       </nav>
-      <Link href="/" className="text-neutral-600">
+      <Link href="/" className="pb-10 text-neutral-600">
         <SettingsOutlinedIcon />
       </Link>
     </aside>

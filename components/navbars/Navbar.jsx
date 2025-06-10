@@ -1,19 +1,36 @@
 'use client';
 
-import { use, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import Link from 'next/link';
-import { menuItems } from '@/utils/constants';
+import { PROTECTED_ROUTES, PUBLIC_ROUTES } from '@/utils/constants';
 import MainButton from '../MainButton';
 import { CTA } from '@/utils/enums';
 import { cn } from '@/utils/functions';
+import { usePathname } from 'next/navigation';
+import { getToken } from '@/utils/token';
 
-function Navbar({ text, href }) {
+function Navbar({ menuItems }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
-  const headerItems = menuItems.filter((item) => item.isHeader);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const pathname = usePathname();
 
+  const isProtectedRoute = PROTECTED_ROUTES.some((route) => pathname.startsWith(route));
+  const isPublicRoute = PUBLIC_ROUTES.includes(pathname);
+
+  const headerItems = menuItems.filter((item) => {
+    if (isProtectedRoute) {
+      return item.isDashboard;
+    }
+    if (isPublicRoute) {
+      return item.isHeader;
+    }
+    return item.isHeader;
+  });
+
+  //if toke = true
   useEffect(() => {
     const handleResize = () => {
       setIsDesktop(window.innerWidth >= 640);
@@ -21,6 +38,10 @@ function Navbar({ text, href }) {
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  useEffect(() => {
+    const token = getToken();
+    setIsLoggedIn(!!token);
   }, []);
 
   const toggleMenu = () => {
@@ -43,7 +64,6 @@ function Navbar({ text, href }) {
           />
         </button>
       )}
-
       <nav
         className={cn(
           'absolute top-10 left-0 z-50 flex w-full transform flex-col items-center gap-2 bg-white p-4 shadow-md transition-all duration-150',
@@ -55,9 +75,18 @@ function Navbar({ text, href }) {
           <Link
             key={item.text}
             href={item.href}
-            className={item.isButton ? 'w-full' : 'w-full p-2 text-center hover:bg-gray-100'}
+            className={cn(
+              'w-full p-2 text-center hover:bg-gray-100',
+              isProtectedRoute && 'flex items-center justify-center',
+            )}
           >
-            {item.isButton ? (
+            {isProtectedRoute ? (
+              isDesktop ? (
+                item.icon && <item.icon className="text-primary h-5 w-5" />
+              ) : (
+                item.text
+              )
+            ) : item.isButton ? (
               <MainButton
                 variant={isDesktop ? 'primary' : 'fullWidth'}
                 text={CTA.CREATE_ACCOUNT}
@@ -70,57 +99,6 @@ function Navbar({ text, href }) {
           </Link>
         ))}
       </nav>
-
-      {/* Movil */}
-      {/* {isMenuOpen && (
-        <nav className="absolute top-10 left-0 z-50 flex w-full transform flex-col items-center gap-2 bg-white p-4 shadow-md transition-all duration-150">
-          {headerItems.map((item) => (
-            <Link
-              key={props.item.text}
-              href={props.item.href}
-              className={item.isButton ? 'w-full' : 'w-full p-2 text-center hover:bg-gray-100'}
-            >
-              {item.isButton ? (
-                <MainButton
-                  variant="fullWidth"
-                  text={CTA.CREATE_ACCOUNT}
-                  key={item.text}
-                  href={item.href}
-                />
-              ) : (
-                item.text
-              )}
-            </Link>
-          ))}
-        </nav>
-      )} */}
-
-      {/* Desktop */}
-
-      {/* <nav className="hidden items-center gap-6 sm:flex">
-        {headerItems.map((item) => (
-          <Link
-            key={item.text}
-            href={item.href}
-            className={
-              item.isButton
-                ? 'w-full'
-                : 'w-full p-2 text-center whitespace-nowrap hover:bg-gray-100'
-            }
-          >
-            {item.isButton ? (
-              <MainButton
-                variant="primary"
-                text={CTA.CREATE_ACCOUNT}
-                key={item.text}
-                href={item.href}
-              />
-            ) : (
-              item.text
-            )}
-          </Link>
-        ))}
-      </nav> */}
     </>
   );
 }
