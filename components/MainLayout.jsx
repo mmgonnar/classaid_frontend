@@ -2,7 +2,7 @@ import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import { Toaster } from 'react-hot-toast';
-import Navbar from './navbars/Navbar';
+import Navbar from './Navbar';
 import { menuItems } from '@/utils/constants';
 
 function MainLayout({ children }) {

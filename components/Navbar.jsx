@@ -5,7 +5,7 @@ import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import Link from 'next/link';
 import { PROTECTED_ROUTES, PUBLIC_ROUTES } from '@/utils/constants';
-import MainButton from '../MainButton';
+import MainButton from './MainButton';
 import { CTA } from '@/utils/enums';
 import { cn } from '@/utils/functions';
 import { usePathname } from 'next/navigation';
