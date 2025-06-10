@@ -12,7 +12,8 @@ function Sidebar() {
           {sidebarItems.map((item) => (
             <Link
               key={item.text}
-              href={item.href}
+              href={item.text}
+              // href={{ pathname: '/dashboard', query: 'text' }} // ?adfasd
               className={item.isButton ? 'w-full' : 'w-full p-2 text-center whitespace-nowrap'}
             >
               {item.icon && <item.icon className="text-primary mr-1 h-5 w-5 cursor-pointer" />}

@@ -30,7 +30,6 @@ function Navbar({ menuItems }) {
     return item.isHeader;
   });
 
-  //if toke = true
   useEffect(() => {
     const handleResize = () => {
       setIsDesktop(window.innerWidth >= 640);
@@ -39,6 +38,7 @@ function Navbar({ menuItems }) {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
   useEffect(() => {
     const token = getToken();
     setIsLoggedIn(!!token);
@@ -66,7 +66,7 @@ function Navbar({ menuItems }) {
       )}
       <nav
         className={cn(
-          'absolute top-10 left-0 z-50 flex w-full transform flex-col items-center gap-2 bg-white p-4 shadow-md transition-all duration-150',
+          'absolute top-10 left-0 z-50 flex w-full transform flex-col items-center gap-2 bg-white shadow-md transition-all duration-150',
           !isMenuOpen && !isDesktop && 'hidden',
           isDesktop && 'relative top-0 flex-row bg-transparent whitespace-nowrap shadow-none',
         )}

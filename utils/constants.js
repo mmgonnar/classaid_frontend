@@ -30,11 +30,11 @@ export const menuItems = [
   { text: 'Calendar', href: '/', icon: CalendarTodayIcon, isDashboard: true },
   { text: 'Notifications', href: '/', icon: NotificationsNoneOutlinedIcon, isDashboard: true },
   { text: 'Profile', href: '/', icon: AccountCircleIcon, isDashboard: true, isButton: true },
-  { text: 'Dashboard', href: '/', icon: DashboardIcon, isSidebar: true },
-  { text: 'Classes', href: '/', icon: SchoolOutlinedIcon, isSidebar: true },
-  { text: 'Groups', href: '/', icon: Groups2OutlinedIcon, isSidebar: true },
-  { text: 'Attendance', href: '/', icon: AssignmentTurnedInOutlinedIcon, isSidebar: true },
-  { text: 'Calendar', href: '/', icon: CalendarTodayIcon, isSidebar: true },
+  { text: 'Dashboard', href: '/dashboard', icon: DashboardIcon, isSidebar: true },
+  { text: 'Classes', href: '/dashboard', icon: SchoolOutlinedIcon, isSidebar: true },
+  { text: 'Groups', href: '/dashboard', icon: Groups2OutlinedIcon, isSidebar: true },
+  { text: 'Attendance', href: '/dashboard', icon: AssignmentTurnedInOutlinedIcon, isSidebar: true },
+  { text: 'Calendar', href: '/dashboard', icon: CalendarTodayIcon, isSidebar: true },
   // { text: 'Settings', href: '/', icon: SettingsIcon, isSidebar: true },
 ];
 

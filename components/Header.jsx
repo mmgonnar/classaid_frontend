@@ -3,9 +3,17 @@
 import { useEffect, useState } from 'react';
 import { cn } from '@/utils/functions';
 import Logo from './Logo';
+import { getToken } from '@/utils/token';
+import SearchBar from './SearchBar';
 
 function Header({ children }) {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = getToken();
+    setIsLoggedIn(!!token);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,14 +32,16 @@ function Header({ children }) {
     <>
       <header
         className={cn(
-          'sticky top-0 z-50 mx-auto flex h-[50px] w-full max-w-7xl items-center justify-between p-6 text-sm transition-all duration-100 md:p-0 md:px-6',
+          'sticky top-0 z-50 mx-auto flex h-[50px] w-full max-w-7xl items-center justify-between px-6 text-sm transition-all duration-100 md:p-0 md:px-6',
           'bg-white shadow-xs',
           'sm:bg-transparent sm:shadow-none',
           isScrolled && 'sm:bg-white sm:shadow-md',
           !isScrolled && 'shadow-lg',
+          isLoggedIn && 'border-b-1 border-neutral-300',
         )}
       >
-        <Logo className="w-[110px]" />
+        <Logo className="mr-2 w-[110px]" />
+        {isLoggedIn && <SearchBar />}
         <div>{children}</div>
       </header>
     </>
