@@ -13,11 +13,15 @@ import { cn } from '@/utils/functions';
 import { usePathname } from 'next/navigation';
 import Drawer from './Drawer';
 
-function Navbar({ menuItems, isMenuOpen, toggleMenu }) {
-  //const [isMenuOpen, setIsMenuOpen] = useState(false);
+function Navbar({ menuItems }) {
   const [isDesktop, setIsDesktop] = useState(false);
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+
+  const toggleMenu = () => {
+    console.log(isMenuOpen, 'BBBBBB');
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   const isProtectedRoute = PROTECTED_ROUTES.some((route) => pathname.startsWith(route));
   const isPublicRoute = PUBLIC_ROUTES.includes(pathname);
@@ -40,8 +44,6 @@ function Navbar({ menuItems, isMenuOpen, toggleMenu }) {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-
-  const onClick = () => {};
 
   return (
     <>
@@ -70,7 +72,7 @@ function Navbar({ menuItems, isMenuOpen, toggleMenu }) {
         className={cn(
           'absolute top-10 left-0 z-50 flex w-full transform flex-col items-center gap-2 bg-white shadow-md transition-all duration-150',
           !isMenuOpen && !isDesktop && 'hidden',
-          isProtectedRoute && !isDesktop && 'hidden',
+          (isProtectedRoute || (!isDesktop && !isMenuOpen)) && 'hidden',
           isDesktop && 'relative top-0 flex-row bg-transparent whitespace-nowrap shadow-none',
         )}
       >
@@ -82,16 +84,10 @@ function Navbar({ menuItems, isMenuOpen, toggleMenu }) {
               'w-full p-2 text-center hover:bg-gray-100',
               isProtectedRoute && 'flex items-center justify-center',
             )}
-            onClick={(e) => {
-              if (item.text.toLowerCase() === 'profile') {
-                e.preventDefault();
-                toggleMenu();
-              }
-            }}
           >
             {isProtectedRoute ? (
               isDesktop ? (
-                item.icon && <item.icon className="text-primary h-5 w-5" />
+                item.icon && <item.icon onClick={toggleMenu} className="text-primary h-5 w-5" />
               ) : (
                 item.text
               )
@@ -109,7 +105,14 @@ function Navbar({ menuItems, isMenuOpen, toggleMenu }) {
           </Link>
         ))}
       </nav>
-      <Drawer isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
+      {isProtectedRoute && (
+        <Drawer
+          isDesktop={isDesktop}
+          isMenuOpen={isMenuOpen}
+          toggleMenu={toggleMenu}
+          className={cn(isProtectedRoute && !isDesktop && !isMenuOpen && 'hidden')}
+        />
+      )}
     </>
   );
 }
