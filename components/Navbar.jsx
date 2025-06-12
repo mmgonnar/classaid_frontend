@@ -19,7 +19,6 @@ function Navbar({ menuItems }) {
   const pathname = usePathname();
 
   const toggleMenu = () => {
-    console.log(isMenuOpen, 'BBBBBB');
     setIsMenuOpen(!isMenuOpen);
   };
 
@@ -72,7 +71,7 @@ function Navbar({ menuItems }) {
         className={cn(
           'absolute top-10 left-0 z-50 flex w-full transform flex-col items-center gap-2 bg-white shadow-md transition-all duration-150',
           !isMenuOpen && !isDesktop && 'hidden',
-          (isProtectedRoute || (!isDesktop && !isMenuOpen)) && 'hidden',
+          isProtectedRoute && !isDesktop && isMenuOpen && 'hidden',
           isDesktop && 'relative top-0 flex-row bg-transparent whitespace-nowrap shadow-none',
         )}
       >

@@ -13,10 +13,28 @@ import BaseDrawer from './drawers/BaseDrawer';
 import { menuItems } from '@/utils/constants';
 import { cn } from '@/utils/functions';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { getToken, removeToken } from '@/utils/token';
 
 function Drawer({ toggleMenu, isMenuOpen }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const profileDrawer = menuItems.filter((item) => item.isProfileDrawer);
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = getToken();
+    console.log('Dashboard - Token present:', !!token);
+
+    if (!token) {
+      router.push('/signin');
+    } else {
+    }
+  }, [router]);
+
+  const handleLogout = () => {
+    removeToken();
+    router.push('/dashboard');
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,7 +80,13 @@ function Drawer({ toggleMenu, isMenuOpen }) {
               <div className="flex-1 overflow-y-auto">
                 <div className="flex justify-center gap-2 py-5">
                   <MainButton variant="primary" size="sm" text={CTA.PROFILE} type="button" />
-                  <MainButton variant="secondary" size="sm" text={CTA.LOGOUT} type="button" />
+                  <MainButton
+                    onClick={handleLogout}
+                    variant="secondary"
+                    size="sm"
+                    text={CTA.LOGOUT}
+                    type="button"
+                  />
                 </div>
 
                 <div className="m-auto mb-6 flex w-[80%] justify-items-end gap-2 border-b-1 border-neutral-300 pb-6">

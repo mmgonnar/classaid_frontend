@@ -15,7 +15,7 @@ function BaseDrawer({ children, isMenuOpen, toggleMenu }) {
     return () => {
       window.removeEventListener('keydown', handleKeyPress);
     };
-  }, [toggleMenu]);
+  }, [isMenuOpen]);
 
   return (
     <>
