@@ -102,3 +102,5 @@ export const pricingPlans = {
     button: CTA.TRY_FREE,
   },
 };
+
+export const help = [{}];

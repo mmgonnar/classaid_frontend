@@ -8,7 +8,8 @@ export enum CTA {
   START_NOW = "Start now!",
   TRY_NOW = "Try now",
   LOGOUT = "Logout",
-  PROFILE = "Profile"
+  PROFILE = "Profile",
+  ACCOUNT = "My Account"
 }
 
 export enum ROL {
