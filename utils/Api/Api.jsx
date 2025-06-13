@@ -1,6 +1,5 @@
 'use client';
 
-import { RESPONSE_LIMIT_DEFAULT } from 'next/dist/server/api-utils';
 import { getToken } from '../token';
 
 //Weather
@@ -42,6 +41,19 @@ class Api {
     };
   }
 
+  async getUserInfo() {
+    try {
+      const response = await fetch(`${this.baseUrl}/users`, {
+        method: 'GET',
+        headers: this.getHeaders(),
+        body: JSON.stringify(userData),
+      });
+
+      const data = await response.json();
+      return data;
+    } catch (error) {}
+  }
+
   async createUser(userData) {
     try {
       const response = await fetch(`${this.baseUrl}/users`, {
@@ -57,27 +69,6 @@ class Api {
       throw error;
     }
   }
-
-  // async login(email, password) {
-  //   try {
-  //     const response = await fetch(`${this.baseUrl}/signin`, {
-  //       method: 'POST',
-  //       headers: this.getHeaders(),
-  //       body: JSON.stringify({ email, password }),
-  //     });
-
-  //     const data = await response.json();
-
-  //     if (!response.ok) {
-  //       throw new Error(data.message || 'Error signing in');
-  //     }
-
-  //     return data;
-  //   } catch (error) {
-  //     console.error('Error signing in:', error);
-  //     throw error;
-  //   }
-  // }
 
   async deleteAllUsers() {
     try {
@@ -96,26 +87,6 @@ class Api {
       throw error;
     }
   }
-
-  // async post(path, body) {
-  //   try {
-  //     const response = await fetch(`${this.baseUrl}${path}`, {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify(body),
-  //     });
-  //     const data = await response.json();
-  //     if (!response.ok) {
-  //       throw new Error(data.message || 'Error en la solicitud POST');
-  //     }
-  //     return data;
-  //   } catch (error) {
-  //     console.error('Error en la solicitud POST:', error);
-  //     throw error;
-  //   }
-  // }
 }
 
 const api = new Api('/api');

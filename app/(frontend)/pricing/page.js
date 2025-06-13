@@ -10,7 +10,7 @@ function Pricing() {
         <h3 className="text-primary px-auto my-15 text-center text-3xl font-bold">
           Find a plan that fits your goals
         </h3>
-        <div className="mx-auto flex flex-col gap-6 md:flex-row">
+        <div className="mx-auto flex flex-col items-center gap-6 md:flex-row md:justify-center">
           <PricingCard props="basic" />
           <PricingCard props="plus" />
           <PricingCard props="pro" />

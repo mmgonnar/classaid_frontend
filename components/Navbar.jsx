@@ -11,7 +11,7 @@ import MainButton from './MainButton';
 import { CTA } from '@/utils/enums';
 import { cn } from '@/utils/functions';
 import { usePathname } from 'next/navigation';
-import Drawer from './Drawer';
+import ProfileDrawer from './drawers/ProfileDrawer';
 
 function Navbar({ menuItems }) {
   const [isDesktop, setIsDesktop] = useState(false);
@@ -105,7 +105,7 @@ function Navbar({ menuItems }) {
         ))}
       </nav>
       {isProtectedRoute && (
-        <Drawer
+        <ProfileDrawer
           isDesktop={isDesktop}
           isMenuOpen={isMenuOpen}
           toggleMenu={toggleMenu}

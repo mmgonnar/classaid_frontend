@@ -26,9 +26,7 @@ function LoginForm() {
 
   const onSubmit = async (credentials) => {
     try {
-      console.log(credentials.email, 'EMAIL');
       const response = await auth.login(credentials.email, credentials.password);
-      console.log(response, 'RESPONSE');
 
       if (response.success && response.data?.token) {
         console.log(response.data.token, 'DATA TOKEN');
