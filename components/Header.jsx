@@ -1,17 +1,20 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { cn } from '@/utils/functions';
 import Logo from './Logo';
 import { getToken } from '@/utils/token';
 import SearchBar from './SearchBar';
 import { PROTECTED_ROUTES } from '@/utils/constants';
 import { usePathname } from 'next/navigation';
+import BaseContext from '@/context/BaseContext';
 
 function Header({ children }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const pathname = usePathname();
+
+  const pruebaContexto = useContext(BaseContext);
 
   const isProtectedRoute = PROTECTED_ROUTES.some((route) => pathname.startsWith(route));
 

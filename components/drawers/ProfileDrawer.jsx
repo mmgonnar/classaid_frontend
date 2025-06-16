@@ -12,17 +12,20 @@ import SocialMedia from '../SocialMedia';
 import BaseDrawer from './BaseDrawer';
 import { menuItems } from '@/utils/constants';
 import { cn } from '@/utils/functions';
-import { use, useEffect, useState } from 'react';
+import { use, useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { getToken, removeToken } from '@/utils/token';
 import SpinnerLoader from '../loaders/SpinnerLoader';
+import BouncyLoader from '../loaders/BouncyLoader';
+import UserContext from '@/context/UserContext';
 
 function Drawer({ toggleMenu, isMenuOpen }) {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [userData, setUserData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  //const [userData, setUserData] = useState(null);
+  //const [loading, setLoading] = useState(true);
   const profileDrawer = menuItems.filter((item) => item.isProfileDrawer);
   const router = useRouter();
+  const { userData, loading } = useContext(UserContext);
 
   const getUserInitials = (name, lastName) => {
     let initials = '';
@@ -39,45 +42,45 @@ function Drawer({ toggleMenu, isMenuOpen }) {
   };
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      setLoading(true);
-      try {
-        const token = getToken();
-        if (!token) {
-          router.push('/signin');
-          return;
-        }
+    // const fetchUserData = async () => {
+    //   setLoading(true);
+    //   try {
+    //     const token = getToken();
+    //     if (!token) {
+    //       router.push('/signin');
+    //       return;
+    //     }
 
-        const tokenData = JSON.parse(atob(token.split('.')[1]));
-        const userId = tokenData.id;
+    //     const tokenData = JSON.parse(atob(token.split('.')[1]));
+    //     const userId = tokenData.id;
 
-        const response = await fetch(`/api/users/${userId}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+    //     const response = await fetch(`/api/users/${userId}`, {
+    //       headers: {
+    //         Authorization: `Bearer ${token}`,
+    //       },
+    //     });
 
-        if (!response.ok) {
-          throw new Error('Error fetching user data');
-        }
+    //     if (!response.ok) {
+    //       throw new Error('Error fetching user data');
+    //     }
 
-        const result = await response.json();
+    //     const result = await response.json();
 
-        if (!result.success) {
-          throw new Error(result.message || 'Error fetching user data');
-        }
+    //     if (!result.success) {
+    //       throw new Error(result.message || 'Error fetching user data');
+    //     }
 
-        setUserData(result.data);
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-        removeToken();
-        router.push('/signin');
-      } finally {
-        setLoading(false);
-      }
-    };
+    //     setUserData(result.data);
+    //   } catch (error) {
+    //     console.error('Error fetching user data:', error);
+    //     removeToken();
+    //     router.push('/signin');
+    //   } finally {
+    //     setLoading(false);
+    //   }
+    // };
 
-    fetchUserData();
+    // fetchUserData();
 
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -110,7 +113,7 @@ function Drawer({ toggleMenu, isMenuOpen }) {
               >
                 <div className="outline-primary m-auto mb-4 flex h-24 w-24 flex-col items-center justify-center rounded-full bg-white p-6 outline outline-offset-6">
                   {loading ? (
-                    <SpinnerLoader size="lg" color="border-primary" />
+                    <BouncyLoader size="lg" color="border-primary" />
                   ) : (
                     <p className="text-primary text-4xl">
                       {userData ? getUserInitials(userData.name, userData.lastName) : '...'}
@@ -119,7 +122,7 @@ function Drawer({ toggleMenu, isMenuOpen }) {
                 </div>
 
                 {loading ? (
-                  <SpinnerLoader size="md" color="border-gray-500" />
+                  <BouncyLoader size="md" color="border-gray-500" />
                 ) : (
                   <p className="text-center text-lg font-bold">
                     {userData
