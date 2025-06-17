@@ -29,10 +29,8 @@ function LoginForm() {
       const response = await auth.login(credentials.email, credentials.password);
 
       if (response.success && response.data?.token) {
-        console.log(response.data.token, 'DATA TOKEN');
         setToken(response.data.token);
         toast.success('Welcome back!');
-        console.log('GO TO DASHBOARD');
         router.push('/dashboard');
         router.refresh();
       } else {

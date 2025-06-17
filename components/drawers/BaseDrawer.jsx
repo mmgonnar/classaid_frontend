@@ -4,7 +4,8 @@ import { cn } from '@/utils/functions';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import { useEffect } from 'react';
 
-function BaseDrawer({ children, isMenuOpen, toggleMenu }) {
+function BaseDrawer({ children, isMenuOpen, toggleMenu, direction }) {
+  const directions = {};
   useEffect(() => {
     const handleKeyPress = (evt) => {
       if (evt.key === 'Escape' && isMenuOpen) {

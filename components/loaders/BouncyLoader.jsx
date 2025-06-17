@@ -2,7 +2,7 @@ import React from 'react';
 
 function BouncyLoader({ className = '' }) {
   return (
-    <div className={`bouncy__container m-10 ${className} `}>
+    <div className={`bouncy__container ${className} `}>
       <div className="cube">
         <div className="cube__inner"></div>
       </div>

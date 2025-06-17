@@ -42,46 +42,6 @@ function Drawer({ toggleMenu, isMenuOpen }) {
   };
 
   useEffect(() => {
-    // const fetchUserData = async () => {
-    //   setLoading(true);
-    //   try {
-    //     const token = getToken();
-    //     if (!token) {
-    //       router.push('/signin');
-    //       return;
-    //     }
-
-    //     const tokenData = JSON.parse(atob(token.split('.')[1]));
-    //     const userId = tokenData.id;
-
-    //     const response = await fetch(`/api/users/${userId}`, {
-    //       headers: {
-    //         Authorization: `Bearer ${token}`,
-    //       },
-    //     });
-
-    //     if (!response.ok) {
-    //       throw new Error('Error fetching user data');
-    //     }
-
-    //     const result = await response.json();
-
-    //     if (!result.success) {
-    //       throw new Error(result.message || 'Error fetching user data');
-    //     }
-
-    //     setUserData(result.data);
-    //   } catch (error) {
-    //     console.error('Error fetching user data:', error);
-    //     removeToken();
-    //     router.push('/signin');
-    //   } finally {
-    //     setLoading(false);
-    //   }
-    // };
-
-    // fetchUserData();
-
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
