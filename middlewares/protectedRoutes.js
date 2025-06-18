@@ -3,7 +3,7 @@ import { jwtVerify } from 'jose';
 import { cookies } from 'next/headers';
 //import { PROTECTED_ROUTES, PUBLIC_ROUTES } from '@/utils/constants';
 
-const JWT_SECRET = process.env.JWT_SECRET;
+const JWT_SECRET = process.env.JWT_SECRET || secret;
 const secret = new TextEncoder().encode(JWT_SECRET);
 //const PROTECTED_ROUTES = ['/dashboard', '/api/']; //! Activar al final
 // const PROTECTED_ROUTES = process.env.PROTECTED_ROUTES;

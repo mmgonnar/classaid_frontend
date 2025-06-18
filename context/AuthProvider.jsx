@@ -20,7 +20,7 @@ function AuthProvider({ children }) {
   };
 
   useEffect(() => {
-    const currentToken = getUserToken();
+    const currentToken = getToken();
     console.log(currentToken);
     if (currentToken && !authenticated) {
       try {
@@ -47,15 +47,17 @@ function AuthProvider({ children }) {
       // router.push('/signin');
       // return;
     }
-  }, []);
+  }, [setTokenData]);
 
   const handleLogin = async (credentials) => {
+    console.log('llllllllllllll');
     try {
       const response = await auth.login(credentials.email, credentials.password);
-
+      console.log(response);
       if (response.success && response.data?.token) {
+        console.log('ñññññññ');
         const payload = JSON.parse(atob(response.data.token.split('.')[1]));
-        setToken(response.data.token);
+        setTokenState(response.data.token);
         console.log(getToken(), 'set token');
         setTokenState(response.data.token);
         setTokenData(payload);

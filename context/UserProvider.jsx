@@ -20,6 +20,7 @@ function UserProvider({ children }) {
     const fetchUserData = async () => {
       if (!token) {
         console.log(authenticated);
+
         // if (!authenticated) {
         //   //router.push('/signin');
         //   return;
@@ -63,16 +64,11 @@ function UserProvider({ children }) {
           setLoading(false);
         }
       }
-
-      fetchUserData();
     };
+    fetchUserData();
   }, [token, tokenData?.id]);
 
-  return (
-    <UserContext.Provider value={{ userData, loading, refreshUser: () => fetchUserData() }}>
-      {children}
-    </UserContext.Provider>
-  );
+  return <UserContext.Provider value={{ userData, loading }}>{children}</UserContext.Provider>;
 }
 // function UserContext({ children }) {
 

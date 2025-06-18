@@ -11,7 +11,6 @@ import { useContext } from 'react';
 function Dashboard() {
   const { userData, loading } = useContext(UserContext);
 
-  console.log(loading);
   if (loading || !userData) {
     return (
       <div className="bg-opacity-75 fixed inset-0 flex items-center justify-center bg-white transition-opacity duration-300">

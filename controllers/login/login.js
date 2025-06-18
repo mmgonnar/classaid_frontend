@@ -4,7 +4,7 @@ import Users from '@/models/user';
 import bcrypt from 'bcryptjs';
 import { cookies } from 'next/headers';
 
-const { JWT_SECRET = 'secret-token' } = process.env;
+const { JWT_SECRET = 'secret' } = process.env;
 
 export async function login(req) {
   try {
