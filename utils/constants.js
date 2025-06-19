@@ -13,6 +13,7 @@ import SupportAgentOutlinedIcon from '@mui/icons-material/SupportAgentOutlined';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
 import LayersOutlinedIcon from '@mui/icons-material/LayersOutlined';
+import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { CTA } from './enums';
 
@@ -52,8 +53,16 @@ export const menuItems = [
     isProfileDrawer: true,
   },
   {
+    text: 'Account',
+    href: '',
+    icon: AssignmentIndIcon,
+    // isDashboard: true,
+    isButton: true,
+    // isAuthenticated: true,
+  },
+  {
     text: 'Profile',
-    href: '/profile',
+    href: '',
     icon: AccountCircleIcon,
     isDashboard: true,
     isButton: true,
@@ -140,26 +149,60 @@ export const pricingPlans = {
   },
 };
 
-export const helpItems = [
+export const helpMenu = [
   {
-    text: 'Tapalosda',
-    href: '/dashboard',
+    text: 'Talk with us',
+    href: '/help',
     icon: SupportAgentOutlinedIcon,
-    className: '',
+    className: 'col-start-1 row-start-1',
+    isHelp: true,
   },
   {
     text: 'Email us',
-    href: '/dashboard',
+    href: '/help',
     icon: EmailOutlinedIcon,
+    className: 'col-start-1 row-start-2 ',
+    isHelp: true,
   },
   {
     text: 'Biling',
-    href: '/dashboard',
+    href: '/pricing',
     icon: ReceiptLongOutlinedIcon,
+    className: 'col-start-2 row-start-1 ',
+    isHelp: true,
   },
   {
     text: 'Resources',
     href: '/dashboard',
     icon: LayersOutlinedIcon,
+    className: 'col-start-2 row-start-2 ',
+    isHelp: true,
+  },
+];
+
+export const subscriptionMenu = [
+  {
+    text: 'Free edition',
+    href: '/pricing',
+    className: 'col-start-1 row-start-1',
+    isSubscription: true,
+  },
+  {
+    text: 'UPGRADE',
+    href: '/pricing',
+    className: 'col-start-1 row-start-2 text-blue-700 underline underline-offset-1',
+    isSubscription: true,
+  },
+  {
+    text: 'Try another version',
+    href: '/pricing',
+    className: 'col-start-2 row-start-1 ',
+    isSubscription: true,
+  },
+  {
+    text: '',
+    href: '',
+    className: 'col-start-2 row-start-2 ',
+    isSubscription: true,
   },
 ];

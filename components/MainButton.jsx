@@ -1,11 +1,14 @@
 'use client';
 
+import Link from 'next/link';
+
 function MainButton({
   variant = 'primary',
   text = '',
   type = 'button',
   onClick = () => {},
   size = 'md',
+  href = '/',
 }) {
   //const { variant = 'primary', text = '', link } = props;
 
@@ -27,13 +30,15 @@ function MainButton({
   };
 
   return (
-    <button
-      type={type}
-      className={`${variants[variant]} ${size ? sizes[size] : ''}`}
-      onClick={onClick}
-    >
-      {text}
-    </button>
+    <Link href={href}>
+      <button
+        type={type}
+        className={`${variants[variant]} ${size ? sizes[size] : ''}`}
+        onClick={onClick}
+      >
+        {text}
+      </button>
+    </Link>
   );
 }
 

@@ -3,9 +3,7 @@ import './(frontend)/globals.css';
 import Copyright from '@/components/Copyright';
 import Logo from '@/components/Logo';
 import MainButton from '@/components/MainButton';
-import MainLayout from '@/components/MainLayout';
 import { CTA } from '@/utils/enums';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 export default function NotFound() {
@@ -13,9 +11,6 @@ export default function NotFound() {
 
   const goBack = () => {
     router.back();
-  };
-  const goDashboard = () => {
-    router.push('/dashboard');
   };
   return (
     <section className="flex min-h-screen flex-col items-center justify-center bg-[linear-gradient(345deg,rgba(101,156,246,0.3),rgba(246,246,246,0.2))] md:relative md:flex-row">

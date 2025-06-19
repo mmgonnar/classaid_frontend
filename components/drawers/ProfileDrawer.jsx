@@ -9,7 +9,13 @@ import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
 import LayersOutlinedIcon from '@mui/icons-material/LayersOutlined';
 import Link from 'next/link';
 import BaseDrawer from './BaseDrawer';
-import { menuItems, PROTECTED_ROUTES } from '@/utils/constants';
+import {
+  helpItems,
+  helpMenu,
+  menuItems,
+  PROTECTED_ROUTES,
+  subscriptionMenu,
+} from '@/utils/constants';
 import { cn } from '@/utils/functions';
 import { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -27,6 +33,8 @@ function Drawer({ toggleMenu, isMenuOpen }) {
   const router = useRouter();
   const pathname = usePathname();
   const profileDrawer = menuItems.filter((item) => item.isProfileDrawer);
+  const helpItems = helpMenu.filter((item) => item.isHelp);
+  const subscriptionItems = subscriptionMenu.filter((item) => item.isSubscription);
   const isProtectedRoute = PROTECTED_ROUTES.some((route) => pathname.startsWith(route));
 
   const getUserInitials = (name, lastName) => {
@@ -126,7 +134,13 @@ function Drawer({ toggleMenu, isMenuOpen }) {
               </div>
               <div className={cn('flex-1 overflow-y-auto', isProtectedRoute && 'overflow-hidden')}>
                 <div className="flex justify-center gap-2 py-5">
-                  <MainButton variant="primary" size="sm" text={CTA.PROFILE} type="button" />
+                  <MainButton
+                    variant="primary"
+                    size="sm"
+                    text={CTA.PROFILE}
+                    type="button"
+                    href="profile"
+                  />
                   <MainButton
                     onClick={handleLogout}
                     variant="secondary"
@@ -135,7 +149,6 @@ function Drawer({ toggleMenu, isMenuOpen }) {
                     type="button"
                   />
                 </div>
-                {/* {isProtectedRoute && ( */}
                 <>
                   <div className="m-auto mb-6 flex w-[80%] justify-items-end gap-2 border-b-1 border-neutral-300 pb-6">
                     {profileDrawer.map((item) => (
@@ -159,23 +172,44 @@ function Drawer({ toggleMenu, isMenuOpen }) {
 
                   <div className="m-auto mb-6 flex w-[80%] flex-col gap-2 border-b-1 border-neutral-300 pb-6">
                     <p className="text-primary text-md pb-2 font-bold">SUBSCRIPTION</p>
-                    <div className="flex items-center gap-10 text-neutral-700">
-                      <p className="text-md cursor-pointer text-center">Free Edition</p>
-                      <Link
-                        href="/pricing"
-                        className="text-md text-center font-semibold text-blue-700 underline underline-offset-1"
-                      >
-                        UPGRADE
-                      </Link>
+                    <div className="grid grid-cols-2 grid-rows-2 gap-4 text-neutral-700">
+                      {subscriptionItems.map((item) => (
+                        <Link
+                          key={item.text}
+                          href={item.href}
+                          className={cn(
+                            'text-md w-sm cursor-pointer',
+                            item.text === 'UPGRADE' &&
+                              'font-semibold text-blue-700 underline underline-offset-1',
+                          )}
+                        >
+                          {item.text}
+                        </Link>
+                      ))}
                     </div>
-                    <Link href="/pricing" className="text-md cursor-pointer">
-                      Try another version
-                    </Link>
                   </div>
                   <div className="m-auto mb-6 flex w-[80%] flex-col justify-items-end gap-2 border-b-1 border-neutral-300 pb-6">
                     <p className="text-primary text-md pb-2 font-bold">NEED HELP?</p>
                     <div className="grid grid-cols-2 grid-rows-2 gap-4 text-neutral-700">
-                      <Link
+                      {helpItems.map((item) => (
+                        <Link
+                          key={item.text}
+                          href={item.href}
+                          className={cn(
+                            'flex w-full flex-row gap-1 text-center duration-300 hover:z-10 hover:scale-[1.12]',
+                          )}
+                        >
+                          {item.icon && (
+                            <item.icon
+                              sx={{ fontSize: '1.5em' }}
+                              onClick={toggleMenu}
+                              className="h-5 w-5 text-neutral-700"
+                            />
+                          )}
+                          <p>{item.text}</p>
+                        </Link>
+                      ))}
+                      {/* <Link
                         href="/dashboard"
                         className="text-md col-start-1 row-start-1 flex cursor-pointer items-center gap-2"
                       >
@@ -202,7 +236,7 @@ function Drawer({ toggleMenu, isMenuOpen }) {
                         className="text-md col-start-2 row-start-2 flex cursor-pointer items-center gap-2"
                       >
                         <LayersOutlinedIcon sx={{ fontSize: '1.5em' }} /> Resources
-                      </Link>
+                      </Link> */}
                     </div>
                   </div>
                 </>
