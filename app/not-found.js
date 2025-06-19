@@ -13,7 +13,7 @@ export default function NotFound() {
     router.back();
   };
   return (
-    <section className="flex min-h-screen flex-col items-center justify-center bg-[linear-gradient(345deg,rgba(101,156,246,0.3),rgba(246,246,246,0.2))] md:relative md:flex-row">
+    <section className="flex min-h-screen flex-col items-center justify-center bg-[linear-gradient(345deg,rgba(101,156,246,0.3),rgba(246,246,246,0.2))] text-balance md:relative md:flex-row">
       <div className="mx-auto hidden max-w-4xl flex-col gap-6 px-30 text-neutral-700 md:flex md:w-3/5">
         <h1 className="text-3xl font-semibold">Oops!</h1>
         <h2 className="text-xl font-semibold">This class isn’t on the schedule…</h2>

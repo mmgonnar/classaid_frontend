@@ -4,8 +4,6 @@ import MainButton from '../MainButton';
 import BaseCard from './BaseCard';
 import { pricingPlans } from '@/utils/constants';
 
-console.log(pricingPlans);
-
 function PricingCard({ props }) {
   return (
     <BaseCard border={props == 'pro' ? 'blue' : 'grey'}>

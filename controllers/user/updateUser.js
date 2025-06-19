@@ -85,7 +85,6 @@ export async function updateUser(id, req) {
     }
 
     if (error.name === 'ValidationError') {
-      console.log(error.name);
       const errors = error.inner?.reduce(
         (acc, err) => ({
           ...acc,

@@ -27,9 +27,7 @@ function Dashboard() {
         <div className="flex flex-col p-4">
           <h1 className="text-primary pb-3 text-lg font-bold">Welcome, {userData?.name}! </h1>
           <p>Home | Dashboard</p>
-          <div className="dashboard__container">
-            <DashboardContainer />
-          </div>
+          <div className="dashboard__container">{/* <DashboardContainer /> */}</div>
         </div>
       </div>
     </MainLayout>

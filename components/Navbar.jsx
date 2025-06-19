@@ -105,8 +105,11 @@ function Navbar({ menuItems }) {
             key={item.text}
             href={item.href}
             className={cn(
-              'w-full p-2 text-center hover:bg-gray-100',
+              'w-full p-2 text-center',
+              !authenticated && 'hover:bg-gray-100',
+              !authenticated && isDesktop && 'hover:text-primary hover:bg-transparent',
               isProtectedRoute && 'flex items-center justify-center',
+              isDesktop && authenticated && 'hover:text-primary hover:bg-transparent',
             )}
           >
             {isProtectedRoute ? (

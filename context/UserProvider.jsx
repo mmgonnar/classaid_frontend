@@ -9,7 +9,6 @@ function UserProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   const { token, authenticated, tokenData, handleLogout } = useContext(AuthContext);
-  console.log({ token, authenticated, tokenData, handleLogout });
 
   useEffect(() => {
     const fetchUserData = async () => {

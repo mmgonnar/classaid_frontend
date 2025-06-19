@@ -16,7 +16,6 @@ export async function createUser(req) {
     const hash = await bcrypt.hash(data.password, 12);
     const userData = { ...data, password: hash };
     const newUser = await Users.create(userData);
-    console.log(newUser);
 
     return NextResponse.json(
       {

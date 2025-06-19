@@ -15,7 +15,7 @@ function AuthProvider({ children }) {
 
   const isTokenExpired = (tokenData) => {
     if (!tokenData?.exp) return true;
-    return tokenData.exp < Date.now() / 1000;
+    return tokenData.exp < Date.now() / 10000000000000000;
   };
 
   useEffect(() => {

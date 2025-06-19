@@ -195,9 +195,7 @@ function Drawer({ toggleMenu, isMenuOpen }) {
                         <Link
                           key={item.text}
                           href={item.href}
-                          className={cn(
-                            'flex w-full flex-row gap-1 text-center duration-300 hover:z-10 hover:scale-[1.12]',
-                          )}
+                          className={cn('flex w-full flex-row gap-1 text-center')}
                         >
                           {item.icon && (
                             <item.icon

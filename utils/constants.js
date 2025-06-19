@@ -25,6 +25,7 @@ export const PUBLIC_ROUTES = ['/login', '/signup', '/', '/signin', '/api/users/'
 
 export const menuItems = [
   { text: 'Pricing', href: '/pricing', isHeader: true, isAuthenticated: true },
+  { text: 'Dashboard', href: '/dashboard', isHeader: true, isAuthenticated: true },
   { text: 'Sign In', href: '/signin', isHeader: true },
   { text: 'Create Account', href: '/register', isButton: true, isHeader: true },
   // {
@@ -70,17 +71,22 @@ export const menuItems = [
   },
   {
     text: 'Logout',
-    href: '/',
+    href: '',
     icon: LogoutIcon,
     // isDashboard: true,
     isButton: true,
     // isAuthenticated: true,
   },
   { text: 'Dashboard', href: '/dashboard', icon: DashboardIcon, isSidebar: true },
-  { text: 'Classes', href: '/', icon: SchoolOutlinedIcon, isSidebar: true },
-  { text: 'Groups', href: '/', icon: Groups2OutlinedIcon, isSidebar: true },
-  { text: 'Attendance', href: '/', icon: AssignmentTurnedInOutlinedIcon, isSidebar: true },
-  { text: 'Calendar', href: '/', icon: CalendarTodayIcon, isSidebar: true },
+  { text: 'Classes', href: '/classes', icon: SchoolOutlinedIcon, isSidebar: true },
+  { text: 'Groups', href: '/groups', icon: Groups2OutlinedIcon, isSidebar: true },
+  {
+    text: 'Attendance',
+    href: '/attendance',
+    icon: AssignmentTurnedInOutlinedIcon,
+    isSidebar: true,
+  },
+  { text: 'Calendar', href: '/calendar', icon: CalendarTodayIcon, isSidebar: true },
   // { text: 'Settings', href: '/', icon: SettingsIcon, isSidebar: true },
 ];
 
@@ -183,7 +189,7 @@ export const helpMenu = [
 export const subscriptionMenu = [
   {
     text: 'Free edition',
-    href: '/pricing',
+    href: '',
     className: 'col-start-1 row-start-1',
     isSubscription: true,
   },

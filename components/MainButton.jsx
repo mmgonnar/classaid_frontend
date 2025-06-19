@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 function MainButton({
   variant = 'primary',
@@ -10,7 +11,11 @@ function MainButton({
   size = 'md',
   href = '/',
 }) {
-  //const { variant = 'primary', text = '', link } = props;
+  const router = useRouter();
+  const handleClick = () => {
+    onClick();
+    router.push(href);
+  };
 
   const variants = {
     primary:
@@ -30,15 +35,13 @@ function MainButton({
   };
 
   return (
-    <Link href={href}>
-      <button
-        type={type}
-        className={`${variants[variant]} ${size ? sizes[size] : ''}`}
-        onClick={onClick}
-      >
-        {text}
-      </button>
-    </Link>
+    <button
+      type={type}
+      className={`${variants[variant]} ${size ? sizes[size] : ''}`}
+      onClick={handleClick}
+    >
+      {text}
+    </button>
   );
 }
 

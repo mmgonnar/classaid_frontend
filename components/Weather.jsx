@@ -17,7 +17,6 @@ function Weather() {
 
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        console.log(api);
         api
           .getCurrentWeather(position.coords.latitude, position.coords.longitude)
           .then((data) => {
