@@ -10,10 +10,13 @@ import { useRouter } from 'next/navigation';
 import { toast } from 'react-hot-toast';
 import { setToken } from '@/utils/token';
 import auth from '@/utils/Api/Auth';
+import { useContext } from 'react';
+import AuthContext from '@/context/AuthContext';
 
 function LoginForm() {
   const router = useRouter();
   const loginInputs = formInputs.filter((item) => item.isLogin);
+  const { handleLogin } = useContext(AuthContext);
 
   const {
     handleSubmit,
@@ -25,26 +28,23 @@ function LoginForm() {
   });
 
   const onSubmit = async (credentials) => {
-    try {
-      console.log(credentials.email, 'EMAIL');
-      const response = await auth.login(credentials.email, credentials.password);
-      console.log(response, 'RESPONSE');
+    handleLogin(credentials);
+    // try {
+    //   const response = await auth.login(credentials.email, credentials.password);
 
-      if (response.success && response.data?.token) {
-        console.log(response.data.token, 'DATA TOKEN');
-        setToken(response.data.token);
-        toast.success('Welcome back!');
-        console.log('GO TO DASHBOARD');
-        router.push('/dashboard');
-        router.refresh();
-      } else {
-        console.error(response.message, 'AAAAAA');
-        toast.error(response.message || 'Error signing in');
-      }
-    } catch (error) {
-      console.error('Login error:', error);
-      toast.error(error.message || 'Error signing in');
-    }
+    //   if (response.success && response.data?.token) {
+    //     setToken(response.data.token);
+    //     toast.success('Welcome back!');
+    //     router.push('/dashboard');
+    //     router.refresh();
+    //   } else {
+    //     console.error(response.message, 'AAAAAA');
+    //     toast.error(response.message || 'Error signing in');
+    //   }
+    // } catch (error) {
+    //   console.error('Login error:', error);
+    //   toast.error(error.message || 'Error signing in');
+    // }
   };
 
   return (

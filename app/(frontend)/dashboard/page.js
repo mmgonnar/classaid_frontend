@@ -1,37 +1,39 @@
 'use client';
+import BaseCard from '@/components/cards/BaseCard';
+import DashboardContainer from '@/components/DashboardContainer';
+import BouncyLoader from '@/components/loaders/BouncyLoader';
 import MainButton from '@/components/MainButton';
-import { CTA } from '@/utils/enums';
-import { removeToken, getToken } from '@/utils/token';
-import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import MainLayout from '@/components/MainLayout';
+import Sidebar from '@/components/Sidebar';
+import UserContext from '@/context/UserContext';
+
+import { useContext } from 'react';
 
 function Dashboard() {
-  const router = useRouter();
+  const { userData, loading } = useContext(UserContext);
 
-  useEffect(() => {
-    console.log('Dashboard - Checking token...');
-    const token = getToken();
-    console.log('Dashboard - Token present:', !!token);
-
-    if (!token) {
-      console.log('Dashboard - No token found, redirecting to signin');
-      router.push('/signin');
-    } else {
-      console.log('Dashboard - Token found, rendering dashboard');
-    }
-  }, [router]);
-
-  const handleLogout = () => {
-    console.log('Dashboard - Logging out...');
-    removeToken();
-    router.push('/dashboard');
-  };
-
+  if (loading || !userData) {
+    return (
+      <div className="bg-opacity-75 fixed inset-0 flex items-center justify-center bg-white transition-opacity duration-300">
+        <BouncyLoader className="h-20 w-20" />
+      </div>
+    );
+  }
   return (
-    <div>
-      <h1>Hola</h1>
-      <MainButton type="primary" text={CTA.LOGOUT} onClick={handleLogout} />
-    </div>
+    // <UserProvider>
+    <MainLayout>
+      <div className="bg-secondary bg-opacity-90 grid h-full grid-cols-[auto_1fr]">
+        <Sidebar />
+        <div className="flex flex-col p-4">
+          <h1 className="text-primary pb-3 text-lg font-bold">Welcome, {userData?.name}! </h1>
+          <p>Home | Dashboard</p>
+          <div className="dashboard__container">
+            <DashboardContainer />
+          </div>
+        </div>
+      </div>
+    </MainLayout>
+    // </UserProvider>
   );
 }
 

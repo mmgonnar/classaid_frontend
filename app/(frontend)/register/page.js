@@ -1,3 +1,5 @@
+'use client';
+
 import MainButton from '@/components/MainButton';
 import { CTA } from '@/utils/enums';
 import Copyright from '@/components/Copyright';

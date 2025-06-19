@@ -1,3 +1,4 @@
+
 export enum CTA {
   MORE_INFO = "More info",
   TRY_FREE = "Try for free!",
@@ -7,7 +8,11 @@ export enum CTA {
   LEARN_MORE = "Learn More",
   START_NOW = "Start now!",
   TRY_NOW = "Try now",
-  LOGOUT = "Logout"
+  LOGOUT = "Logout",
+  PROFILE = "Profile",
+  ACCOUNT = "My Account",
+  BACK = "Go Back",
+  DASHBOARD = "Dashboard"
 }
 
 export enum ROL {

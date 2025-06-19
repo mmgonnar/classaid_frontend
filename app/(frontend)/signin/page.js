@@ -1,8 +1,9 @@
+'use client';
 import MainButton from '@/components/MainButton';
-import { CTA } from '@/utils/enums';
 import LoginForm from '@/components/forms/LoginForm';
 import Copyright from '@/components/Copyright';
 import Logo from '@/components/Logo';
+import { CTA } from '@/utils/enums';
 
 function Login() {
   return (
@@ -31,7 +32,7 @@ function Login() {
           </p>
         </div>
 
-        <LoginForm />
+        <LoginForm className="max-w-lg" />
       </div>
       <div className="w-full px-4 pb-4 opacity-30 md:absolute md:bottom-0 md:left-0 md:px-0 md:pb-0">
         <Copyright variant="sm" />
