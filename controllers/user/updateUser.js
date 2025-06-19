@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import Users from '@/models/user';
-import { validationUpdateUser } from '@/lib/schemas';
+import { validationUpdateUser } from '@/schemas/userSchema';
 import { handleError } from '@/utils/functions';
 
 export async function updateUser(id, req) {

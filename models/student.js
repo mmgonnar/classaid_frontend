@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-import { userSchema as yupUserSchema } from '../lib/schemas';
+import { userSchema as yupUserSchema } from '../schemas/userSchema';
 import { ROL } from '@/utils/enums';
 
 const studentSchema = new mongoose.Schema(

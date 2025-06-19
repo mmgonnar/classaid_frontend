@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import Users from '@/models/user';
-import { validationFront } from '@/lib/schemas';
+import { validationFront } from '@/schemas/userSchema';
 import bcrypt from 'bcryptjs';
 import { handleError } from '@/utils/functions';
 //import jwt from 'jsonwebtoken';
@@ -38,7 +38,6 @@ export async function createUser(req) {
         {
           success: false,
           message: errorMessage,
-          //error
           errors: {
             code: 11000,
             message: 'AUTH_DUPLICATE',

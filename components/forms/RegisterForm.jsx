@@ -4,7 +4,7 @@ import { CTA } from '@/utils/enums';
 import MainButton from '../MainButton';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { validationFront } from '@/lib/schemas';
+import { validationFront } from '@/schemas/userSchema';
 import api from '@/utils/Api/Api';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';

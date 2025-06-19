@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import Users from '@/models/user';
-import { validationFront } from '@/lib/schemas';
+import { validationFront } from '@/schemas/userSchema';
 import bcrypt from 'bcryptjs';
 
 export async function deleteUser(id) {

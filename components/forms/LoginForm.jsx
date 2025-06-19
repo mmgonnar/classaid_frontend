@@ -5,7 +5,7 @@ import { CTA } from '@/utils/enums';
 import { formInputs } from '@/utils/constants';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { loginValidationSchema } from '@/lib/schemas';
+import { loginValidationSchema } from '@/schemas/userSchema';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-hot-toast';
 import { setToken } from '@/utils/token';

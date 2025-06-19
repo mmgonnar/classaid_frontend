@@ -78,15 +78,15 @@ export const menuItems = [
     // isAuthenticated: true,
   },
   { text: 'Dashboard', href: '/dashboard', icon: DashboardIcon, isSidebar: true },
-  { text: 'Classes', href: '/classes', icon: SchoolOutlinedIcon, isSidebar: true },
-  { text: 'Groups', href: '/groups', icon: Groups2OutlinedIcon, isSidebar: true },
+  { text: 'Classes', href: '/dashboard/classes', icon: SchoolOutlinedIcon, isSidebar: true },
+  { text: 'Groups', href: '/dashboard/groups', icon: Groups2OutlinedIcon, isSidebar: true },
   {
     text: 'Attendance',
-    href: '/attendance',
+    href: '/dashboard/attendance',
     icon: AssignmentTurnedInOutlinedIcon,
     isSidebar: true,
   },
-  { text: 'Calendar', href: '/calendar', icon: CalendarTodayIcon, isSidebar: true },
+  { text: 'Calendar', href: '/dashboard/calendar', icon: CalendarTodayIcon, isSidebar: true },
   // { text: 'Settings', href: '/', icon: SettingsIcon, isSidebar: true },
 ];
 
