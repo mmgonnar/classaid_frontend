@@ -1,8 +1,9 @@
+'use client';
 import MainButton from '@/components/MainButton';
-import { CTA } from '@/utils/enums';
 import LoginForm from '@/components/forms/LoginForm';
 import Copyright from '@/components/Copyright';
 import Logo from '@/components/Logo';
+import { CTA } from '@/utils/enums';
 
 function Login() {
   return (

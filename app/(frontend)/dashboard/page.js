@@ -1,5 +1,6 @@
 'use client';
 import BaseCard from '@/components/cards/BaseCard';
+import DashboardContainer from '@/components/DashboardContainer';
 import BouncyLoader from '@/components/loaders/BouncyLoader';
 import MainButton from '@/components/MainButton';
 import MainLayout from '@/components/MainLayout';
@@ -25,28 +26,9 @@ function Dashboard() {
         <Sidebar />
         <div className="flex flex-col p-4">
           <h1 className="text-primary pb-3 text-lg font-bold">Welcome, {userData?.name}! </h1>
-          <div className="flex gap-6">
-            <BaseCard border="lightGrey" className="bg-white">
-              <div className="flex flex-col items-center p-6">
-                <h1>asdsadad</h1>
-                <h1>asdsadad</h1>
-                <h1>asdsadad</h1>
-              </div>
-            </BaseCard>
-            <BaseCard border="lightGrey" className="bg-white">
-              <div className="flex flex-col items-center p-6">
-                <h1>asdsadad</h1>
-                <h1>asdsadad</h1>
-                <h1>asdsadad</h1>
-              </div>
-            </BaseCard>
-            <BaseCard border="lightGrey" className="bg-white">
-              <div className="flex flex-col items-center p-6">
-                <h1>asdsadad</h1>
-                <h1>asdsadad</h1>
-                <h1>asdsadad</h1>
-              </div>
-            </BaseCard>
+          <p>Home | Dashboard</p>
+          <div className="dashboard__container">
+            <DashboardContainer />
           </div>
         </div>
       </div>

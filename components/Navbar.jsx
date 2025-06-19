@@ -16,8 +16,7 @@ import AuthContext from '@/context/AuthContext';
 import { dividerClasses } from '@mui/material';
 
 function Navbar({ menuItems }) {
-  const { authenticated, handleLogout } = useContext(AuthContext);
-  console.log(authenticated, 'xxxxxx');
+  const { authenticated } = useContext(AuthContext);
   const [isDesktop, setIsDesktop] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -98,6 +97,7 @@ function Navbar({ menuItems }) {
           !isMenuOpen && !isDesktop && 'hidden',
           !isDesktop && isMenuOpen && authenticated && 'hidden',
           isDesktop && 'relative top-0 flex-row bg-transparent whitespace-nowrap shadow-none',
+          authenticated && '',
         )}
       >
         {headerItems.map((item) => (
