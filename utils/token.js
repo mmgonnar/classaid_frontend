@@ -21,10 +21,3 @@ export const removeToken = () => {
     path: '/',
   });
 };
-
-export const getUserToken = () => {
-  if (typeof window !== 'undefined') {
-    return Cookies.get(TOKEN_KEY);
-  }
-  return null;
-};

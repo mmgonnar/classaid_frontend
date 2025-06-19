@@ -1,6 +1,6 @@
 'use-client';
-import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
-import MainButton, { ButtonSection } from '../MainButton';
+
+import MainButton from '../MainButton';
 import { CTA } from '@/utils/enums';
 import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 import SupportAgentOutlinedIcon from '@mui/icons-material/SupportAgentOutlined';
@@ -8,24 +8,26 @@ import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
 import LayersOutlinedIcon from '@mui/icons-material/LayersOutlined';
 import Link from 'next/link';
-import SocialMedia from '../SocialMedia';
 import BaseDrawer from './BaseDrawer';
-import { menuItems } from '@/utils/constants';
+import { menuItems, PROTECTED_ROUTES } from '@/utils/constants';
 import { cn } from '@/utils/functions';
-import { use, useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { getToken, removeToken } from '@/utils/token';
 import SpinnerLoader from '../loaders/SpinnerLoader';
 import BouncyLoader from '../loaders/BouncyLoader';
 import UserContext from '@/context/UserContext';
+import AuthContext from '@/context/AuthContext';
+import { usePathname } from 'next/navigation';
 
 function Drawer({ toggleMenu, isMenuOpen }) {
   const [isScrolled, setIsScrolled] = useState(false);
-  //const [userData, setUserData] = useState(null);
-  //const [loading, setLoading] = useState(true);
-  const profileDrawer = menuItems.filter((item) => item.isProfileDrawer);
-  const router = useRouter();
+  const { authenticated } = useContext(AuthContext);
+  const { handleLogout } = useContext(AuthContext);
   const { userData, loading } = useContext(UserContext);
+  const router = useRouter();
+  const pathname = usePathname();
+  const profileDrawer = menuItems.filter((item) => item.isProfileDrawer);
+  const isProtectedRoute = PROTECTED_ROUTES.some((route) => pathname.startsWith(route));
 
   const getUserInitials = (name, lastName) => {
     let initials = '';
@@ -53,17 +55,16 @@ function Drawer({ toggleMenu, isMenuOpen }) {
     };
   }, [router]);
 
-  const handleLogout = () => {
-    removeToken();
-    router.push('/dashboard');
-  };
-
   return (
     <>
       <BaseDrawer toggleMenu={toggleMenu} isMenuOpen={isMenuOpen}>
         <div>
           <div className="fixed inset-0 bg-black/50 backdrop-blur-[2px] transition-opacity duration-300"></div>
-          <div className="fixed top-0 right-0 z-60 h-full w-[320px] gap-4 bg-white shadow-lg transition-transform duration-300">
+          <div
+            className={cn(
+              'fixed top-0 right-0 z-60 h-full w-[320px] gap-4 bg-white shadow-lg transition-transform duration-300',
+            )}
+          >
             <div className="flex h-full flex-col">
               <div
                 className={cn(
@@ -123,8 +124,7 @@ function Drawer({ toggleMenu, isMenuOpen }) {
                   Institution: <span className="font-semibold">UAGro</span>
                 </p>
               </div>
-
-              <div className="flex-1 overflow-y-auto">
+              <div className={cn('flex-1 overflow-y-auto', isProtectedRoute && 'overflow-hidden')}>
                 <div className="flex justify-center gap-2 py-5">
                   <MainButton variant="primary" size="sm" text={CTA.PROFILE} type="button" />
                   <MainButton
@@ -135,75 +135,78 @@ function Drawer({ toggleMenu, isMenuOpen }) {
                     type="button"
                   />
                 </div>
+                {/* {isProtectedRoute && ( */}
+                <>
+                  <div className="m-auto mb-6 flex w-[80%] justify-items-end gap-2 border-b-1 border-neutral-300 pb-6">
+                    {profileDrawer.map((item) => (
+                      <Link
+                        key={item.text}
+                        href={item.href}
+                        className={cn(
+                          'w-full p-2 text-center duration-300 hover:z-10 hover:scale-[1.12]',
+                        )}
+                      >
+                        {item.icon && (
+                          <item.icon
+                            sx={{ fontSize: '1.5em' }}
+                            onClick={toggleMenu}
+                            className="text-primary h-5 w-5"
+                          />
+                        )}
+                      </Link>
+                    ))}
+                  </div>
 
-                <div className="m-auto mb-6 flex w-[80%] justify-items-end gap-2 border-b-1 border-neutral-300 pb-6">
-                  {profileDrawer.map((item) => (
-                    <Link
-                      key={item.text}
-                      href={item.href}
-                      className={cn(
-                        'w-full p-2 text-center duration-300 hover:z-10 hover:scale-[1.12]',
-                      )}
-                    >
-                      {item.icon && (
-                        <item.icon
-                          sx={{ fontSize: '1.5em' }}
-                          onClick={toggleMenu}
-                          className="text-primary h-5 w-5"
-                        />
-                      )}
-                    </Link>
-                  ))}
-                </div>
-
-                <div className="m-auto mb-6 flex w-[80%] flex-col gap-2 border-b-1 border-neutral-300 pb-6">
-                  <p className="text-primary text-md pb-2 font-bold">SUBSCRIPTION</p>
-                  <div className="flex items-center gap-10 text-neutral-700">
-                    <p className="text-md cursor-pointer text-center">Free Edition</p>
-                    <Link
-                      href="/pricing"
-                      className="text-md text-center font-semibold text-blue-700 underline underline-offset-1"
-                    >
-                      UPGRADE
+                  <div className="m-auto mb-6 flex w-[80%] flex-col gap-2 border-b-1 border-neutral-300 pb-6">
+                    <p className="text-primary text-md pb-2 font-bold">SUBSCRIPTION</p>
+                    <div className="flex items-center gap-10 text-neutral-700">
+                      <p className="text-md cursor-pointer text-center">Free Edition</p>
+                      <Link
+                        href="/pricing"
+                        className="text-md text-center font-semibold text-blue-700 underline underline-offset-1"
+                      >
+                        UPGRADE
+                      </Link>
+                    </div>
+                    <Link href="/pricing" className="text-md cursor-pointer">
+                      Try another version
                     </Link>
                   </div>
-                  <Link href="/pricing" className="text-md cursor-pointer">
-                    Try another version
-                  </Link>
-                </div>
-                <div className="m-auto mb-6 flex w-[80%] flex-col justify-items-end gap-2 border-b-1 border-neutral-300 pb-6">
-                  <p className="text-primary text-md pb-2 font-bold">NEED HELP?</p>
-                  <div className="grid grid-cols-2 grid-rows-2 gap-4 text-neutral-700">
-                    <Link
-                      href="/dashboard"
-                      className="text-md col-start-1 row-start-1 flex cursor-pointer items-center gap-2"
-                    >
-                      <SupportAgentOutlinedIcon className="" sx={{ fontSize: '1.5em' }} /> Talk with
-                      us
-                    </Link>
+                  <div className="m-auto mb-6 flex w-[80%] flex-col justify-items-end gap-2 border-b-1 border-neutral-300 pb-6">
+                    <p className="text-primary text-md pb-2 font-bold">NEED HELP?</p>
+                    <div className="grid grid-cols-2 grid-rows-2 gap-4 text-neutral-700">
+                      <Link
+                        href="/dashboard"
+                        className="text-md col-start-1 row-start-1 flex cursor-pointer items-center gap-2"
+                      >
+                        <SupportAgentOutlinedIcon className="" sx={{ fontSize: '1.5em' }} /> Talk
+                        with us
+                      </Link>
 
-                    <Link
-                      href="/pricing"
-                      className="text-md col-start-2 row-start-1 flex cursor-pointer items-center gap-2"
-                    >
-                      <ReceiptLongOutlinedIcon sx={{ fontSize: '1.5em' }} /> Billing
-                    </Link>
+                      <Link
+                        href="/pricing"
+                        className="text-md col-start-2 row-start-1 flex cursor-pointer items-center gap-2"
+                      >
+                        <ReceiptLongOutlinedIcon sx={{ fontSize: '1.5em' }} /> Billing
+                      </Link>
 
-                    <Link
-                      href="/pricing"
-                      className="text-md col-start-1 row-start-2 flex cursor-pointer items-center gap-2"
-                    >
-                      <EmailOutlinedIcon sx={{ fontSize: '1.5em' }} /> Email us
-                    </Link>
+                      <Link
+                        href="/pricing"
+                        className="text-md col-start-1 row-start-2 flex cursor-pointer items-center gap-2"
+                      >
+                        <EmailOutlinedIcon sx={{ fontSize: '1.5em' }} /> Email us
+                      </Link>
 
-                    <Link
-                      href="/pricing"
-                      className="text-md col-start-2 row-start-2 flex cursor-pointer items-center gap-2"
-                    >
-                      <LayersOutlinedIcon sx={{ fontSize: '1.5em' }} /> Resources
-                    </Link>
+                      <Link
+                        href="/pricing"
+                        className="text-md col-start-2 row-start-2 flex cursor-pointer items-center gap-2"
+                      >
+                        <LayersOutlinedIcon sx={{ fontSize: '1.5em' }} /> Resources
+                      </Link>
+                    </div>
                   </div>
-                </div>
+                </>
+                {/* )} */}
               </div>
             </div>
           </div>

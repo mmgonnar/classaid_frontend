@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -12,8 +12,12 @@ import { CTA } from '@/utils/enums';
 import { cn } from '@/utils/functions';
 import { usePathname } from 'next/navigation';
 import ProfileDrawer from './drawers/ProfileDrawer';
+import AuthContext from '@/context/AuthContext';
+import { dividerClasses } from '@mui/material';
 
 function Navbar({ menuItems }) {
+  const { authenticated, handleLogout } = useContext(AuthContext);
+  console.log(authenticated, 'xxxxxx');
   const [isDesktop, setIsDesktop] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -30,7 +34,18 @@ function Navbar({ menuItems }) {
       return item.isDashboard;
     }
     if (isPublicRoute) {
-      return item.isHeader;
+      if (authenticated) {
+        return item.text === 'Pricing' || item.isAuthenticated;
+      } else {
+        return (
+          item.text === 'Sign In' ||
+          item.text === 'Pricing' ||
+          (item.isButton && item.text === 'Create Account')
+        );
+      }
+    }
+    if (authenticated) {
+      return item.isAuthenticated;
     }
     return item.isHeader;
   });
@@ -56,9 +71,19 @@ function Navbar({ menuItems }) {
             <AccountCircleIcon className="text-primary col-start-1 col-end-2 row-start-1 row-end-2 h-6 w-6" />
           ) : (
             <>
-              <MenuOutlinedIcon
-                className={`text-primary col-start-1 col-end-2 row-start-1 row-end-2 h-6 w-6 transition-all duration-100 ${isMenuOpen ? 'rotate-0 opacity-0' : 'rotate-0 opacity-100'}`}
-              />
+              {' '}
+              {authenticated ? (
+                <AccountCircleIcon
+                  className={cn(
+                    'text-primary col-start-1 col-end-2 row-start-1 row-end-2 h-6 w-6',
+                    isMenuOpen ? 'opacity-0' : 'opacity-100',
+                  )}
+                />
+              ) : (
+                <MenuOutlinedIcon
+                  className={`text-primary col-start-1 col-end-2 row-start-1 row-end-2 h-6 w-6 transition-all duration-100 ${isMenuOpen ? 'rotate-0 opacity-0' : 'rotate-0 opacity-100'}`}
+                />
+              )}
               <CloseOutlinedIcon
                 className={`text-primary col-start-1 col-end-2 row-start-1 row-end-2 h-6 w-6 rotate-180 transform transition-all duration-150 ${!isMenuOpen ? 'rotate-0 opacity-0' : 'rotate-90 opacity-100'}`}
               />
@@ -71,7 +96,7 @@ function Navbar({ menuItems }) {
         className={cn(
           'absolute top-10 left-0 z-50 flex w-full transform flex-col items-center gap-2 bg-white shadow-md transition-all duration-150',
           !isMenuOpen && !isDesktop && 'hidden',
-          isProtectedRoute && !isDesktop && isMenuOpen && 'hidden',
+          !isDesktop && isMenuOpen && authenticated && 'hidden',
           isDesktop && 'relative top-0 flex-row bg-transparent whitespace-nowrap shadow-none',
         )}
       >
@@ -91,25 +116,32 @@ function Navbar({ menuItems }) {
                 item.text
               )
             ) : item.isButton ? (
-              <MainButton
-                variant={isDesktop ? 'primary' : 'fullWidth'}
-                text={CTA.CREATE_ACCOUNT}
-                key={item.text}
-                href={item.href}
-                size="md"
-              />
+              authenticated ? (
+                <AccountCircleIcon
+                  onClick={toggleMenu}
+                  className="text-primary col-start-1 col-end-2 row-start-1 row-end-2 h-6 w-6"
+                />
+              ) : (
+                <MainButton
+                  variant={isDesktop ? 'primary' : 'fullWidth'}
+                  text={item.text === 'Create Account' ? CTA.CREATE_ACCOUNT : item.text}
+                  key={item.text}
+                  href={item.href}
+                  size="md"
+                />
+              )
             ) : (
               item.text
             )}
           </Link>
         ))}
       </nav>
-      {isProtectedRoute && (
+      {authenticated && (
         <ProfileDrawer
           isDesktop={isDesktop}
           isMenuOpen={isMenuOpen}
           toggleMenu={toggleMenu}
-          className={cn(isProtectedRoute && !isDesktop && !isMenuOpen && 'hidden')}
+          className={cn(authenticated && !isDesktop && !isMenuOpen && 'hidden')}
         />
       )}
     </>

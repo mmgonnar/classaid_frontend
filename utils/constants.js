@@ -4,19 +4,17 @@ import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
 import AddIcon from '@mui/icons-material/Add';
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
-import SettingsIcon from '@mui/icons-material/Settings';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import Groups2OutlinedIcon from '@mui/icons-material/Groups2Outlined';
 import AssignmentTurnedInOutlinedIcon from '@mui/icons-material/AssignmentTurnedInOutlined';
-import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 import SupportAgentOutlinedIcon from '@mui/icons-material/SupportAgentOutlined';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
 import LayersOutlinedIcon from '@mui/icons-material/LayersOutlined';
+import LogoutIcon from '@mui/icons-material/Logout';
 import { CTA } from './enums';
-import { SupportOutlined } from '@mui/icons-material';
 
 export const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 export const passwordPattern = /^(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{5}$/;
@@ -25,9 +23,16 @@ export const PROTECTED_ROUTES = ['/dashboard'];
 export const PUBLIC_ROUTES = ['/login', '/signup', '/', '/signin', '/api/users/'];
 
 export const menuItems = [
-  { text: 'Pricing', href: '/pricing', isHeader: true },
+  { text: 'Pricing', href: '/pricing', isHeader: true, isAuthenticated: true },
   { text: 'Sign In', href: '/signin', isHeader: true },
   { text: 'Create Account', href: '/register', isButton: true, isHeader: true },
+  // {
+  //   text: 'Enter',
+  //   href: '/',
+  //   icon: ExitToAppIcon,
+  //   isButton: true,
+  //   isAuthenticated: true,
+  // },
   { text: 'About', href: '/', isFooter: true, icon: '' },
   { text: 'Privacy', href: '/', isFooter: true, icon: '' },
   { text: 'Terms', href: '/', isFooter: true, icon: '' },
@@ -49,10 +54,19 @@ export const menuItems = [
   },
   {
     text: 'Profile',
-    href: '/dashboard',
+    href: '/',
     icon: AccountCircleIcon,
     isDashboard: true,
     isButton: true,
+    isAuthenticated: true,
+  },
+  {
+    text: 'Logout',
+    href: '/',
+    icon: LogoutIcon,
+    // isDashboard: true,
+    isButton: true,
+    // isAuthenticated: true,
   },
   { text: 'Dashboard', href: '/dashboard', icon: DashboardIcon, isSidebar: true },
   { text: 'Classes', href: '/dashboard', icon: SchoolOutlinedIcon, isSidebar: true },

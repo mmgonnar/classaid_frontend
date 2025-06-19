@@ -1,8 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import CurrentUserContext from './AuthContext';
-import { getToken, getUserToken, removeToken } from '@/utils/token';
+import { getToken, removeToken } from '@/utils/token';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
 import auth from '@/utils/Api/Auth';
@@ -21,52 +20,34 @@ function AuthProvider({ children }) {
 
   useEffect(() => {
     const currentToken = getToken();
-    console.log(currentToken);
     if (currentToken && !authenticated) {
       try {
         const payload = JSON.parse(atob(currentToken.split('.')[1]));
-        console.log(payload, 'fffffffffff');
         if (isTokenExpired(payload)) {
-          console.log('jjjjjjjjjjjj');
           handleLogout();
           toast.error('Your session has expired');
           return;
         }
-        console.log('ddddddddddddd');
         setTokenData(payload);
+        setTokenState(currentToken);
         setAuthenticated(true);
       } catch (error) {
-        console.log('kkkkkkkkkkkk');
         console.error('Error decoding token:', error);
         handleLogout();
       }
-    } else {
-      console.log('qqqqqqqqqqqq');
-      handleLogout();
-      // setAuthenticated(false);
-      // router.push('/signin');
-      // return;
     }
-  }, [setTokenData]);
+  }, [authenticated]);
 
   const handleLogin = async (credentials) => {
-    console.log('llllllllllllll');
     try {
       const response = await auth.login(credentials.email, credentials.password);
-      console.log(response);
       if (response.success && response.data?.token) {
-        console.log('ñññññññ');
         const payload = JSON.parse(atob(response.data.token.split('.')[1]));
         setTokenState(response.data.token);
-        console.log(getToken(), 'set token');
-        setTokenState(response.data.token);
         setTokenData(payload);
-        console.log('antes de autentificar');
         setAuthenticated(true);
-        console.log('despues de autentificar');
         toast.success('Welcome back!');
         router.push('/dashboard');
-        //router.refresh();
       } else {
         toast.error(response.message || 'Error signing in');
       }
