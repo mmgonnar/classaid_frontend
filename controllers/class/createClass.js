@@ -5,12 +5,13 @@ import { NextResponse } from 'next/server';
 export async function createClass(req) {
   try {
     const body = await req.json();
+    console.log(body);
     const validatedData = await classValidationFront.validate(body, {
       abortEarly: false,
       stripUnknown: true,
     });
-
     //const classData = ()
+    console.log(validatedData);
     const newClass = await Class.create(validatedData);
 
     return NextResponse.json(
@@ -46,6 +47,7 @@ export async function createClass(req) {
         { status: 400 },
       );
     }
+    console.log('xxxxxxxx');
 
     if (error.name === 'ValidationError') {
       const errors = error.inner?.reduce(

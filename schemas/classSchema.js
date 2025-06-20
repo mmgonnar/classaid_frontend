@@ -10,10 +10,14 @@ const classNameValidationSchema = {
 const classDescriptionValidationSchema = {
   description: yup.string().max(200).required(),
 };
+const classTeacherValidationSchema = {
+  teacher: yup.string().max(200).required(),
+};
 
 export const baseClassSchema = yup.object({
   ...classNameValidationSchema,
   ...classDescriptionValidationSchema,
+  ...classTeacherValidationSchema,
 });
 
 //validation frontend
