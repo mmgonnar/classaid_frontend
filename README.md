@@ -60,6 +60,8 @@ The project is organized into a modular structure:
 
 5. Open your browser and go to http://localhost:3000
 
+# agregar detalles .env
+
 ## API Integration
 
 The application uses the Open-Meteo API for weather data to help teachers plan outdoor activities:

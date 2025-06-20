@@ -1,62 +1,35 @@
-import { NextResponse } from 'next/server';
-import Users from '@/models/user';
-import { validationUpdateUser } from '@/schemas/userSchema';
+import { Class } from '@/models/class';
+import { baseClassSchema } from '@/schemas/classSchema';
 import { handleError } from '@/utils/functions';
+import { NextResponse } from 'next/server';
 
-export async function updateUser(id, req) {
+export async function updateClass(req, id) {
   try {
-    const userExists = await Users.findById(id);
-    if (!userExists) {
+    const body = await req.json();
+
+    await baseClassSchema.validate(body);
+
+    const classExist = await Class.findById(id);
+    if (!classExist) {
       return NextResponse.json(
         {
           success: false,
-          message: 'No user found',
+          message: 'Class not found',
         },
         { status: 404 },
       );
     }
 
-    const body = await req.json();
-    if (body.email) {
-      const emailExists = await Users.findOne({ email: body.email, _id: { $ne: id } });
-      if (emailExists) {
-        return NextResponse.json(
-          {
-            success: false,
-            message: 'Unable to update email',
-            errors: {
-              email: 'Please use a different email address.',
-            },
-          },
-          { status: 400 },
-        );
-      }
-    }
-
-    const validatedData = await validationUpdateUser.validate(body, {
-      abortEarly: false,
-      stripUnknown: true,
-    });
-    const updateUser = await Users.findByIdAndUpdate(id, validatedData, { new: true })
-      .select('-password')
-      .orFail(() => new Error('No user found'));
-
+    const updatedClass = await Class.findByIdAndUpdate(id, body, { new: true });
     return NextResponse.json(
       {
         success: true,
-        message: 'User updated successfully',
-        data: updateUser,
+        message: 'Class updated successfully',
+        data: updatedClass,
       },
       { status: 200 },
     );
   } catch (error) {
-    // console.error('Error updating user:', {
-    //   name: error.name,
-    //   code: error.code,
-    //   message: error.message,
-    //   stack: error.stack,
-    // });
-
     if (error.name === 'MongoServerError') {
       const errorMessage = handleError(error);
 
@@ -92,11 +65,11 @@ export async function updateUser(id, req) {
       );
     }
 
-    if (error.message === 'No user found') {
+    if (error.message === 'Class not found') {
       return NextResponse.json(
         {
           success: false,
-          message: 'User not found',
+          message: 'Class not found',
         },
         { status: 404 },
       );

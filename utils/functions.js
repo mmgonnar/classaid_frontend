@@ -46,9 +46,3 @@ export function toastApiCall(fetch, { loading, redirectTo, successMessage, error
     error: (error) => error.message || errorMessage,
   });
 }
-
-// export const generalErrorMessage = (er) => {
-//   handleErrorMessage(error);
-// };
-
-//

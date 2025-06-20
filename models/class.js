@@ -7,6 +7,7 @@ const classSchema = new mongoose.Schema(
       required: true,
     },
     description: { type: String, maxlength: 200 },
+    group: { type: String, maxlength: 10 },
     students: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Student' }],
     teacher: {
       type: mongoose.Schema.Types.ObjectId,

@@ -1,10 +1,7 @@
 import * as yup from 'yup';
-import YupPassword from 'yup-password';
-YupPassword(yup);
 
 const classNameValidationSchema = {
   name: yup.string().min(2, 'Name must be at least 2 characters.').max(25).required(),
-  // .matches(/[a-zA-Z ]/, 'Name can only contain letters.'),
 };
 
 const classDescriptionValidationSchema = {
@@ -14,10 +11,15 @@ const classTeacherValidationSchema = {
   teacher: yup.string().max(200).required(),
 };
 
+const classGroupValidationSchema = {
+  group: yup.string().max(10),
+};
+
 export const baseClassSchema = yup.object({
   ...classNameValidationSchema,
   ...classDescriptionValidationSchema,
   ...classTeacherValidationSchema,
+  ...classGroupValidationSchema,
 });
 
 //validation frontend

@@ -5,7 +5,7 @@ import MainButton from '../MainButton';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { validationFront } from '@/schemas/userSchema';
-import api from '@/utils/Api/Api';
+import api from '@/utils/Api/ApiUser';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { toastApiCall } from '@/utils/functions';

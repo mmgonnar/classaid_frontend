@@ -2,7 +2,7 @@
 
 import { getToken } from '../token';
 
-class Api {
+class ApiUser {
   constructor(baseUrl) {
     this.baseUrl = baseUrl;
   }
@@ -44,6 +44,22 @@ class Api {
     }
   }
 
+  async updateUser(userData) {
+    try {
+      const response = await fetch(``, {
+        method: 'PATCH',
+        headers: this.getHeaders(userData),
+        body: JSON.stringify(userData),
+      });
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error creating user:', error);
+      throw error;
+    }
+  }
+
   async deleteAllUsers() {
     try {
       const response = await fetch(`${this.baseUrl}/users/deleteAll`, {
@@ -63,6 +79,6 @@ class Api {
   }
 }
 
-const api = new Api('/api');
+const api = new ApiUser('/api');
 
 export default api;

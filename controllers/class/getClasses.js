@@ -1,26 +1,24 @@
+import { Class } from '@/models/class';
 import { NextResponse } from 'next/server';
-import Users from '@/models/user';
-import connectDB from '@/lib/mongodb';
 
-export async function deleteAllUsers() {
+export async function getClasses(req) {
   try {
-    const result = await Users.deleteMany({});
-
+    const classes = await Class.find().orFail(() => new Error('No classes found'));
     return NextResponse.json(
       {
         success: true,
-        message: 'All users deleted successfully',
-        data: result,
+        message: 'Classes found successfully',
+        data: classes,
       },
       { status: 200 },
     );
   } catch (error) {
-    console.error('Error deleting users:', error);
+    console.error('Error fetching classes');
 
     return NextResponse.json(
       {
         success: false,
-        message: 'Error deleting users',
+        message: 'Error fetching classes',
         error: process.env.NODE_ENV === 'development' ? error.message : 'Internal server error',
       },
       { status: 500 },

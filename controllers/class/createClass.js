@@ -1,18 +1,19 @@
 import { Class } from '@/models/class';
-import { classValidationFront } from '@/schemas/classSchema';
+import { baseClassSchema, classValidationFront } from '@/schemas/classSchema';
 import { NextResponse } from 'next/server';
 
 export async function createClass(req) {
   try {
     const body = await req.json();
-    console.log(body);
-    const validatedData = await classValidationFront.validate(body, {
-      abortEarly: false,
-      stripUnknown: true,
-    });
+    // const validatedData = await classValidationFront.validate(body, {
+    //   abortEarly: false,
+    //   stripUnknown: true,
+    // });
+
+    await baseClassSchema.validate(body);
     //const classData = ()
-    console.log(validatedData);
-    const newClass = await Class.create(validatedData);
+    const newClass = await Class.create(body);
+    console.log(body, 'asdasds');
 
     return NextResponse.json(
       {
@@ -47,7 +48,6 @@ export async function createClass(req) {
         { status: 400 },
       );
     }
-    console.log('xxxxxxxx');
 
     if (error.name === 'ValidationError') {
       const errors = error.inner?.reduce(

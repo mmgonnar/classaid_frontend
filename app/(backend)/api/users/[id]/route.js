@@ -5,24 +5,21 @@ import { updateUser } from '@/controllers/user/updateUser';
 
 export async function GET(req, { params }) {
   await connectDB();
-  const result = await params;
-  const id = result.id;
+  const { id } = await params;
 
   return getUserById(id);
 }
 
 export async function DELETE(req, { params }) {
   await connectDB();
-  const result = await params;
-  const id = result.id;
+  const { id } = await params;
 
   return deleteUser(id);
 }
 
 export async function PATCH(req, { params }) {
   await connectDB();
-  const result = await params;
-  const id = result.id;
+  const { id } = await params;
 
   return updateUser(id, req);
 }
