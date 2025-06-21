@@ -21,15 +21,18 @@ const studentSchema = new mongoose.Schema(
       type: String,
       required: false,
       unique: true,
+      select: false,
     },
     rol: {
       type: String,
       enum: Object.values(ROL),
       default: ROL.STUDENT,
+      select: false,
     },
     active: {
       type: Boolean,
       default: true,
+      select: false,
     },
   },
   { timestamps: true },

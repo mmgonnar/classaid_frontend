@@ -3,7 +3,9 @@ import { NextResponse } from 'next/server';
 
 export async function deleteClass(id) {
   try {
-    const subject = await Class.findByIdAndDelete(id).orFail(() => new Error('Class not found'));
+    const subject = await Class.findByIdAndDelete(id)
+      .populate('teacher')
+      .orFail(() => new Error('Class not found'));
 
     return NextResponse.json(
       {

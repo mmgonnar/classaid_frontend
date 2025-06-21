@@ -1,9 +1,11 @@
 import { Class } from '@/models/class';
 import { NextResponse } from 'next/server';
 
-export async function getClasses(req) {
+export async function getClasses() {
   try {
-    const classes = await Class.find().orFail(() => new Error('No classes found'));
+    const classes = await Class.find()
+      .populate('teacher')
+      .orFail(() => new Error('No classes found'));
     return NextResponse.json(
       {
         success: true,

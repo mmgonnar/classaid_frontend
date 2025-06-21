@@ -9,23 +9,19 @@ export async function updateClass(req, id) {
 
     await baseClassSchema.validate(body);
 
-    const classExist = await Class.findById(id);
-    if (!classExist) {
-      return NextResponse.json(
-        {
-          success: false,
-          message: 'Class not found',
-        },
-        { status: 404 },
-      );
-    }
-
-    const updatedClass = await Class.findByIdAndUpdate(id, body, { new: true });
+    const updatedClass = await Class.findByIdAndUpdate(id, body, { new: true })
+      .populate('teacher')
+      .orFail(() => new Error('No class found'));
     return NextResponse.json(
       {
         success: true,
         message: 'Class updated successfully',
-        data: updatedClass,
+        data: {
+          name: updatedClass.name,
+          description: updatedClass.description,
+          teacher: updatedClass.teacher,
+          group: updatedClass.group,
+        },
       },
       { status: 200 },
     );

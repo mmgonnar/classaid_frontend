@@ -11,9 +11,8 @@ export async function createClass(req) {
     // });
 
     await baseClassSchema.validate(body);
-    //const classData = ()
+
     const newClass = await Class.create(body);
-    console.log(body, 'asdasds');
 
     return NextResponse.json(
       {
@@ -23,6 +22,7 @@ export async function createClass(req) {
           name: newClass.name,
           description: newClass.description,
           teacher: newClass.teacher,
+          group: newClass.group,
         },
       },
       { status: 201 },

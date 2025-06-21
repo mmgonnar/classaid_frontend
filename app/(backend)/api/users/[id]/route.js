@@ -5,7 +5,8 @@ import { updateUser } from '@/controllers/user/updateUser';
 
 export async function GET(req, { params }) {
   await connectDB();
-  const { id } = await params;
+  const result = await params;
+  const id = result.id;
 
   return getUserById(id);
 }

@@ -16,6 +16,7 @@ class ApiUser {
   }
 
   async getUserInfo() {
+    console.log(this.getUserInfo());
     try {
       const response = await fetch(`${this.baseUrl}/users`, {
         method: 'GET',
@@ -25,7 +26,10 @@ class ApiUser {
 
       const data = await response.json();
       return data;
-    } catch (error) {}
+    } catch (error) {
+      console.error('Error fetching users:', error);
+      throw error;
+    }
   }
 
   async createUser(userData) {

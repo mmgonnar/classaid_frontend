@@ -3,14 +3,16 @@ import { getClassById } from '@/controllers/class/getClassById';
 import { updateClass } from '@/controllers/class/updateClass';
 import connectDB from '@/lib/mongodb';
 
-export async function GET({ params }) {
+export async function GET(req, { params }) {
   await connectDB();
   const { id } = await params;
+  // const result = await params;
+  // const id = result.id;
 
   return getClassById(id);
 }
 
-export async function DELETE({ params }) {
+export async function DELETE(req, { params }) {
   await connectDB();
   const { id } = await params;
   return deleteClass(id);

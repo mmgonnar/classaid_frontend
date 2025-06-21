@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 export async function getClassById(id) {
   try {
     const subject = await Class.findById(id)
-      .populate()
+      .populate('teacher')
       .orFail(() => new Error('No class found'));
 
     return NextResponse.json(
