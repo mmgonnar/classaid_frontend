@@ -11,6 +11,7 @@ function AuthProvider({ children }) {
   const [authenticated, setAuthenticated] = useState(false);
   const [tokenData, setTokenData] = useState(null);
   const [token, setTokenState] = useState(null);
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
 
   const isTokenExpired = (tokenData) => {
@@ -48,6 +49,10 @@ function AuthProvider({ children }) {
         setAuthenticated(true);
         toast.success('Welcome back!');
         router.push('/dashboard');
+        setLoading(false);
+        !loading;
+        //! loading
+        //! lanzar avizo
       } else {
         toast.error(response.message || 'Error signing in');
       }
@@ -66,7 +71,9 @@ function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ token, authenticated, handleLogin, handleLogout, tokenData }}>
+    <AuthContext.Provider
+      value={{ token, authenticated, handleLogin, handleLogout, tokenData, loading }}
+    >
       {children}
     </AuthContext.Provider>
   );

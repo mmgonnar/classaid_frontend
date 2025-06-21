@@ -5,6 +5,7 @@ import BouncyLoader from '@/components/loaders/BouncyLoader';
 import MainButton from '@/components/MainButton';
 import MainLayout from '@/components/MainLayout';
 import Sidebar from '@/components/Sidebar';
+import PageTitle from '@/components/small components/PageTitle';
 import UserContext from '@/context/UserContext';
 
 import { useContext } from 'react';
@@ -20,18 +21,16 @@ function Dashboard() {
     );
   }
   return (
-    // <UserProvider>
     <MainLayout>
       <div className="bg-secondary bg-opacity-90 grid h-full grid-cols-[auto_1fr]">
         <Sidebar />
         <div className="flex flex-col p-4">
           <h1 className="text-primary pb-3 text-lg font-bold">Welcome, {userData?.name}! </h1>
-          <p>Home | Dashboard</p>
+          <PageTitle />
           <div className="dashboard__container">{/* <DashboardContainer /> */}</div>
         </div>
       </div>
     </MainLayout>
-    // </UserProvider>
   );
 }
 
