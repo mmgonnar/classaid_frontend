@@ -3,12 +3,13 @@
 import { useContext, useEffect, useState } from 'react';
 import UserContext from './UserContext';
 import AuthContext from './AuthContext';
+import api from '@/utils/Api/ApiUser';
 
 function UserProvider({ children }) {
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const { token, authenticated, tokenData, handleLogout } = useContext(AuthContext);
+  const { token, tokenData, handleLogout } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -18,17 +19,8 @@ function UserProvider({ children }) {
       }
 
       try {
-        const response = await fetch(`/api/users/${tokenData.id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const result = await api.getUserById(tokenData.id);
 
-        if (!response.ok) {
-          throw new Error('Error fetching user data');
-        }
-
-        const result = await response.json();
         setUserData(result.data);
       } catch (error) {
         console.error('Error fetching user data:', error);

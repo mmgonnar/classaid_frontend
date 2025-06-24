@@ -21,7 +21,6 @@ function Dashboard() {
     );
   }
   return (
-    // <UserProvider>
     <MainLayout>
       <div className="bg-secondary bg-opacity-90 grid h-full grid-cols-[auto_1fr]">
         <Sidebar />
@@ -32,7 +31,6 @@ function Dashboard() {
         </div>
       </div>
     </MainLayout>
-    // </UserProvider>
   );
 }
 

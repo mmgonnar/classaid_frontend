@@ -9,19 +9,26 @@ class ApiUser {
 
   getHeaders() {
     const token = getToken();
+    if (!token) {
+      throw new Error('Token not found');
+    }
     return {
       'Content-Type': 'application/json',
-      ...(token && { Authorization: `Bearer ${token}` }),
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
     };
   }
 
+  // async _fetch(endpoint) {
+  //   try {
+  //     const response = await fetch(`${this.baseUrl}${endpoint}`);
+  //   } catch (error) {}
+  // }
+
   async getUserInfo() {
-    console.log(this.getUserInfo());
     try {
       const response = await fetch(`${this.baseUrl}/users`, {
         method: 'GET',
         headers: this.getHeaders(),
-        body: JSON.stringify(userData),
       });
 
       const data = await response.json();
@@ -32,8 +39,26 @@ class ApiUser {
     }
   }
 
+  async getUserById(id) {
+    try {
+      const response = await fetch(`${this.baseUrl}/users/${id}`, {
+        method: 'GET',
+        headers: this.getHeaders(),
+      });
+      if (!response.ok) {
+        throw new Error('Error fetching user data');
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error fetching users:', error);
+      throw error;
+    }
+  }
+
   async createUser(userData) {
     try {
+      if (!userData) throw new Error('User data is required');
       const response = await fetch(`${this.baseUrl}/users`, {
         method: 'POST',
         headers: this.getHeaders(),
@@ -48,32 +73,38 @@ class ApiUser {
     }
   }
 
-  async updateUser(userData) {
+  async updateUser(id, userData) {
     try {
-      const response = await fetch(``, {
+      if (!id || !userData) throw new Error('ID and user data are required');
+
+      const response = await fetch(`${this.baseUrl}/users/${id}`, {
         method: 'PATCH',
-        headers: this.getHeaders(userData),
+        headers: this.getHeaders(),
         body: JSON.stringify(userData),
       });
+
+      if (!response.ok) {
+        throw new Error(`Error! status: ${response.status}`);
+      }
 
       const data = await response.json();
       return data;
     } catch (error) {
-      console.error('Error creating user:', error);
+      console.error('Error updating user:', error);
       throw error;
     }
   }
 
-  async deleteAllUsers() {
+  async deleteUser(id) {
     try {
-      const response = await fetch(`${this.baseUrl}/users/deleteAll`, {
+      const response = await fetch(`${this.baseUrl}/users/${id}`, {
         method: 'DELETE',
         headers: this.getHeaders(),
       });
 
       const data = await response.json();
       if (!response.ok) {
-        throw new Error(data.message || 'Error deleting users');
+        throw new Error(data.message || 'Error deleting user');
       }
       return data;
     } catch (error) {

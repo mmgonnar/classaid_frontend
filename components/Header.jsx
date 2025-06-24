@@ -14,8 +14,6 @@ function Header({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const pathname = usePathname();
 
-  const pruebaContexto = useContext(BaseContext);
-
   const isProtectedRoute = PROTECTED_ROUTES.some((route) => pathname.startsWith(route));
 
   useEffect(() => {

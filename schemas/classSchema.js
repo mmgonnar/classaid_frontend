@@ -5,7 +5,7 @@ const classNameValidationSchema = {
 };
 
 const classDescriptionValidationSchema = {
-  description: yup.string().max(200).required(),
+  description: yup.string().max(500).required(),
 };
 const classTeacherValidationSchema = {
   teacher: yup.string().max(200).required(),
@@ -13,6 +13,10 @@ const classTeacherValidationSchema = {
 
 const classGroupValidationSchema = {
   group: yup.string().max(10),
+};
+
+const classFavoriteValidationSchema = {
+  favorite: yup.boolean(false),
 };
 
 export const baseClassSchema = yup.object({

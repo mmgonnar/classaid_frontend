@@ -6,7 +6,7 @@ const classSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    description: { type: String, maxlength: 200 },
+    description: { type: String, maxlength: 500 },
     group: { type: String, maxlength: 10 },
     students: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Student' }],
     teacher: {
@@ -17,6 +17,11 @@ const classSchema = new mongoose.Schema(
     active: {
       type: Boolean,
       default: true,
+      select: false,
+    },
+    favorite: {
+      type: Boolean,
+      default: false,
       select: false,
     },
   },

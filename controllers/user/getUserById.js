@@ -5,8 +5,8 @@ export async function getUserById(id) {
   try {
     const user = await Users.findById(id)
       .select('-password')
-      .populate()
       .orFail(() => new Error('No user found'));
+
     return NextResponse.json(
       {
         success: true,
@@ -17,6 +17,16 @@ export async function getUserById(id) {
     );
   } catch (error) {
     console.error('Error finding user:', error);
+
+    if (error.message === 'No user found') {
+      return NextResponse.json(
+        {
+          success: false,
+          message: 'User not found',
+        },
+        { status: 404 },
+      );
+    }
 
     return NextResponse.json(
       {

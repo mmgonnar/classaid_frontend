@@ -9,13 +9,14 @@ class ApiClass {
 
   getHeaders() {
     const token = getToken();
+
     return {
       'Content-Type': 'application/json',
-      ...(token && { Authorization: `Bearer ${token}` }),
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
     };
   }
 
-  async getClassInfo() {
+  async getClassInfo(id) {
     try {
       const response = await fetch(`${this.baseUrl}/classes`, {
         method: 'GET',
@@ -42,9 +43,11 @@ class ApiClass {
       console.error('Error creating class:', error);
     }
   }
-  async updateClass(classData) {
+  async updateClass(id, classData) {
     try {
-      const response = await fetch(`${this.baseUrl}/classes`, {
+      if (!id || !userData) throw new Error('ID and user data are required');
+
+      const response = await fetch(`${this.baseUrl}/classes${id}`, {
         method: 'PATCH',
         headers: this.getHeaders(),
         body: JSON.stringify(classData),
@@ -54,9 +57,9 @@ class ApiClass {
       return data;
     } catch (error) {}
   }
-  async deleteCLass() {
+  async deleteCLass(id) {
     try {
-      const response = await fetch(``, {
+      const response = await fetch(`${this.baseUrl}/classes/${id}`, {
         method: 'DELETE',
         headers: this.getHeaders(),
       });
@@ -77,4 +80,3 @@ class ApiClass {
 const api = new ApiClass('/api');
 
 export default api;
-throw new Error(`HTTP error! status: ${response.status}`);
