@@ -1,9 +1,12 @@
 import { Class } from '@/models/class';
 import { NextResponse } from 'next/server';
+import { setToken } from '@/cookies/server';
 
-export async function getClasses(id) {
+export async function getClasses() {
   try {
-    const classes = await Class.find({ teacher: '68447b7e8127b0ac189e1c95' })
+    const { userId } = await setToken();
+
+    const classes = await Class.find({ teacher: userId })
       .populate('teacher')
       .orFail(() => new Error('No classes found'));
     return NextResponse.json(

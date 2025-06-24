@@ -8,17 +8,18 @@ function ClassProvider({ children }) {
   const [classData, setClassData] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const { token, tokenData, handleLogout } = useContext(AuthContext);
+  const { token } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchClassData = async () => {
-      if (!token || !tokenData?.id) {
+      if (!token) {
         setLoading(false);
         return;
       }
       try {
-        const result = await api.getClassInfo(tokenData?.id);
-        console.log(result, 'resultado');
+        setLoading(true);
+        const result = await api.getClassInfo();
+        console.log(result, 'rxxxxxx');
 
         setClassData(result.data);
       } catch (error) {
@@ -34,9 +35,13 @@ function ClassProvider({ children }) {
     };
 
     fetchClassData();
-  }, [token, tokenData?.id, handleLogout]);
+  }, [token]);
 
-  return <ClassContext.Provider value={{ classData, loading }}>{children}</ClassContext.Provider>;
+  return (
+    <ClassContext.Provider value={{ classData, loading, setClassData }}>
+      {children}
+    </ClassContext.Provider>
+  );
 }
 
 export default ClassProvider;

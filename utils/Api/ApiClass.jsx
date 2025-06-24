@@ -12,21 +12,29 @@ class ApiClass {
 
     return {
       'Content-Type': 'application/json',
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      // ...(token ? { Authorization: `Bearer ${token}` } : {}),
     };
   }
 
-  async getClassInfo(id) {
+  async getClassInfo() {
     try {
       const response = await fetch(`${this.baseUrl}/classes`, {
         method: 'GET',
+        credentials: 'include',
         headers: this.getHeaders(),
       });
+      console.log(response, 'aaaaaaaaa');
+
+      if (!response.ok) {
+        throw new Error(`Error ${response.status}: ${response.statusText}`);
+      }
 
       const data = await response.json();
+      console.log(data, 'bbbbbbbb');
       return data;
     } catch (error) {
       console.error('Error fetching class:', error);
+      throw error;
     }
   }
   async createClass(classData) {
