@@ -15,9 +15,6 @@ export function handleError(error) {
   if (error.message.includes('duplicate key error collection')) {
     return 'Please use a different email address.';
   }
-
-  console.log('Error code:', error.code);
-  console.log('Error message:', error.message);
   switch (error.message) {
     case 'duplicate key error collection':
       errorMessage = 'Please use a different email address.';

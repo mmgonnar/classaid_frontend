@@ -4,7 +4,7 @@ function BaseCard({ children, border = 'gray', align = 'center', className = '' 
   const borders = {
     blue: 'border-primary',
     grey: 'border-neutral-500',
-    lightGrey: 'border-neutral-300',
+    lightGrey: 'border-neutral-200',
   };
   const alignment = {
     center: 'items-center',

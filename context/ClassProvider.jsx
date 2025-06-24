@@ -19,7 +19,6 @@ function ClassProvider({ children }) {
       try {
         setLoading(true);
         const result = await api.getClassInfo();
-        console.log(result, 'rxxxxxx');
 
         setClassData(result.data);
       } catch (error) {

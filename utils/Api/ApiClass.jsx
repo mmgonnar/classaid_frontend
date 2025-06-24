@@ -23,14 +23,12 @@ class ApiClass {
         credentials: 'include',
         headers: this.getHeaders(),
       });
-      console.log(response, 'aaaaaaaaa');
 
       if (!response.ok) {
         throw new Error(`Error ${response.status}: ${response.statusText}`);
       }
 
       const data = await response.json();
-      console.log(data, 'bbbbbbbb');
       return data;
     } catch (error) {
       console.error('Error fetching class:', error);

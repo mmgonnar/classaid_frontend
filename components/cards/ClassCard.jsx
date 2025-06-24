@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import BaseCard from './BaseCard';
 import ClassContext from '@/context/ClassContext';
 import Loading from '../small components/Loading';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 function ClassCard() {
   const { classData, loading } = useContext(ClassContext);
@@ -32,6 +33,10 @@ function ClassCard() {
 
   return (
     <BaseCard className="h-100% w-50 bg-white" border="lightGrey">
+      <div className="m-auto flex flex-col items-center gap-4">
+        <AddCircleIcon sx={{ fontSize: '3em' }} className="text-neutral-200" />
+        <p className="text-neutral-400">Add New</p>
+      </div>
       <div className="">
         <div className="x flex flex-col">
           <div className="flex items-center gap-3">

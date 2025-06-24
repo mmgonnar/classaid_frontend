@@ -1,10 +1,12 @@
 'use client';
 import BaseCard from '@/components/cards/BaseCard';
+import ClassCard from '@/components/cards/ClassCard';
 import DashboardContainer from '@/components/DashboardContainer';
 import BouncyLoader from '@/components/loaders/BouncyLoader';
 import MainButton from '@/components/MainButton';
 import MainLayout from '@/components/MainLayout';
 import Sidebar from '@/components/Sidebar';
+import AddComponent from '@/components/small components/AddComponent';
 import PageTitle from '@/components/small components/PageTitle';
 import UserContext from '@/context/UserContext';
 
@@ -27,7 +29,10 @@ function Dashboard() {
         <div className="flex flex-col p-4">
           <h1 className="text-primary pb-3 text-lg font-bold">Welcome, {userData?.name}! </h1>
           <PageTitle />
-          <div className="dashboard__container">{/* <DashboardContainer /> */}</div>
+          <div className="dashboard__container flex gap-2">
+            <ClassCard />
+            <AddComponent />
+          </div>
         </div>
       </div>
     </MainLayout>
