@@ -22,7 +22,10 @@ function Dashboard() {
   }
   return (
     <MainLayout>
-      <DashboardLayout></DashboardLayout>
+      <DashboardLayout>
+        <h1 className="text-primary text-lg font-bold">Welcome, {userData?.name}! </h1>
+        <PageTitle />
+      </DashboardLayout>
     </MainLayout>
   );
 }

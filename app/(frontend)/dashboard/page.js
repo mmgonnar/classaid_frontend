@@ -22,22 +22,20 @@ function Dashboard() {
     );
   }
   return (
-    <MainLayout>
-      <DashboardLayout>
-        <div className="flex">
-          <div className="flex flex-col p-4">
-            <h1 className="text-primary text-lg font-bold">Welcome, {userData?.name}! </h1>
-            <PageTitle className="pb-2" />
-            <p className="text-primary pb-2 text-sm">Classes</p>
-            <div className="dashboard__container flex gap-2">
-              <ClassCard />
-              <AddComponent />
-            </div>
+    <DashboardLayout>
+      <div className="grid-row-[auto_auto] grid">
+        <div className="flex flex-col">
+          <h1 className="text-primary text-lg font-bold">Welcome, {userData?.name}! </h1>
+          <PageTitle className="pb-2" />
+          <p className="text-primary pb-2 text-sm">Classes</p>
+          <div className="dashboard__container flex gap-2">
+            <ClassCard />
+            <AddComponent />
           </div>
-          <BaseCard border="lightGrey" className="w-[250px] bg-white p-2"></BaseCard>
         </div>
-      </DashboardLayout>
-    </MainLayout>
+        <BaseCard border="lightGrey" className="w-[250px] bg-white p-2"></BaseCard>
+      </div>
+    </DashboardLayout>
   );
 }
 

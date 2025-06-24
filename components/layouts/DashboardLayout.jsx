@@ -1,12 +1,15 @@
 'use client';
 import Sidebar from '@/components/Sidebar';
+import MainLayout from './MainLayout';
 
 function DashboardLayout({ children }) {
   return (
-    <div className="bg-secondary bg-opacity-90 grid h-full grid-cols-[auto_1fr]">
-      <Sidebar />
-      <div className="flex">{children}</div>
-    </div>
+    <MainLayout>
+      <div className="bg-secondary bg-opacity-90 grid h-full grid-cols-[auto_1fr]">
+        <Sidebar />
+        <div className="flex flex-col p-4">{children}</div>
+      </div>
+    </MainLayout>
   );
 }
 
