@@ -4,55 +4,51 @@ import { useContext } from 'react';
 import BaseCard from './BaseCard';
 import ClassContext from '@/context/ClassContext';
 import Loading from '../small components/Loading';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
+import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded';
 
-function ClassCard() {
+const getInitials = (name) => {
+  let initials = '';
+
+  if (name) {
+    initials += name.trim()[0] || '';
+    return (name.trim()[0]?.toUpperCase() || '') + (name.trim()[1]?.toUpperCase() || '');
+  }
+};
+
+function ClassCard({ items }) {
   const { classData, loading } = useContext(ClassContext);
-  console.log(classData, 'xxxxxxxxxx');
 
-  const getInitials = (name) => {
-    let initials = '';
-
-    if (name) {
-      initials += name.trim()[0] || '';
-      return (name.trim()[0]?.toUpperCase() || '') + (name.trim()[1]?.toUpperCase() || '');
-    }
-  };
-
-  if (loading || !classData) {
-    return <Loading />;
+  if (loading) return <Loading />;
+  if (!classData || classData.length === 0) {
+    return <div className="p-4 text-center text-neutral-500">No classes available</div>;
   }
 
-  // if (loading || classData) {
-  //   return <Loading />;
-  // } else {
-  //   return <div>No class data available</div>;
-  // }
-
-  if (!classData) return <div>No class data available</div>;
+  const classItems = classData.slice(0, 3);
 
   return (
-    <BaseCard className="h-100% w-50 bg-white" border="lightGrey">
-      <div className="m-auto flex flex-col items-center gap-4">
-        <AddCircleIcon sx={{ fontSize: '3em' }} className="text-neutral-200" />
-        <p className="text-neutral-400">Add New</p>
-      </div>
-      <div className="">
-        <div className="x flex flex-col">
-          <div className="flex items-center gap-3">
-            <div className="text-primary flex h-10 w-10 items-center justify-center rounded-full border-1 border-neutral-400 bg-neutral-100 font-medium">
-              {getInitials(classData[0].name)}
+    <>
+      {classItems.map((item) => (
+        <BaseCard key={item._id} className="h-100% w-50 cursor-pointer bg-white" border="lightGrey">
+          <div className="relative m-auto flex flex-col items-center gap-4">
+            <div className="flex w-full max-w-xs flex-col items-center gap-2">
+              <div className="text-primary flex h-10 w-10 items-center justify-center rounded-full border border-neutral-300 bg-neutral-100 font-medium">
+                {getInitials(item.name)}
+              </div>
+
+              <div className="flex flex-col items-center text-center text-xs">
+                <p className="text-primary pb-1 text-sm font-medium">{item.name}</p>
+                <p className="text-neutral-500">Group | {item.group}</p>
+                <p className="text-primary">Students: {item.students?.length || 0}</p>
+              </div>
             </div>
-            <div className="text-sm text-neutral-900">
-              <p>{classData[0].name}</p>
-              <p>Group | {classData[0].group}</p>
-              <p>{(classData[0].students = 0)}</p>
-            </div>
+            <StarRateRoundedIcon
+              className="absolute top-25 left-24 text-neutral-200 hover:text-yellow-500"
+              sx={{ fontSize: '1.2em' }}
+            />
           </div>
-          {/* <p className="overflow-hidden text-sm">{classData[0].description}</p> */}
-        </div>
-      </div>
-    </BaseCard>
+        </BaseCard>
+      ))}
+    </>
   );
 }
 

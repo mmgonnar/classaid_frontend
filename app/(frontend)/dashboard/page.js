@@ -1,16 +1,15 @@
 'use client';
 import BaseCard from '@/components/cards/BaseCard';
 import ClassCard from '@/components/cards/ClassCard';
-import DashboardContainer from '@/components/DashboardContainer';
 import BouncyLoader from '@/components/loaders/BouncyLoader';
-import MainButton from '@/components/MainButton';
-import MainLayout from '@/components/MainLayout';
+import MainLayout from '@/components/layouts/MainLayout';
 import Sidebar from '@/components/Sidebar';
-import AddComponent from '@/components/small components/AddComponent';
+import AddComponent from '@/components/cards/AddCard';
 import PageTitle from '@/components/small components/PageTitle';
 import UserContext from '@/context/UserContext';
 
 import { useContext } from 'react';
+import DashboardLayout from '@/components/layouts/DashboardLayout';
 
 function Dashboard() {
   const { userData, loading } = useContext(UserContext);
@@ -24,17 +23,20 @@ function Dashboard() {
   }
   return (
     <MainLayout>
-      <div className="bg-secondary bg-opacity-90 grid h-full grid-cols-[auto_1fr]">
-        <Sidebar />
-        <div className="flex flex-col p-4">
-          <h1 className="text-primary pb-3 text-lg font-bold">Welcome, {userData?.name}! </h1>
-          <PageTitle />
-          <div className="dashboard__container flex gap-2">
-            <ClassCard />
-            <AddComponent />
+      <DashboardLayout>
+        <div className="flex">
+          <div className="flex flex-col p-4">
+            <h1 className="text-primary text-lg font-bold">Welcome, {userData?.name}! </h1>
+            <PageTitle className="pb-2" />
+            <p className="text-primary pb-2 text-sm">Classes</p>
+            <div className="dashboard__container flex gap-2">
+              <ClassCard />
+              <AddComponent />
+            </div>
           </div>
+          <BaseCard border="lightGrey" className="w-[250px] bg-white p-2"></BaseCard>
         </div>
-      </div>
+      </DashboardLayout>
     </MainLayout>
   );
 }

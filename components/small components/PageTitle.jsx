@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 function PageTitle({ className = '' }) {
   const pathname = usePathname();
   const pageTitle = routeNames[pathname];
-  return <p className={`text-sm text-neutral-600 ${className}`}>{pageTitle}</p>;
+  return <p className={`text-xs text-neutral-500 ${className}`}>{pageTitle}</p>;
 }
 
 export default PageTitle;

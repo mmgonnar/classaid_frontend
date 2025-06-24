@@ -1,5 +1,5 @@
 import React from 'react';
-import BaseCard from '../cards/BaseCard';
+import BaseCard from './BaseCard';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 function AddComponent({ className = '' }) {
