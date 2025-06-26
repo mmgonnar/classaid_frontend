@@ -10,6 +10,7 @@ import DashboardLayout from '@/components/layouts/DashboardLayout';
 import SectionTitleDash from '@/components/small components/SectionTitleDash';
 import MainButton from '@/components/MainButton';
 import ClassContext from '@/context/ClassContext';
+import ModalBase from '@/components/modals/ModalBase';
 
 function Dashboard() {
   const { userData, loading } = useContext(UserContext);
@@ -39,6 +40,7 @@ function Dashboard() {
           </div>
         </div>
       </div>
+      <ModalBase />
     </DashboardLayout>
   );
 }

@@ -70,7 +70,7 @@ function Drawer({ toggleMenu, isMenuOpen }) {
           <div className="fixed inset-0 bg-black/50 backdrop-blur-[2px] transition-opacity duration-300"></div>
           <div
             className={cn(
-              'fixed top-0 right-0 z-60 h-full w-[320px] gap-4 bg-white shadow-lg transition-transform duration-300',
+              'fixed top-0 right-0 z-31 h-full w-[320px] gap-4 bg-white shadow-lg transition-transform duration-300',
             )}
           >
             <div className="flex h-full flex-col">

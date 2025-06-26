@@ -36,25 +36,21 @@ function ClassProvider({ children }) {
     fetchClassData();
   }, [token]);
 
-  useEffect(() => {
-    handleCreateClass;
-  }, []);
-
-  const handleCreateClass = async () => {
+  const handleCreateClass = async (newClassData) => {
     try {
       setLoading(true);
-      const result = await api.createClass(classData);
+      const result = await api.createClass(newClassData);
 
       if (result.success) {
         const updatedClasses = await api.getClassInfo();
         setClassData(updatedClasses.data);
       }
+
+      return result;
     } catch (error) {
       console.error('Error creating class:', error);
-      setClassData(null);
       throw error;
     } finally {
-      console.log('sdasdasdas');
       setLoading(false);
     }
   };
