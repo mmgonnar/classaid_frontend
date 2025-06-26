@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import BaseCard from './BaseCard';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
-function AddComponent({ className = '' }) {
+function AddCard({ className = '', onAlgo }) {
+  // const handleClick = () => {
+  //   return true;
+  // };
   return (
-    <BaseCard border="lightGrey" className="h-40 w-50 cursor-pointer bg-white">
-      <div className="m-auto flex flex-col items-center gap-4">
+    <BaseCard
+      border="lightGrey"
+      className={`m-auto h-40 w-full cursor-pointer bg-white ${className}`}
+    >
+      <div
+        onClick={() => {
+          console.log('lo que sea');
+          onAlgo();
+        }}
+        className="m-auto flex flex-col items-center justify-center gap-4"
+      >
         <AddCircleIcon sx={{ fontSize: '3em' }} className="text-neutral-200" />
         <p className="text-neutral-400">Add New</p>
       </div>
@@ -13,4 +25,4 @@ function AddComponent({ className = '' }) {
   );
 }
 
-export default AddComponent;
+export default AddCard;

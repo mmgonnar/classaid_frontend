@@ -7,7 +7,7 @@ function DashboardLayout({ children }) {
     <MainLayout>
       <div className="bg-secondary bg-opacity-90 grid h-full grid-cols-[auto_1fr]">
         <Sidebar />
-        <div className="flex flex-col p-4">{children}</div>
+        <div className="p-4">{children}</div>
       </div>
     </MainLayout>
   );

@@ -215,7 +215,7 @@ export const subscriptionMenu = [
 
 export const routeNames = {
   '/dashboard': 'Home | Dashboard',
-  '/dashboard/classes': 'Classes',
+  '/dashboard/classes': 'Home | Classes',
   '/dashboard/attendance': 'Attendance',
   '/dashboard/groups': 'Groups',
 };

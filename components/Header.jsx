@@ -46,11 +46,7 @@ function Header({ children }) {
           isProtectedRoute && 'border-b-1 border-neutral-300 shadow-none',
         )}
       >
-        <div
-          className={cn(
-            'mx-auto flex h-[50px] w-full max-w-7xl items-center justify-between px-6 text-sm transition-all duration-100 md:p-0 md:px-6',
-          )}
-        >
+        <div className="mx-auto flex h-[50px] w-full max-w-7xl items-center justify-between px-6 text-sm transition-all duration-100 md:p-0 md:px-6">
           <Logo className="mr-2 w-[110px]" />
           {isProtectedRoute && <SearchBar />}
           <div>{children}</div>

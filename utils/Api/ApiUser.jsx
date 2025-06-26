@@ -9,9 +9,9 @@ class ApiUser {
 
   getHeaders() {
     const token = getToken();
-    if (!token) {
-      throw new Error('Token not found');
-    }
+    // if (!token) {
+    //   throw new Error('Token not found');
+    // }
     return {
       'Content-Type': 'application/json',
       ...(token ? { Authorization: `Bearer ${token}` } : {}),
