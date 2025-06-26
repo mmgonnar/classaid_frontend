@@ -12,7 +12,7 @@ function Sidebar() {
   return (
     <aside className="flex h-full cursor-pointer flex-col items-center justify-between border-r-1 border-neutral-300 bg-white">
       <nav>
-        <div className="flex w-16 flex-col gap-2 bg-white py-8">
+        <div className="gap:8 flex w-16 flex-col bg-white py-8 md:gap-4">
           {sidebarItems.map((item) => (
             <Link
               key={item.text}
