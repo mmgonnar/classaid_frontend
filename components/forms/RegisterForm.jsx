@@ -1,7 +1,7 @@
 'use client';
 import { formInputs } from '@/utils/constants';
 import { CTA } from '@/utils/enums';
-import MainButton from '../MainButton';
+import MainButton from '../buttons/MainButton';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { validationFront } from '@/schemas/userSchema';

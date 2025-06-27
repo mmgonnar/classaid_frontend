@@ -1,6 +1,6 @@
 'use client';
 
-import MainButton from '@/components/MainButton';
+import MainButton from '@/components/buttons/MainButton';
 import { CTA } from '@/utils/enums';
 import Copyright from '@/components/Copyright';
 import RegisterForm from '@/components/forms/RegisterForm';

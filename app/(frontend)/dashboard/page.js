@@ -27,7 +27,7 @@ function Dashboard() {
           <h1 className="text-primary text-lg font-bold">Welcome, {userData?.name}! </h1>
           <PageTitle className="pb-2" />
           <SectionTitleDash title="Classes" href="/dashboard/classes" />
-          <div className="custom:grid-cols-4 grid w-[100%] items-center gap-2 pb-4 sm:grid-cols-2 md:justify-center">
+          <div className="custom-md:grid-cols-4 custom-sm:grid-cols-2 grid w-[100%] items-center gap-2 pb-4 md:justify-center">
             <AddComponent />
             <ClassCard />
           </div>

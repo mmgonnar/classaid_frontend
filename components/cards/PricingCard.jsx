@@ -1,6 +1,6 @@
 'use client';
 
-import MainButton from '../MainButton';
+import MainButton from '../buttons/MainButton';
 import BaseCard from './BaseCard';
 import { pricingPlans } from '@/utils/constants';
 

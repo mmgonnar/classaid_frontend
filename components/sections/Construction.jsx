@@ -2,7 +2,7 @@
 
 import Copyright from '@/components/Copyright';
 import Logo from '@/components/Logo';
-import MainButton from '@/components/MainButton';
+import MainButton from '@/components/buttons/MainButton';
 import { CTA } from '@/utils/enums';
 import { useRouter } from 'next/navigation';
 

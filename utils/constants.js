@@ -5,8 +5,9 @@ import AddIcon from '@mui/icons-material/Add';
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
+import SpaceDashboardRoundedIcon from '@mui/icons-material/SpaceDashboardRounded';
+import SchoolRoundedIcon from '@mui/icons-material/SchoolRounded';
+import ClassOutlinedIcon from '@mui/icons-material/ClassOutlined';
 import Groups2OutlinedIcon from '@mui/icons-material/Groups2Outlined';
 import AssignmentTurnedInOutlinedIcon from '@mui/icons-material/AssignmentTurnedInOutlined';
 import SupportAgentOutlinedIcon from '@mui/icons-material/SupportAgentOutlined';
@@ -77,8 +78,8 @@ export const menuItems = [
     isButton: true,
     // isAuthenticated: true,
   },
-  { text: 'Dashboard', href: '/dashboard', icon: DashboardIcon, isSidebar: true },
-  { text: 'Classes', href: '/dashboard/classes', icon: SchoolOutlinedIcon, isSidebar: true },
+  { text: 'Dashboard', href: '/dashboard', icon: SpaceDashboardRoundedIcon, isSidebar: true },
+  { text: 'Classes', href: '/dashboard/classes', icon: SchoolRoundedIcon, isSidebar: true },
   { text: 'Groups', href: '/dashboard/groups', icon: Groups2OutlinedIcon, isSidebar: true },
   {
     text: 'Attendance',

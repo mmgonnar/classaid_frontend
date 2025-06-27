@@ -1,6 +1,6 @@
 'use-client';
 
-import MainButton from '../MainButton';
+import MainButton from '../buttons/MainButton';
 import { CTA } from '@/utils/enums';
 import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 import SupportAgentOutlinedIcon from '@mui/icons-material/SupportAgentOutlined';

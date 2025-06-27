@@ -1,6 +1,6 @@
 'use client';
 
-import MainButton from '../MainButton';
+import MainButton from '../buttons/MainButton';
 import { CTA } from '@/utils/enums';
 import { formInputs } from '@/utils/constants';
 import { useForm } from 'react-hook-form';

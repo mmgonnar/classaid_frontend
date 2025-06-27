@@ -1,5 +1,5 @@
 import React from 'react';
-import MainButton from './MainButton';
+import MainButton from './buttons/MainButton';
 import { CTA } from '@/utils/enums';
 import browserScreen from '../img/browser_screen.png';
 import Image from 'next/image';

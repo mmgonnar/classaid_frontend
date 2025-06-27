@@ -7,7 +7,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import Link from 'next/link';
 import { PROTECTED_ROUTES, PUBLIC_ROUTES } from '@/utils/constants';
-import MainButton from './MainButton';
+import MainButton from './buttons/MainButton';
 import { CTA } from '@/utils/enums';
 import { cn } from '@/utils/functions';
 import { usePathname } from 'next/navigation';

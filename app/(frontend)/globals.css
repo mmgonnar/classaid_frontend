@@ -15,7 +15,8 @@
   --color-secondary: #FAFCFF;
   --color-third: #DEEBFF;
   --font-main: var(--font-inter);
-  --breakpoint-custom: 59rem;
+  --breakpoint-custom-md: 59rem;
+  --breakpoint-custom-sm: 28rem;
 }
 
 html, body {

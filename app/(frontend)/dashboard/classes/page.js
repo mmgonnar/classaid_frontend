@@ -8,9 +8,10 @@ import UserContext from '@/context/UserContext';
 import AddCard from '@/components/cards/AddCard';
 import DashboardLayout from '@/components/layouts/DashboardLayout';
 import SectionTitleDash from '@/components/small components/SectionTitleDash';
-import MainButton from '@/components/MainButton';
+import MainButton from '@/components/buttons/MainButton';
 import ClassContext from '@/context/ClassContext';
 import ModalBase from '@/components/modals/ModalBase';
+import AddClassModal from '@/components/modals/AddClassModal';
 
 function Dashboard() {
   const { userData, loading } = useContext(UserContext);
@@ -34,13 +35,13 @@ function Dashboard() {
 
           <PageTitle className="pb-2" />
           <SectionTitleDash title="Classes" href="/dashboard/classes" />
-          <div className="grid w-[100%] grid-rows-4 items-center gap-2 pb-4 sm:grid-cols-2 sm:grid-rows-2 md:grid-cols-4 md:grid-rows-1 md:justify-center">
+          <div className="custom-sm:grid-cols-2 grid w-[100%] items-center gap-2 pb-4 sm:grid-cols-2 md:grid-cols-4 md:justify-center">
             <AddCard onAlgo={handleAlgo} />
             <ClassCard />
+            <AddClassModal />
           </div>
         </div>
       </div>
-      <ModalBase />
     </DashboardLayout>
   );
 }

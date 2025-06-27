@@ -1,7 +1,7 @@
 'use client';
 
 import { CTA } from '@/utils/enums';
-import MainButton from '../MainButton';
+import MainButton from '../buttons/MainButton';
 
 function CTASection({
   title = 'Are you ready to ease your class?',
