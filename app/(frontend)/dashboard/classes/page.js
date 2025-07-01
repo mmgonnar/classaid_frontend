@@ -1,28 +1,37 @@
 'use client';
-import { useContext } from 'react';
-import BaseCard from '@/components/cards/BaseCard';
+import { useContext, useState } from 'react';
 import ClassCard from '@/components/cards/ClassCard';
 import Loading from '@/components/small components/Loading';
 import PageTitle from '@/components/small components/PageTitle';
 import UserContext from '@/context/UserContext';
-import AddCard from '@/components/cards/AddCard';
 import DashboardLayout from '@/components/layouts/DashboardLayout';
 import SectionTitleDash from '@/components/small components/SectionTitleDash';
-import MainButton from '@/components/buttons/MainButton';
 import ClassContext from '@/context/ClassContext';
-import ModalBase from '@/components/modals/ModalBase';
 import AddClassModal from '@/components/modals/AddClassModal';
+import AddCardButton from '@/components/buttons/AddCardButton';
 
 function Dashboard() {
   const { userData, loading } = useContext(UserContext);
+  const [modalOpen, setModalOpen] = useState(false);
+
   const { classData, setClassData, handleCreateClass } = useContext(ClassContext);
 
   if (loading || !userData) {
     return <Loading />;
   }
 
-  const handleAlgo = () => {
-    console.log('zzzzzzzz');
+  // const handleAlgo = () => {
+  //   console.log('zzzzzzzz');
+  // };
+
+  const handleOpenModal = () => {
+    setModalOpen(true);
+    console.log('aaaa');
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+    console.log('bbbbb');
   };
 
   return (
@@ -36,12 +45,16 @@ function Dashboard() {
           <PageTitle className="pb-2" />
           <SectionTitleDash title="Classes" href="/dashboard/classes" />
           <div className="custom-sm:grid-cols-2 grid w-[100%] items-center gap-2 pb-4 sm:grid-cols-2 md:grid-cols-4 md:justify-center">
-            <AddCard onAlgo={handleAlgo} />
+            <AddCardButton
+              handleOpenModal={handleOpenModal}
+              // onAlgo={handleAlgo}
+            />
             <ClassCard />
-            <AddClassModal />
           </div>
         </div>
       </div>
+
+      <AddClassModal open={modalOpen} onClose={handleCloseModal} />
     </DashboardLayout>
   );
 }

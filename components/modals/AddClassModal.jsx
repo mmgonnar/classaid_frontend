@@ -1,40 +1,22 @@
 'use client';
 
-import { useState } from 'react';
 import ModalBase from './ModalBase';
 import { cn } from '@/utils/functions';
 import MainButton from '../buttons/MainButton';
+import ClassForm from '../forms/ClassForm';
 
-function AddClassModal() {
-  const [open, setOpen] = useState(false);
-
-  const handleOpen = (e) => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleClick = (e) => {
-    console.log('Click');
-    e.preventDefault();
-  };
-
+function AddClassModal({ open, onClose }) {
   return (
     <>
-      <MainButton
-        type=""
-        text="asdasd"
-        onClick={(e) => {
-          handleOpen(e);
-        }}
-      ></MainButton>
-      //! worked in popup flow
-      <ModalBase open={open} onClose={handleClose}>
+      <ModalBase open={open} onClose={onClose}>
         <div className="p-6">
-          <h2 className="text-primary mb-4 text-xl font-bold">Agregar Nueva Clase</h2>
-          <p className="text-primary mb-4">Aquí puedes agregar una nueva clase</p>
+          <h2 className="text-primary mb-4 text-xl font-bold">Create a new class</h2>
+          <p className="text-primary mb-4">Agregar clase</p>
+          <div className="flex gap-2">
+            <ClassForm />
+            <MainButton text="ADASDSA" />
+            <MainButton text="Cerrar" onClick={onClose} />
+          </div>
         </div>
       </ModalBase>
     </>

@@ -19,25 +19,26 @@ function Login() {
         </p>
         <MainButton variant="secondary" text={CTA.LEARN_MORE} />
       </div>
-      <div className="max-w-[400px]">
-        <div className="flex flex-col justify-center gap-4 rounded-xl bg-white p-6 shadow-2xl md:min-h-screen md:rounded-s-xl md:p-20">
-          <Logo className="w-[120px] pb-3 md:w-[130px]" />
-          <div className="pb-4 text-neutral-700">
-            <h3 className="text-primary pb-2 text-xl font-medium md:pb-4">
-              Welcome, <br /> let's get started!!
-            </h3>
-            <p className="text-sm">
-              Please add your information to register. <br />
-              If you are a member, please{' '}
-              <a className="text-primary cursor-pointer font-medium" href="/signin">
-                sign in
-              </a>
-              .
-            </p>
-          </div>
-          <RegisterForm />
+
+      <div className="flex flex-col justify-center gap-4 rounded bg-white p-6 shadow-2xl md:min-h-screen md:w-2/5 md:rounded-s-xl md:p-20">
+        <Logo className="w-[120px] pb-3 md:w-[130px]" />
+        <div className="pb-4 text-neutral-700">
+          <h3 className="text-primary pb-2 text-xl font-medium md:pb-4">
+            Welcome, <br /> let's get started!!
+          </h3>
+          <p className="text-sm">
+            Please add your information to register. <br />
+            If you are a member, please{' '}
+            <a className="text-primary cursor-pointer font-medium" href="/signin">
+              signin
+            </a>
+            .
+          </p>
         </div>
+
+        <RegisterForm className="max-w-lg" />
       </div>
+
       <div className="w-full px-4 pb-4 opacity-30 md:absolute md:bottom-0 md:left-0 md:px-0 md:pb-0">
         <Copyright variant="sm" />
       </div>

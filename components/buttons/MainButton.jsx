@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { fullWidth } from 'validator/lib/isFullWidth';
 
 function MainButton({
   variant = 'primary',
@@ -10,6 +11,7 @@ function MainButton({
   onClick = () => {},
   size = 'md',
   href = '/',
+  className = '',
 }) {
   const router = useRouter();
   const handleClick = () => {
@@ -28,16 +30,16 @@ function MainButton({
       'bg-primary w-full rounded-full py-1 text-center text-sm font-medium text-white hover:bg-blue-800 cursor-pointer',
   };
   const sizes = {
-    xs: 'w-[80px]',
-    sm: 'w-[100px]',
-    md: 'w-[150px]',
-    lg: 'w-[200px]',
+    xs: 'w-25',
+    sm: 'w-30',
+    md: 'w-40',
+    lg: 'w-55',
   };
 
   return (
     <button
       type={type}
-      className={`${variants[variant]} ${size ? sizes[size] : ''}`}
+      className={`${variants[variant]} ${size ? sizes[size] : ''} ${className}`}
       onClick={handleClick}
     >
       {text}

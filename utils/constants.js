@@ -16,6 +16,9 @@ import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
 import LayersOutlinedIcon from '@mui/icons-material/LayersOutlined';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import LogoutIcon from '@mui/icons-material/Logout';
+import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
+import DescriptionIcon from '@mui/icons-material/Description';
+import WorkspacesOutlinedIcon from '@mui/icons-material/WorkspacesOutlined';
 import { CTA } from './enums';
 
 export const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -24,18 +27,12 @@ export const passwordPattern = /^(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{5}$/;
 export const PROTECTED_ROUTES = ['/dashboard'];
 export const PUBLIC_ROUTES = ['/login', '/signup', '/', '/signin', '/api/users/'];
 
+//* Menu Items
 export const menuItems = [
   { text: 'Pricing', href: '/pricing', isHeader: true, isAuthenticated: true },
   { text: 'Dashboard', href: '/dashboard', isHeader: true, isAuthenticated: true },
   { text: 'Sign In', href: '/signin', isHeader: true },
   { text: 'Create Account', href: '/register', isButton: true, isHeader: true },
-  // {
-  //   text: 'Enter',
-  //   href: '/',
-  //   icon: ExitToAppIcon,
-  //   isButton: true,
-  //   isAuthenticated: true,
-  // },
   { text: 'About', href: '/about', isFooter: true, icon: '' },
   { text: 'Privacy', href: '/privacy', isFooter: true, icon: '' },
   { text: 'Terms', href: '/terms', isFooter: true, icon: '' },
@@ -90,71 +87,6 @@ export const menuItems = [
   { text: 'Calendar', href: '/dashboard/calendar', icon: CalendarTodayIcon, isSidebar: true },
   // { text: 'Settings', href: '/', icon: SettingsIcon, isSidebar: true },
 ];
-
-export const formInputs = [
-  {
-    type: 'text',
-    name: 'name',
-    id: 'name',
-    placeholder: 'Name',
-    icon: AccountCircleOutlinedIcon,
-    isRegister: true,
-    autoComplete: 'off',
-  },
-  {
-    type: 'email',
-    name: 'email',
-    id: 'email',
-    placeholder: 'Email',
-    icon: AlternateEmailOutlinedIcon,
-    isLogin: true,
-    isRegister: true,
-    autoComplete: 'on',
-  },
-  {
-    type: 'password',
-    name: 'password',
-    id: 'password',
-    placeholder: 'Password',
-    icon: LockOpenOutlinedIcon,
-    isLogin: true,
-    isRegister: true,
-    autoComplete: 'current-password',
-  },
-  {
-    type: 'password',
-    name: 'confirmPassword',
-    id: 'confirmPassword',
-    placeholder: 'Confirm Password',
-    icon: LockOpenOutlinedIcon,
-    isRegister: true,
-    autoComplete: 'off',
-  },
-];
-
-export const pricingPlans = {
-  basic: {
-    plan: 'Basic',
-    price: '10',
-    text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident ab nulla quod.',
-    style: 'bg-neutral-100 text-neutral-500 border-neutral-400',
-    button: CTA.TRY_NOW,
-  },
-  plus: {
-    plan: 'Plus',
-    price: '15',
-    text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident ab nulla quod.',
-    style: 'bg-third text-neutral-800 border-neutral-400',
-    button: CTA.TRY_FREE,
-  },
-  pro: {
-    plan: 'Pro',
-    price: '20',
-    text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident ab nulla quod.',
-    style: 'bg-primary text-white border-primary',
-    button: CTA.TRY_FREE,
-  },
-};
 
 export const helpMenu = [
   {
@@ -214,9 +146,107 @@ export const subscriptionMenu = [
   },
 ];
 
+//* Route Names
 export const routeNames = {
   '/dashboard': 'Home | Dashboard',
   '/dashboard/classes': 'Home | Classes',
   '/dashboard/attendance': 'Attendance',
   '/dashboard/groups': 'Groups',
 };
+
+//* Pricing
+export const pricingPlans = {
+  basic: {
+    plan: 'Basic',
+    price: '10',
+    text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident ab nulla quod.',
+    style: 'bg-neutral-100 text-neutral-500 border-neutral-400',
+    button: CTA.TRY_NOW,
+  },
+  plus: {
+    plan: 'Plus',
+    price: '15',
+    text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident ab nulla quod.',
+    style: 'bg-third text-neutral-800 border-neutral-400',
+    button: CTA.TRY_FREE,
+  },
+  pro: {
+    plan: 'Pro',
+    price: '20',
+    text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident ab nulla quod.',
+    style: 'bg-primary text-white border-primary',
+    button: CTA.TRY_FREE,
+  },
+};
+
+//* Form inputs
+export const formInputs = [
+  {
+    type: 'text',
+    name: 'name',
+    id: 'name',
+    placeholder: 'Name',
+    icon: AccountCircleOutlinedIcon,
+    isRegister: true,
+    autoComplete: 'off',
+  },
+  {
+    type: 'email',
+    name: 'email',
+    id: 'email',
+    placeholder: 'Email',
+    icon: AlternateEmailOutlinedIcon,
+    isLogin: true,
+    isRegister: true,
+    autoComplete: 'on',
+  },
+  {
+    type: 'password',
+    name: 'password',
+    id: 'password',
+    placeholder: 'Password',
+    icon: LockOpenOutlinedIcon,
+    isLogin: true,
+    isRegister: true,
+    autoComplete: 'current-password',
+  },
+  {
+    type: 'password',
+    name: 'confirmPassword',
+    id: 'confirmPassword',
+    placeholder: 'Confirm Password',
+    icon: LockOpenOutlinedIcon,
+    isRegister: true,
+    autoComplete: 'off',
+  },
+];
+
+export const classFormInput = [
+  {
+    type: 'text-area',
+    name: 'name',
+    id: 'name',
+    placeholder: 'Name',
+    icon: DriveFileRenameOutlineIcon,
+    autoComplete: 'off',
+    // isRegister: true,
+  },
+  {
+    type: 'text',
+    name: 'description',
+    id: 'description',
+    placeholder: 'Description',
+    autoComplete: 'off',
+    icon: DescriptionIcon,
+    // isRegister: true,
+  },
+  {
+    type: 'text',
+    name: 'group',
+    id: 'group',
+    placeholder: 'Group',
+    autoComplete: 'off',
+    icon: WorkspacesOutlinedIcon,
+    // isRegister: true,
+  },
+];

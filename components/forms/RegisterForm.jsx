@@ -53,7 +53,7 @@ function RegisterForm() {
     >
       {registerInputs.map((item) => (
         <div key={item.id} className="mb-1">
-          <div className="mx-auto flex items-center rounded-md border border-neutral-400 p-1 text-sm">
+          <div className="flex max-w-90 items-center rounded-md border border-neutral-400 p-1 text-sm">
             {item.icon && <item.icon className="mr-1 h-5 w-5 text-neutral-400" />}
 
             <input
@@ -79,6 +79,7 @@ function RegisterForm() {
           variant="primary"
           //text={CTA.SIGN_IN}
           text={isLoading ? 'Creating...' : CTA.SIGN_IN}
+          className="w-full md:w-40"
         />
       </div>
     </form>

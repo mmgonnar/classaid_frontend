@@ -7,14 +7,6 @@ import CloseButton from '../buttons/CloseButton';
 import MainButton from '../buttons/MainButton';
 
 function ModalBase({ children, open, onClose }) {
-  // const [open, setOpen] = useState(true);
-
-  // const handleClick = (e) => {
-  //   console.log('Click');
-
-  //   e.stopPropagation();
-  //   e.preventDefault();
-  // };
   return (
     <>
       {/* Overlay */}
@@ -32,7 +24,10 @@ function ModalBase({ children, open, onClose }) {
           open ? 'opacity-100' : 'pointer-events-none opacity-0',
         )}
       >
-        <div className="relative z-60 h-150 w-150 max-w-2xl rounded-lg bg-white shadow-xl">
+        <div
+          className="relative z-60 h-150 w-150 max-w-2xl rounded-lg bg-white shadow-xl"
+          // onClick={(e) => e.stopPropagation()}
+        >
           <div>{children}</div>
           <CloseButton className="-top-8 -right-8" onClick={onClose} />
         </div>

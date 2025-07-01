@@ -2,13 +2,13 @@
 import BaseCard from '@/components/cards/BaseCard';
 import ClassCard from '@/components/cards/ClassCard';
 import BouncyLoader from '@/components/loaders/BouncyLoader';
-import AddComponent from '@/components/cards/AddCard';
 import PageTitle from '@/components/small components/PageTitle';
 import UserContext from '@/context/UserContext';
 
 import { useContext } from 'react';
 import DashboardLayout from '@/components/layouts/DashboardLayout';
 import SectionTitleDash from '@/components/small components/SectionTitleDash';
+import AddCardButton from '@/components/buttons/AddCardButton';
 
 function Dashboard() {
   const { userData, loading } = useContext(UserContext);
@@ -20,6 +20,10 @@ function Dashboard() {
       </div>
     );
   }
+
+  const handleClick = () => {
+    console.log('🚀 ~ page.js:25 ~ handleClick ~ handleClick:', handleClick);
+  };
   return (
     <DashboardLayout>
       <div className="grid gap-4 md:grid-cols-[1fr_250px]">
@@ -28,7 +32,7 @@ function Dashboard() {
           <PageTitle className="pb-2" />
           <SectionTitleDash title="Classes" href="/dashboard/classes" />
           <div className="custom-md:grid-cols-4 custom-sm:grid-cols-2 grid w-[100%] items-center gap-2 pb-4 md:justify-center">
-            <AddComponent />
+            <AddCardButton onClick={handleClick} />
             <ClassCard />
           </div>
           <p className="text-primary pb-2 text-sm">Attendance</p>
