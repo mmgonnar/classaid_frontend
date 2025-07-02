@@ -25,7 +25,7 @@ function ModalBase({ children, open, onClose }) {
         )}
       >
         <div
-          className="relative z-60 h-150 w-150 max-w-2xl rounded-lg bg-white shadow-xl"
+          className="relative z-60 h-auto w-auto max-w-2xl rounded-lg bg-white shadow-xl"
           // onClick={(e) => e.stopPropagation()}
         >
           <div>{children}</div>

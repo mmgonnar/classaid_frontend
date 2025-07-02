@@ -29,19 +29,6 @@ function RegisterForm() {
       errorMessage: 'Error creating user',
       router: route,
     });
-
-    // try {
-    //   setIsLoading(true);
-    //   setError(null);
-
-    //   const response = await api.createUser(userData);
-
-    //   if (response.success) {
-    //     route.push('signin');
-    //   }
-    // } catch (error) {
-    //   setError(error.message || 'Error');
-    // }
   };
 
   return (

@@ -1,12 +1,12 @@
+'use server';
 import { createClass } from '@/controllers/class/createClass';
 import { getClasses } from '@/controllers/class/getClasses';
 import connectDB from '@/lib/mongodb';
 
-export const dynamic = 'force-dynamic';
+// export const dynamic = 'force-dynamic';
 
 export async function GET(req, { params }) {
   await connectDB();
-
   return getClasses();
 }
 

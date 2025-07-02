@@ -12,7 +12,8 @@ export enum CTA {
   PROFILE = "Profile",
   ACCOUNT = "My Account",
   BACK = "Go Back",
-  DASHBOARD = "Dashboard"
+  DASHBOARD = "Dashboard",
+  CREATE = "Create"
 }
 
 export enum ROL {

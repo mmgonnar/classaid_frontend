@@ -9,10 +9,11 @@ class ApiClass {
 
   getHeaders() {
     const token = getToken();
+    console.log(getToken(), 'xxxxxxxxxxx');
 
     return {
       'Content-Type': 'application/json',
-      // ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
     };
   }
 
@@ -31,20 +32,25 @@ class ApiClass {
       throw error;
     }
   }
+
   async createClass(classData) {
     try {
       const response = await fetch(`${this.baseUrl}/classes`, {
         method: 'POST',
+        credentials: 'include',
         headers: this.getHeaders(),
         body: JSON.stringify(classData),
+        ...classData,
       });
 
       const data = await response.json();
       return data;
     } catch (error) {
       console.error('Error creating class:', error);
+      throw error;
     }
   }
+
   async updateClass(id, classData) {
     try {
       if (!id || !userData) throw new Error('ID and user data are required');

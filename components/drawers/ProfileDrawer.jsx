@@ -207,38 +207,9 @@ function Drawer({ toggleMenu, isMenuOpen }) {
                           <p>{item.text}</p>
                         </Link>
                       ))}
-                      {/* <Link
-                        href="/dashboard"
-                        className="text-md col-start-1 row-start-1 flex cursor-pointer items-center gap-2"
-                      >
-                        <SupportAgentOutlinedIcon className="" sx={{ fontSize: '1.5em' }} /> Talk
-                        with us
-                      </Link>
-
-                      <Link
-                        href="/pricing"
-                        className="text-md col-start-2 row-start-1 flex cursor-pointer items-center gap-2"
-                      >
-                        <ReceiptLongOutlinedIcon sx={{ fontSize: '1.5em' }} /> Billing
-                      </Link>
-
-                      <Link
-                        href="/pricing"
-                        className="text-md col-start-1 row-start-2 flex cursor-pointer items-center gap-2"
-                      >
-                        <EmailOutlinedIcon sx={{ fontSize: '1.5em' }} /> Email us
-                      </Link>
-
-                      <Link
-                        href="/pricing"
-                        className="text-md col-start-2 row-start-2 flex cursor-pointer items-center gap-2"
-                      >
-                        <LayersOutlinedIcon sx={{ fontSize: '1.5em' }} /> Resources
-                      </Link> */}
                     </div>
                   </div>
                 </>
-                {/* )} */}
               </div>
             </div>
           </div>

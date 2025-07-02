@@ -1,3 +1,5 @@
+'use server';
+
 import { Class } from '@/models/class';
 import { NextResponse } from 'next/server';
 import { setToken } from '@/cookies/server';
@@ -5,6 +7,7 @@ import { setToken } from '@/cookies/server';
 export async function getClasses() {
   try {
     const { userId } = await setToken();
+    console.log(userId, 'lllllllllllllll');
 
     const classes = await Class.find({ teacher: userId })
       .populate('teacher')
@@ -18,6 +21,7 @@ export async function getClasses() {
       { status: 200 },
     );
   } catch (error) {
+    console.log(error.message);
     console.error('Error fetching classes');
 
     return NextResponse.json(

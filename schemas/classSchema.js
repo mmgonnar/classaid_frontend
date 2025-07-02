@@ -5,10 +5,10 @@ const classNameValidationSchema = {
 };
 
 const classDescriptionValidationSchema = {
-  description: yup.string().max(500).required(),
+  description: yup.string().max(500).required('Description is a required field'),
 };
 const classTeacherValidationSchema = {
-  teacher: yup.string().max(200).required(),
+  teacher: yup.string().max(1000).required(),
 };
 
 const classGroupValidationSchema = {

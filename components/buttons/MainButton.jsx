@@ -10,7 +10,7 @@ function MainButton({
   type = 'button',
   onClick = () => {},
   size = 'md',
-  href = '/',
+  href = '',
   className = '',
 }) {
   const router = useRouter();

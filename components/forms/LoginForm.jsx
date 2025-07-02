@@ -33,7 +33,7 @@ function LoginForm() {
       {loginInputs.map((item) => (
         <div key={item.id} className="mb-1">
           <div className="flex max-w-90 items-center rounded-md border border-neutral-400 p-1 text-sm">
-            {item.icon && <item.icon className="ms-5 mr-1 h-5 text-neutral-400" />}
+            {item.icon && <item.icon className="mx-1 h-5 text-neutral-400" />}
 
             <input
               type={item.type}

@@ -10,43 +10,71 @@ function ClassProvider({ children }) {
 
   const { token } = useContext(AuthContext);
 
+  const fetchClassData = async () => {
+    if (!token) {
+      setLoading(false);
+      return;
+    }
+    try {
+      setLoading(true);
+      const result = await api.getClassInfo();
+
+      setClassData(result.data);
+    } catch (error) {
+      console.error('Error fetching class data:', error);
+      setClassData(null);
+
+      if (error.message === 'Error fetching user data') {
+        handleLogout();
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchClassData = async () => {
-      if (!token) {
-        setLoading(false);
-        return;
-      }
-      try {
-        setLoading(true);
-        const result = await api.getClassInfo();
-
-        setClassData(result.data);
-      } catch (error) {
-        console.error('Error fetching class data:', error);
-        setClassData(null);
-
-        if (error.message === 'Error fetching user data') {
-          handleLogout();
-        }
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchClassData();
   }, [token]);
+
+  // useEffect(() => {
+  //   const fetchClassData = async () => {
+  //     if (!token) {
+  //       setLoading(false);
+  //       return;
+  //     }
+  //     try {
+  //       setLoading(true);
+  //       const result = await api.getClassInfo();
+
+  //       setClassData(result.data);
+  //     } catch (error) {
+  //       console.error('Error fetching class data:', error);
+  //       setClassData(null);
+
+  //       if (error.message === 'Error fetching user data') {
+  //         handleLogout();
+  //       }
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchClassData();
+  // }, [token]);
 
   const handleCreateClass = async (newClassData) => {
     try {
       setLoading(true);
       const result = await api.createClass(newClassData);
+      setClassData([...classData, result.data]);
 
-      if (result.success) {
-        const updatedClasses = await api.getClassInfo();
-        setClassData(updatedClasses.data);
-      }
+      // if (result.success) {
+      //   const updatedClasses = await api.getClassInfo();
+      //   setClassData(updatedClasses.classData);
+      // }
 
       return result;
+      //return;
     } catch (error) {
       console.error('Error creating class:', error);
       throw error;

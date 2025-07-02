@@ -16,9 +16,6 @@ import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
 import LayersOutlinedIcon from '@mui/icons-material/LayersOutlined';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import LogoutIcon from '@mui/icons-material/Logout';
-import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
-import DescriptionIcon from '@mui/icons-material/Description';
-import WorkspacesOutlinedIcon from '@mui/icons-material/WorkspacesOutlined';
 import { CTA } from './enums';
 
 export const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -223,13 +220,11 @@ export const formInputs = [
 
 export const classFormInput = [
   {
-    type: 'text-area',
+    type: 'text',
     name: 'name',
     id: 'name',
     placeholder: 'Name',
-    icon: DriveFileRenameOutlineIcon,
     autoComplete: 'off',
-    // isRegister: true,
   },
   {
     type: 'text',
@@ -237,8 +232,6 @@ export const classFormInput = [
     id: 'description',
     placeholder: 'Description',
     autoComplete: 'off',
-    icon: DescriptionIcon,
-    // isRegister: true,
   },
   {
     type: 'text',
@@ -246,7 +239,5 @@ export const classFormInput = [
     id: 'group',
     placeholder: 'Group',
     autoComplete: 'off',
-    icon: WorkspacesOutlinedIcon,
-    // isRegister: true,
   },
 ];

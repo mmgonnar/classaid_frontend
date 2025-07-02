@@ -9,13 +9,10 @@ function AddClassModal({ open, onClose }) {
   return (
     <>
       <ModalBase open={open} onClose={onClose}>
-        <div className="p-6">
+        <div className="w-100 p-6">
           <h2 className="text-primary mb-4 text-xl font-bold">Create a new class</h2>
-          <p className="text-primary mb-4">Agregar clase</p>
-          <div className="flex gap-2">
-            <ClassForm />
-            <MainButton text="ADASDSA" />
-            <MainButton text="Cerrar" onClick={onClose} />
+          <div className="flex">
+            <ClassForm onClose={onClose} />
           </div>
         </div>
       </ModalBase>
