@@ -6,6 +6,7 @@ function BaseCard({
   align = 'center',
   className = '',
   handleOpenModal,
+  toggleModal,
 }) {
   const borders = {
     blue: 'border-primary',
@@ -20,7 +21,7 @@ function BaseCard({
   return (
     <div
       className={`flex max-w-sm flex-col items-center rounded-2xl border-2 transition-all duration-300 hover:z-10 hover:scale-[1.02] hover:shadow-md ${className} ${borders[border]} ${alignment[align]}`}
-      onClick={handleOpenModal}
+      onClick={toggleModal}
     >
       {children}
     </div>

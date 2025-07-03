@@ -40,13 +40,12 @@ class ApiClass {
         credentials: 'include',
         headers: this.getHeaders(),
         body: JSON.stringify(classData),
-        ...classData,
       });
 
       const data = await response.json();
       return data;
     } catch (error) {
-      console.error('Error creating class:', error);
+      console.error('API Error creating class:', error);
       throw error;
     }
   }

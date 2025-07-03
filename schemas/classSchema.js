@@ -22,7 +22,7 @@ const classFavoriteValidationSchema = {
 export const baseClassSchema = yup.object({
   ...classNameValidationSchema,
   ...classDescriptionValidationSchema,
-  ...classTeacherValidationSchema,
+  // ...classTeacherValidationSchema,
   ...classGroupValidationSchema,
 });
 

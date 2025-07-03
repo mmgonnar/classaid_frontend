@@ -7,6 +7,7 @@ import Loading from '../small components/Loading';
 import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded';
 import Favorite from '../small components/Favorite';
 import { usePathname } from 'next/navigation';
+import { useAutoAnimate } from '@formkit/auto-animate/react';
 
 const getInitials = (name) => {
   let initials = '';
@@ -21,12 +22,25 @@ function ClassCard() {
   const { classData, loading } = useContext(ClassContext);
   const pathname = usePathname();
 
+  const [parent] = useAutoAnimate();
+
   if (loading) return <Loading />;
   if (!classData || classData.length === 0) {
     return <div className="p-4 text-center text-neutral-500">No classes available</div>;
   }
 
   const classItems = pathname === '/dashboard/classes' ? classData : classData.slice(0, 3);
+
+  const toggleFavorite = () => {
+    //filtro de favorito primero
+  };
+  //filtro de las tarjetas que no tienen fav
+
+  // if son iguales no hay favs funcion fav === classData
+  //entonces aqui hacer el prepend
+  // [...array, ...array2]
+
+// .filter((card) => card && card.owner)
 
   return (
     <>

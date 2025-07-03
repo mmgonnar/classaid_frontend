@@ -18,6 +18,7 @@ function Sidebar() {
               key={item.text}
               href={item.href}
               className={cn(
+                'flex, flex-col',
                 path == item.href && 'bg-third',
                 item.isButton
                   ? 'w-full'

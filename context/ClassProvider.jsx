@@ -36,50 +36,39 @@ function ClassProvider({ children }) {
     fetchClassData();
   }, [token]);
 
-  // useEffect(() => {
-  //   const fetchClassData = async () => {
-  //     if (!token) {
-  //       setLoading(false);
-  //       return;
-  //     }
-  //     try {
-  //       setLoading(true);
-  //       const result = await api.getClassInfo();
-
-  //       setClassData(result.data);
-  //     } catch (error) {
-  //       console.error('Error fetching class data:', error);
-  //       setClassData(null);
-
-  //       if (error.message === 'Error fetching user data') {
-  //         handleLogout();
-  //       }
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   fetchClassData();
-  // }, [token]);
-
   const handleCreateClass = async (newClassData) => {
     try {
       setLoading(true);
-      const result = await api.createClass(newClassData);
-      setClassData([...classData, result.data]);
+      const response = await api.createClass(newClassData);
 
-      // if (result.success) {
-      //   const updatedClasses = await api.getClassInfo();
-      //   setClassData(updatedClasses.classData);
-      // }
+      if (!response.success) {
+        throw new Error(response.message || 'Failed to create class');
+      }
 
-      return result;
-      //return;
+      setClassData([response.data, ...(classData || [])]);
+
+      return {
+        success: true,
+        data: response.data,
+      };
     } catch (error) {
       console.error('Error creating class:', error);
-      throw error;
+      setClassData((cards) => cards?.filter((item) => item._id !== response?.data?._id));
+      return {
+        success: false,
+        error: error.message,
+      };
     } finally {
       setLoading(false);
+    }
+  };
+
+  const toggleFavorite = (classId) => {
+    try {
+      setLoading(true);
+      const currentClass = classData.find((c) => c._id === classId);
+    } catch (error) {
+      console.error();
     }
   };
 

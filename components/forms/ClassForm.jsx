@@ -10,30 +10,27 @@ import { useContext, useState } from 'react';
 import { cn, toastApiCall } from '@/utils/functions';
 import ClassContext from '@/context/ClassContext';
 
-function ClassForm({ onClose }) {
+function ClassForm({ toggleModal }) {
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
-  const { classData, loading, setClassData, handleCreateClass } = useContext(ClassContext);
+  const { handleCreateClass } = useContext(ClassContext);
 
   const { handleSubmit, register, formState } = useForm({
     resolver: yupResolver(classValidationFront),
   });
 
-  const onSubmit = async (classData) => {
+  const onSubmit = async (formData) => {
     setIsLoading(true);
     try {
       console.log('onSubmit', onSubmit);
-      const result = await toastApiCall(handleCreateClass(classData), {
+      const result = await toastApiCall(handleCreateClass(formData), {
         loading: 'Creating class...',
-        redirectTo: '',
         successMessage: 'Class created correctly',
         errorMessage: 'Error creating class',
-        router: '',
       });
 
       if (result.success) {
-        onClose();
+        toggleModal();
       }
     } catch (error) {
       console.error('Something wrong happened, error:', error);
@@ -42,7 +39,6 @@ function ClassForm({ onClose }) {
     }
   };
 
-  console.log(formState.errors, 'xxxxxxxxxxx');
   return (
     <form
       action="submit"
@@ -51,30 +47,56 @@ function ClassForm({ onClose }) {
       onSubmit={handleSubmit(onSubmit)}
     >
       {classFormInput.map((item) => (
-        <div key={item.id} className="">
-          <input
-            type={item.type}
-            name={item.name}
-            id={item.id}
-            placeholder={item.placeholder}
-            className={cn(
-              'flex w-90 max-w-90 items-center rounded-md border border-neutral-400 p-1 text-sm',
-              item.name === 'description' && 'h-40',
-            )}
-            {...register(item.name)}
-          />
+        <div key={item.id} className="pb-2">
+          <label htmlFor={item.name} className="block pb-1 text-sm font-medium text-gray-700">
+            {item.title}
+          </label>
+          {item.name === 'description' ? (
+            <textarea
+              name={item.name}
+              id={item.id}
+              placeholder={item.placeholder}
+              className={cn(
+                'flex w-full resize-none items-center rounded-md border border-neutral-400 p-1 text-sm placeholder:text-xs',
+              )}
+              {...register(item.name)}
+            />
+          ) : (
+            <input
+              type={item.type}
+              name={item.name}
+              id={item.id}
+              placeholder={item.placeholder}
+              className={cn(
+                'flex w-full max-w-90 items-center rounded-md border border-neutral-400 p-1 text-sm placeholder:text-xs',
+              )}
+              {...register(item.name)}
+            />
+          )}
+
           {formState.errors[item.name] && (
             <p className="text-xs text-red-500">{formState.errors[item.name].message}</p>
           )}
         </div>
       ))}
       {error && <p className="text-center text-xs text-red-500">{error}</p>}
-      <MainButton
-        type="submit"
-        variant="primary"
-        text={isLoading ? 'Creating' : CTA.CREATE}
-        className="w-full"
-      />
+      <div className="m-auto flex gap-4">
+        <MainButton
+          type="submit"
+          variant="primary"
+          text={isLoading ? 'Creating' : CTA.CREATE}
+          className=""
+          size="sm"
+        />
+        <MainButton
+          type="submit"
+          variant="secondary"
+          onClick={toggleModal}
+          className=""
+          text="Cancel"
+          size="sm"
+        />
+      </div>
     </form>
   );
 }

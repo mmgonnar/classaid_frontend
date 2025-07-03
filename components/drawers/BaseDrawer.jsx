@@ -6,11 +6,10 @@ import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 
-function BaseDrawer({ children, isMenuOpen, toggleMenu, direction }) {
+function BaseDrawer({ children, isMenuOpen, toggleMenu }) {
   const pathname = usePathname();
   const isProtectedRoute = PROTECTED_ROUTES.some((route) => pathname.startsWith(route));
 
-  const directions = {};
   useEffect(() => {
     const handleKeyPress = (evt) => {
       if (evt.key === 'Escape' && isMenuOpen) {

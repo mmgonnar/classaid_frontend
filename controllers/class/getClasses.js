@@ -7,10 +7,10 @@ import { setToken } from '@/cookies/server';
 export async function getClasses() {
   try {
     const { userId } = await setToken();
-    console.log(userId, 'lllllllllllllll');
 
     const classes = await Class.find({ teacher: userId })
       .populate('teacher')
+      .sort({ createdAt: -1 })
       .orFail(() => new Error('No classes found'));
     return NextResponse.json(
       {

@@ -16,6 +16,7 @@ import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
 import LayersOutlinedIcon from '@mui/icons-material/LayersOutlined';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import LogoutIcon from '@mui/icons-material/Logout';
+import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 import { CTA } from './enums';
 
 export const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -222,22 +223,28 @@ export const classFormInput = [
   {
     type: 'text',
     name: 'name',
+    title: 'Name',
     id: 'name',
-    placeholder: 'Name',
+    placeholder: 'e.g., Math',
     autoComplete: 'off',
+    icon: HelpOutlineOutlinedIcon,
   },
   {
     type: 'text',
     name: 'description',
+    title: 'Description',
     id: 'description',
-    placeholder: 'Description',
+    placeholder: 'Provide a brief description of the class...',
     autoComplete: 'off',
+    icon: HelpOutlineOutlinedIcon,
   },
   {
     type: 'text',
     name: 'group',
+    title: 'Group',
     id: 'group',
-    placeholder: 'Group',
+    placeholder: 'e.g., 101',
     autoComplete: 'off',
+    icon: HelpOutlineOutlinedIcon,
   },
 ];

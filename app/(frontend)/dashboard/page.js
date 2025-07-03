@@ -21,9 +21,7 @@ function Dashboard() {
     );
   }
 
-  const handleClick = () => {
-    console.log('🚀 ~ page.js:25 ~ handleClick ~ handleClick:', handleClick);
-  };
+  const handleClick = () => {};
   return (
     <DashboardLayout>
       <div className="grid gap-4 md:grid-cols-[1fr_250px]">
