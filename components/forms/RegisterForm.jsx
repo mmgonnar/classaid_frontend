@@ -4,7 +4,7 @@ import { CTA } from '@/utils/enums';
 import MainButton from '../buttons/MainButton';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { validationFront } from '@/schemas/userSchema';
+import { frontUserValidationSchema } from '@/schemas/userSchema';
 import api from '@/utils/Api/ApiUser';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -18,7 +18,7 @@ function RegisterForm() {
   const registerInputs = formInputs.filter((item) => item.isRegister);
 
   const { handleSubmit, register, formState } = useForm({
-    resolver: yupResolver(validationFront),
+    resolver: yupResolver(frontUserValidationSchema),
   });
 
   const onSubmit = async (userData) => {

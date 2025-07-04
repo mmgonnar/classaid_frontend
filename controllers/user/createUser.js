@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import Users from '@/models/user';
-import { validationFront } from '@/schemas/userSchema';
+import { frontUserValidationSchema } from '@/schemas/userSchema';
 import bcrypt from 'bcryptjs';
 import { handleError } from '@/utils/functions';
 //import jwt from 'jsonwebtoken';
@@ -8,7 +8,7 @@ import { handleError } from '@/utils/functions';
 export async function createUser(req) {
   try {
     const body = await req.json();
-    const validatedData = await validationFront.validate(body, {
+    const validatedData = await frontUserValidationSchema.validate(body, {
       abortEarly: false,
       stripUnknown: true,
     });

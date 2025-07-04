@@ -4,7 +4,6 @@ import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import { cn } from '@/utils/functions';
 import { useEffect, useState } from 'react';
 import CloseButton from '../buttons/CloseButton';
-import MainButton from '../buttons/MainButton';
 
 function ModalBase({ children, toggleModal, modalOpen }) {
   useEffect(() => {

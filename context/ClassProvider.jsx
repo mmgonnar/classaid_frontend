@@ -63,14 +63,14 @@ function ClassProvider({ children }) {
     }
   };
 
-  const toggleFavorite = (classId) => {
-    try {
-      setLoading(true);
-      const currentClass = classData.find((c) => c._id === classId);
-    } catch (error) {
-      console.error();
-    }
-  };
+  // const toggleFavorite = (classId) => {
+  //   try {
+  //     setLoading(true);
+  //     const currentClass = classData.find((card) => card._id === classId);
+  //   } catch (error) {
+  //     console.error();
+  //   }
+  // };
 
   return (
     <ClassContext.Provider value={{ classData, loading, setClassData, handleCreateClass }}>

@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import MainButton from '../buttons/MainButton';
 import { CTA } from '@/utils/enums';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { classValidationFront } from '@/schemas/classSchema';
+import { subjectValidationFront } from '@/schemas/subjectSchema';
 import { useContext, useState } from 'react';
 import { cn, toastApiCall } from '@/utils/functions';
 import ClassContext from '@/context/ClassContext';
@@ -15,8 +15,8 @@ function ClassForm({ toggleModal }) {
   const [isLoading, setIsLoading] = useState(false);
   const { handleCreateClass } = useContext(ClassContext);
 
-  const { handleSubmit, register, formState } = useForm({
-    resolver: yupResolver(classValidationFront),
+  const { handleSubmit, register, formState, reset } = useForm({
+    resolver: yupResolver(subjectValidationFront),
   });
 
   const onSubmit = async (formData) => {
@@ -31,6 +31,7 @@ function ClassForm({ toggleModal }) {
 
       if (result.success) {
         toggleModal();
+        reset();
       }
     } catch (error) {
       console.error('Something wrong happened, error:', error);
@@ -83,17 +84,18 @@ function ClassForm({ toggleModal }) {
       <div className="m-auto flex gap-4">
         <MainButton
           type="submit"
-          variant="primary"
-          text={isLoading ? 'Creating' : CTA.CREATE}
-          className=""
+          variant="secondary"
+          onClick={toggleModal}
+          className="border-neutral-200 text-neutral-200 hover:border-neutral-200 hover:bg-red-500"
+          //className="hover:border-red-500 hover:bg-red-500"
+          text="Cancel"
           size="sm"
         />
         <MainButton
           type="submit"
-          variant="secondary"
-          onClick={toggleModal}
+          variant="primary"
+          text={isLoading ? 'Creating' : CTA.CREATE}
           className=""
-          text="Cancel"
           size="sm"
         />
       </div>

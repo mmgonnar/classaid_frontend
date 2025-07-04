@@ -1,5 +1,5 @@
 import { Class } from '@/models/class';
-import { baseClassSchema } from '@/schemas/classSchema';
+import { updateSubjectValidation } from '@/schemas/subjectSchema';
 import { handleError } from '@/utils/functions';
 import { NextResponse } from 'next/server';
 
@@ -7,25 +7,27 @@ export async function updateClass(req, id) {
   try {
     const body = await req.json();
 
-    await baseClassSchema.validate(body);
+    const validatedBody = { ...body };
+    await updateSubjectValidation.validate(validatedBody);
 
-    const updatedClass = await Class.findByIdAndUpdate(id, body, { new: true })
+    console.log(validatedBody, 'BODY VALIDATED');
+
+    const updatedClass = await Class.findByIdAndUpdate(id, body, { new: true, runValidators: true })
       .populate('teacher')
-      .orFail(() => new Error('No class found'));
+      .orFail(() => new Error('Class not found'));
+
+    console.log(updatedClass, 'UPDATE CLASES');
+
     return NextResponse.json(
       {
         success: true,
         message: 'Class updated successfully',
-        data: {
-          name: updatedClass.name,
-          description: updatedClass.description,
-          teacher: updatedClass.teacher,
-          group: updatedClass.group,
-        },
+        data: updatedClass,
       },
       { status: 200 },
     );
   } catch (error) {
+    console.error(error, 'ERROR AL UPDATE');
     if (error.name === 'MongoServerError') {
       const errorMessage = handleError(error);
 

@@ -12,10 +12,8 @@ export async function setToken() {
     const token = authorizationHeader?.value.replace('Bearer ', '');
 
     const { payload } = await jwtVerify(token, secret);
-    console.log(payload, 'fggfbfgbfgbfgb');
 
     const userId = payload.id;
-    console.log(userId, 'lkjonojnboñjbnojbnojnbo');
     return { success: true, userId: userId };
   } catch (error) {
     console.error('Error getting UserID');

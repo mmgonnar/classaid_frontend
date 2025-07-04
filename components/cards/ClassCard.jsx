@@ -8,6 +8,7 @@ import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded';
 import Favorite from '../small components/Favorite';
 import { usePathname } from 'next/navigation';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
+import api from '@/utils/Api/ApiClass';
 
 const getInitials = (name) => {
   let initials = '';
@@ -19,28 +20,45 @@ const getInitials = (name) => {
 };
 
 function ClassCard() {
-  const { classData, loading } = useContext(ClassContext);
+  const { classData, loading, setClassData } = useContext(ClassContext);
   const pathname = usePathname();
-
   const [parent] = useAutoAnimate();
+  const [classCardsContainerRef] = useAutoAnimate();
+
+  console.log(classData, 'Class Data');
 
   if (loading) return <Loading />;
   if (!classData || classData.length === 0) {
     return <div className="p-4 text-center text-neutral-500">No classes available</div>;
   }
 
+  const toggleFavorite = async (classId, isFavorite) => {
+    // try {
+    //   //const currentClass = classData.find((card) => card._id === classId);
+    //   //const favoriteStatus = currentClass.favorite; //? lógica?
+    //   const response = await api.updateClass(classId, { favorite: favoriteStatus });
+    //   if (response.success) {
+    //     //? if it doe break
+    //     setClassData(); //? aqui se sobrescribe?
+    //     const updatedClasses = card.map(); //! Aqui se va el array reorganizado
+    //     const favorites = updatedClasses.filter();
+    //     const nonFavorites = updatedClasses.filter();
+    //     //return [...favorites, ...nonFavorites]
+    //   }
+    //   return response;
+    // } catch (error) {
+    //   console.error('', error);
+    // }
+  };
+
   const classItems = pathname === '/dashboard/classes' ? classData : classData.slice(0, 3);
 
-  const toggleFavorite = () => {
-    //filtro de favorito primero
-  };
+  //filtro de favorito primero
   //filtro de las tarjetas que no tienen fav
-
   // if son iguales no hay favs funcion fav === classData
   //entonces aqui hacer el prepend
   // [...array, ...array2]
-
-// .filter((card) => card && card.owner)
+  // .filter((card) => card && card.owner)
 
   return (
     <>
@@ -62,7 +80,11 @@ function ClassCard() {
                 <p className="text-primary">Students: {item.students?.length || 0}</p>
               </div>
             </div>
-            <Favorite className="absolute right-2 bottom-2" />
+            <Favorite
+              // isFavorite={isFavorite}
+              // toggleFavorite={toggleFavorite}
+              className="absolute right-2 bottom-2"
+            />
           </div>
         </BaseCard>
       ))}

@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const classSchema = new mongoose.Schema(
+const subjectSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -22,10 +22,10 @@ const classSchema = new mongoose.Schema(
     favorite: {
       type: Boolean,
       default: false,
-      select: false,
+      // select: false,
     },
   },
   { timestamps: true },
 );
 
-export const Class = mongoose.models.Class || mongoose.model('Class', classSchema);
+export const Class = mongoose.models.Class || mongoose.model('Class', subjectSchema);

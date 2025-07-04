@@ -5,7 +5,7 @@ import { CTA } from '@/utils/enums';
 import { formInputs } from '@/utils/constants';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { loginValidationSchema } from '@/schemas/userSchema';
+import { loginUserValidationSchema } from '@/schemas/userSchema';
 import { useRouter } from 'next/navigation';
 import { useContext } from 'react';
 import AuthContext from '@/context/AuthContext';
@@ -20,7 +20,7 @@ function LoginForm() {
     register,
     formState: { errors, isSubmitting },
   } = useForm({
-    resolver: yupResolver(loginValidationSchema),
+    resolver: yupResolver(loginUserValidationSchema),
     mode: 'onSubmit',
   });
 

@@ -8,6 +8,7 @@ import connectDB from '@/lib/mongodb';
 export async function GET(req, { params }) {
   await connectDB();
   return getClasses();
+  // return getClasses().then((res) => res.data[0]);
 }
 
 export async function POST(req) {

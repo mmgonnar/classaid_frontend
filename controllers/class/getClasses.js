@@ -9,7 +9,7 @@ export async function getClasses() {
     const { userId } = await setToken();
 
     const classes = await Class.find({ teacher: userId })
-      .populate('teacher')
+      // .populate()
       .sort({ createdAt: -1 })
       .orFail(() => new Error('No classes found'));
     return NextResponse.json(
@@ -17,6 +17,7 @@ export async function getClasses() {
         success: true,
         message: 'Classes found successfully',
         data: classes,
+        // Array.isArray(classes) ? classes : [classes],
       },
       { status: 200 },
     );

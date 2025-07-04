@@ -1,30 +1,26 @@
 'use server';
 import { setToken } from '@/cookies/server';
 import { Class } from '@/models/class';
-import { classValidationFront } from '@/schemas/classSchema';
+import { subjectValidationBack } from '@/schemas/subjectSchema';
 import { NextResponse } from 'next/server';
 
 export async function createClass(req) {
   try {
     const body = await req.json();
+    console.log(body, 'BODY');
     const { userId } = await setToken();
 
-    const validatedBody = { ...body, teacher: userId };
-    await classValidationFront.validate(validatedBody);
+    const validatedBody = { ...body, teacher: userId, favorite: false };
+    await subjectValidationBack.validate(validatedBody);
 
     const newClass = await Class.create(validatedBody);
+    console.log(newClass, 'NEW CLASS');
 
     return NextResponse.json(
       {
         success: true,
         message: 'Class created successfully',
         data: newClass,
-        // {
-        //   name: newClass.name,
-        //   description: newClass.description,
-        //   teacher: newClass.teacher,
-        //   group: newClass.group,
-        // },
       },
       { status: 201 },
     );
