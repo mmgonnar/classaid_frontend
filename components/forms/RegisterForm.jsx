@@ -8,7 +8,7 @@ import { frontUserValidationSchema } from '@/schemas/userSchema';
 import api from '@/utils/Api/ApiUser';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { toastApiCall } from '@/utils/functions';
+import { apiCallToast } from '@/utils/functions';
 
 function RegisterForm() {
   const [error, setError] = useState(false);
@@ -22,7 +22,7 @@ function RegisterForm() {
   });
 
   const onSubmit = async (userData) => {
-    toastApiCall(api.createUser(userData), {
+    apiCallToast(api.createUser(userData), {
       loading: 'Creating user...',
       redirectTo: 'signin',
       successMessage: 'User created correctly',

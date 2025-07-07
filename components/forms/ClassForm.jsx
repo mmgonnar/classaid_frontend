@@ -7,7 +7,7 @@ import { CTA } from '@/utils/enums';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { subjectValidationFront } from '@/schemas/subjectSchema';
 import { useContext, useState } from 'react';
-import { cn, toastApiCall } from '@/utils/functions';
+import { cn, apiCallToast } from '@/utils/functions';
 import ClassContext from '@/context/ClassContext';
 
 function ClassForm({ toggleModal }) {
@@ -23,7 +23,7 @@ function ClassForm({ toggleModal }) {
     setIsLoading(true);
     try {
       console.log('onSubmit', onSubmit);
-      const result = await toastApiCall(handleCreateClass(formData), {
+      const result = await apiCallToast(handleCreateClass(formData), {
         loading: 'Creating class...',
         successMessage: 'Class created correctly',
         errorMessage: 'Error creating class',

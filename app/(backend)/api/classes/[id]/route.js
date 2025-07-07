@@ -8,7 +8,6 @@ export async function GET(req, { params }) {
   const { id } = await params;
   // const result = await params;
   // const id = result.id;
-
   return getClassById(id);
 }
 

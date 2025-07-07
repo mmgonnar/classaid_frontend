@@ -77,7 +77,7 @@ function Drawer({ toggleMenu, isMenuOpen }) {
               <div
                 className={cn(
                   'profile bg-third text-primary flex flex-col gap-3 pt-20 pb-6',
-                  isScrolled && 'shadow-lg',
+                  isScrolled && 'shadow-',
                 )}
               >
                 <div className="outline-primary m-auto mb-4 flex h-24 w-24 flex-col items-center justify-center rounded-full bg-white p-6 outline outline-offset-6">

@@ -12,8 +12,8 @@ const name = yup
 
 const lastName = yup
   .string()
-  .default('') // Asegura que undefined/null se conviertan en ""
-  .notRequired() // Explícitamente opcional
+  .default('')
+  .notRequired()
   .test(
     'length-if-not-empty',
     'Last name must be 2-30 characters',
@@ -23,9 +23,8 @@ const lastName = yup
 const email = yup
   .string('Please include an "@" in the address')
   .email('Enter valid email')
-  .matches(emailPattern, 'Please enter a valid email address. eg name@mail.com')
-  // .password()
-  .optional();
+  .matches(emailPattern, 'Please enter a valid email address. eg name@mail.com');
+// .password()
 
 const password = yup
   .string()

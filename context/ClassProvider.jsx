@@ -6,6 +6,7 @@ import AuthContext from './AuthContext';
 
 function ClassProvider({ children }) {
   const [classData, setClassData] = useState(null);
+  const [favoritesData, setFavoritesData] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const { token } = useContext(AuthContext);
@@ -18,6 +19,9 @@ function ClassProvider({ children }) {
     try {
       setLoading(true);
       const result = await api.getClassInfo();
+
+      //promissAll
+      //o 1 .then 2. then...
 
       setClassData(result.data);
     } catch (error) {
@@ -32,7 +36,39 @@ function ClassProvider({ children }) {
     }
   };
 
+  const fetchAllData = async () => {
+    if (!token) {
+      setLoading(false);
+      return;
+    }
+    try {
+      setLoading(true);
+      //const result = await api.getClassInfo();
+
+      const favoriteResult = await api.getFavoriteClasses();
+      const allClassesData = await api.getClassInfo();
+      //! separarlas despues
+
+      //promissAll
+      //o 1 .then 2. then...
+
+      setFavoritesData(favoriteResult.data);
+      setClassData(allClassesData.data);
+    } catch (error) {
+      console.error('Error fetching class data:', error);
+      setFavoritesData(null);
+      setClassData(null);
+
+      if (error.message === 'Error fetching user data') {
+        handleLogout();
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
+    //fetchAllData();
     fetchClassData();
   }, [token]);
 
@@ -63,17 +99,83 @@ function ClassProvider({ children }) {
     }
   };
 
-  // const toggleFavorite = (classId) => {
+  // const handleUpdateClass = async (classId, updates) => {
   //   try {
   //     setLoading(true);
-  //     const currentClass = classData.find((card) => card._id === classId);
+  //     const response = await api.updateClass(classId, updates);
+  //     if (response.success) {
+  //       const updatedClass = response.data
+  //         ? { ...item, ...response.data }
+  //         : { ...item, ...updates };
+  //       setClassData((prev) =>
+  //         prev
+  //           ? prev.map((item) => (item._id === classId ? { ...item, ...updatedClass } : item))
+  //           : [],
+  //       );
+  //       return { success: true, data: updatedClass };
+  //     }
+  //     return {
+  //       success: true,
+  //       data: response,
+  //     };
   //   } catch (error) {
-  //     console.error();
+  //     console.error('Error updating class:', error);
+  //   } finally {
+  //     setLoading(false);
   //   }
   // };
 
+  const handleUpdateClass = async (classId, updates) => {
+    setLoading(true);
+    try {
+      const response = await api.updateClass(classId, updates);
+
+      if (!response.success) {
+        return {
+          success: false,
+          error: response.error || 'Error updating class',
+        };
+      }
+
+      setClassData(
+        (prev) =>
+          prev?.map((item) =>
+            item._id === classId
+              ? {
+                  ...item,
+                  ...(response.data || updates),
+                }
+              : item,
+          ) || [],
+      );
+
+      return {
+        success: true,
+        data: response.data || { ...updates, _id: classId },
+      };
+    } catch (error) {
+      console.error('Update failed:', error);
+      return {
+        success: false,
+        error: error.message,
+      };
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <ClassContext.Provider value={{ classData, loading, setClassData, handleCreateClass }}>
+    <ClassContext.Provider
+      value={{
+        classData,
+        favoritesData,
+        loading,
+        setClassData,
+        setFavoritesData,
+        handleCreateClass,
+        handleUpdateClass,
+      }}
+    >
       {children}
     </ClassContext.Provider>
   );

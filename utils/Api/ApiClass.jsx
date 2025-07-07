@@ -2,7 +2,7 @@
 
 import { getToken } from '../token';
 
-class ApiClass {
+class ApiSubject {
   constructor(baseUrl) {
     this.baseUrl = baseUrl;
   }
@@ -28,7 +28,23 @@ class ApiClass {
       const data = await response.json();
       return data;
     } catch (error) {
-      console.error('Error fetching class:', error);
+      console.error('API Error fetching class:', error);
+      throw error;
+    }
+  }
+
+  async getFavoriteClasses() {
+    try {
+      const response = await fetch(`${this.baseUrl}/classes`, {
+        method: 'GET',
+        credentials: 'include',
+        headers: this.getHeaders(),
+      });
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('API Error fetching class:', error);
       throw error;
     }
   }
@@ -52,9 +68,9 @@ class ApiClass {
 
   async updateClass(id, classData) {
     try {
-      if (!id || !userData) throw new Error('ID and user data are required');
+      if (!id || !classData) throw new Error('ID and class data are required');
 
-      const response = await fetch(`${this.baseUrl}/classes${id}`, {
+      const response = await fetch(`${this.baseUrl}/classes/${id}`, {
         method: 'PATCH',
         headers: this.getHeaders(),
         body: JSON.stringify(classData),
@@ -62,9 +78,28 @@ class ApiClass {
 
       const data = await response.json();
       return data;
-    } catch (error) {}
+    } catch (error) {
+      console.error('API Error updating subject:', error);
+      throw error;
+    }
   }
-  async deleteCLass(id) {
+
+  // async updateSubjectFavorite(id, favoriteStatus) {
+  //   try {
+  //     response = await fetch(`${this.baseUrl}/classes/${id}/favorite`, {
+  //       method: 'PATCH',
+  //       headers: this.getHeaders(),
+  //       body: JSON.stringify({ favorite: favoriteStatus }),
+  //     });
+  //     const data = await response.json();
+  //     return data;
+  //   } catch (error) {
+  //     console.error('API Error updating favorite status:', error);
+  //     throw error;
+  //   }
+  // }
+
+  async deleteClass(id) {
     try {
       const response = await fetch(`${this.baseUrl}/classes/${id}`, {
         method: 'DELETE',
@@ -77,13 +112,14 @@ class ApiClass {
       }
       return data;
     } catch (error) {
-      console.error('Error deleting cards:', error);
+      console.error('API Error deleting cards:', error);
       throw error;
     }
   }
-  async deleteAllCLasses() {}
+
+  async deleteAllClasses() {}
 }
 
-const api = new ApiClass('/api');
+const api = new ApiSubject('/api');
 
 export default api;

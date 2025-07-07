@@ -8,16 +8,19 @@ export async function getFavoriteClasses() {
   try {
     const { userId } = setToken();
 
-    const favoriteClasses = await Class.find({ teacher: userId })
-      .populate('teacher')
+    const favoriteClasses = await Class.find({ teacher: userId, favorite: true })
+      // .populate('teacher')
       // .select(+favorite)
-      .sort({ favorite: true })
+      .sort({ createdAt: -1 })
       .orFail(() => new Error('No classes found'));
-    return NextResponse.json({
-      success: true,
-      message: 'Favorite classes found successfully',
-      data: favoriteClasses,
-    });
+    return NextResponse.json(
+      {
+        success: true,
+        message: 'Favorite classes found successfully',
+        data: favoriteClasses,
+      },
+      { status: 200 },
+    );
   } catch (error) {
     console.log(error.message);
     console.error('Error fetching classes');

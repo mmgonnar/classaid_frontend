@@ -28,7 +28,7 @@ export function handleError(error) {
   }
 }
 
-export function toastApiCall(fetch, { loading, redirectTo, successMessage, errorMessage, router }) {
+export function apiCallToast(fetch, { loading, redirectTo, successMessage, errorMessage, router }) {
   return toast.promise(fetch, {
     loading: loading,
     success: (response) => {
