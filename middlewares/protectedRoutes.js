@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { jwtVerify } from 'jose';
 import { cookies } from 'next/headers';
 
-const JWT_SECRET = process.env.JWT_SECRET || secret;
+const JWT_SECRET = process.env.JWT_SECRET || 'secret';
 const secret = new TextEncoder().encode(JWT_SECRET);
 //const PROTECTED_ROUTES = ['/dashboard', '/api/']; //! Activar al final
 // const PROTECTED_ROUTES = process.env.PROTECTED_ROUTES;

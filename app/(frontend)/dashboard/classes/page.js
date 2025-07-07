@@ -1,6 +1,6 @@
 'use client';
 import { useContext, useState } from 'react';
-import ClassCard from '@/components/cards/ClassCard';
+import ClassCards from '@/components/cards/ClassCards';
 import Loading from '@/components/small components/Loading';
 import PageTitle from '@/components/small components/PageTitle';
 import UserContext from '@/context/UserContext';
@@ -47,7 +47,7 @@ function Dashboard() {
               data-auto-animate-id="add-class-button"
               // onAlgo={handleAlgo}
             />
-            <ClassCard />
+            <ClassCards />
           </div>
         </div>
       </div>

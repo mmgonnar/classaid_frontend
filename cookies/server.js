@@ -4,7 +4,7 @@ import { jwtVerify } from 'jose';
 import { cookies } from 'next/headers';
 
 export async function setToken() {
-  const JWT_SECRET = process.env.JWT_SECRET || secret;
+  const JWT_SECRET = process.env.JWT_SECRET || 'secret';
   const secret = new TextEncoder().encode(JWT_SECRET);
   try {
     const cookieStore = await cookies();

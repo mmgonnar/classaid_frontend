@@ -1,6 +1,6 @@
 'use client';
 import BaseCard from '@/components/cards/BaseCard';
-import ClassCard from '@/components/cards/ClassCard';
+import ClassCards from '@/components/cards/ClassCards';
 import BouncyLoader from '@/components/loaders/BouncyLoader';
 import PageTitle from '@/components/small components/PageTitle';
 import UserContext from '@/context/UserContext';
@@ -31,7 +31,7 @@ function Dashboard() {
           <SectionTitleDash title="Classes" href="/dashboard/classes" />
           <div className="custom-md:grid-cols-4 custom-sm:grid-cols-2 grid w-[100%] items-center gap-2 pb-4 md:justify-center">
             <AddCardButton onClick={handleClick} />
-            <ClassCard />
+            <ClassCards />
           </div>
           <p className="text-primary pb-2 text-sm">Attendance</p>
         </div>
