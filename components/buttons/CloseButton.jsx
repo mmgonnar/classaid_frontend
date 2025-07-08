@@ -5,7 +5,6 @@ import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 function CloseButton({ className = '', onClick = () => {} }) {
   const handleClick = () => {
     onClick();
-    console.log('sdfsadf');
   };
   return (
     <button

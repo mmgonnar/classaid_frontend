@@ -10,17 +10,10 @@ function AddCardButton({
   toggleModal,
   handleOpenModal,
 }) {
-  // const handleClick = () => {
-  //   // console.log(onClick.toString(), 'bbbbbbbbbbb');
-  //   // onClick();
-  //   handleOpenModal();
-  // };
-
   return (
     <BaseCard
       border="lightGrey"
       className={`m-auto h-40 w-full cursor-pointer bg-white ${className} hover:bg-gray-50`}
-      // handleOpenModal={handleOpenModal}
       toggleModal={toggleModal}
     >
       <div className="m-auto flex flex-col items-center justify-center gap-4">

@@ -17,7 +17,6 @@ function Dashboard() {
 
   const toggleModal = () => {
     setModalOpen(!modalOpen);
-    console.log('Click');
   };
 
   if (loading || !userData) {
@@ -28,7 +27,6 @@ function Dashboard() {
     );
   }
 
-  const handleClick = () => {};
   return (
     <DashboardLayout>
       <div className="grid gap-4 md:grid-cols-[1fr_250px]">
@@ -40,7 +38,10 @@ function Dashboard() {
             <AddCardButton toggleModal={toggleModal} data-auto-animate-id="add-class-button" />
             <ClassCards />
           </div>
-          <p className="text-primary pb-2 text-sm">Attendance</p>
+          <SectionTitleDash title="Attendance" href="/dashboard/attendance" />
+          <div className="custom-md:grid-cols-4 custom-sm:grid-cols-2 grid w-[100%] items-center gap-2 pb-4 md:justify-center">
+            <AddCardButton toggleModal={toggleModal} data-auto-animate-id="add-class-button" />
+          </div>
         </div>
         <div className="w-[]">
           <BaseCard border="lightGrey" className="w-[100%] bg-white p-2">

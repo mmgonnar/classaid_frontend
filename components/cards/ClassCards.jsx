@@ -9,6 +9,7 @@ import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { apiCallToast } from '@/utils/functions';
 import { useRouter } from 'next/navigation';
 import { useEscapeKeyClose } from '@/hooks/useEscapeKeyClose';
+import ClassPreview from '../modals/ClassPreview';
 
 const getInitials = (name) => {
   let initials = '';
@@ -53,19 +54,21 @@ function ClassCards({ showOnlyFavorites = false }) {
     }
   };
 
+  //! Unfinished
   const handleOpenClassDetail = (classId) => {
     const params = new URLSearchParams(searchParams);
     params.set('classId', classId);
     router.push(`${pathname}?${params.toString()}`);
+
+    console.log('click');
   };
 
+  //! Unfinished
   const handleCloseClassDetailModal = () => {
     const params = new URLSearchParams(searchParams);
-    params.set('classId', classId);
-    router.push(`${pathname}?${params.toString()}`);
+    params.set('classId');
+    router.replace(`${pathname}?${params.toString()}`);
   };
-
-  useEscapeKeyClose(handleOpenClassDetail, handleCloseClassDetailModal);
 
   const newData =
     (showOnlyFavorites ? favoritesData : classData)?.map((item) => ({
@@ -94,6 +97,7 @@ function ClassCards({ showOnlyFavorites = false }) {
           key={`${item._id}-${item.favorite}`}
           className={`relative m-auto h-40 w-full cursor-pointer justify-center bg-white`}
           border="lightGrey"
+          onClick={() => handleOpenClassDetail(item._id)}
         >
           <div className="flex items-center justify-center">
             <div className="m-auto flex w-full flex-col items-center justify-center gap-2">
@@ -109,12 +113,20 @@ function ClassCards({ showOnlyFavorites = false }) {
             </div>
             <Favorite
               isFavorite={item.favorite}
-              toggleFavorite={() => toggleFavorite(item._id, item.favorite)}
+              toggleFavorite={(evt) => toggleFavorite(item._id, item.favorite, evt)}
               className="absolute right-2 bottom-2"
             />
           </div>
         </BaseCard>
       ))}
+      {selectedClassId && (
+        //! Unfinished
+        <ClassPreview
+          classId={selectedClassId}
+          onClose={handleCloseClassDetailModal}
+          isOpen={!!selectedClassId}
+        />
+      )}
     </div>
   );
 }

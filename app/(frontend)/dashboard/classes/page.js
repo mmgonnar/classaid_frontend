@@ -10,6 +10,7 @@ import SectionTitleDash from '@/components/small components/SectionTitleDash';
 import AddClassModal from '@/components/modals/AddClassModal';
 import AddCardButton from '@/components/buttons/AddCardButton';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
+import KpiCard from '@/components/cards/KpiCard';
 
 function SubjectDashboard() {
   const { userData, loading } = useContext(UserContext);
@@ -35,19 +36,24 @@ function SubjectDashboard() {
           <div className="flex justify-between">
             <h1 className="text-primary text-lg font-bold">Hello, {userData?.name}! </h1>
           </div>
-
           <PageTitle className="pb-2" />
-          <SectionTitleDash title="Classes" href="/dashboard/classes" />
-          <div
-            // ref={parent}
-            className="custom-sm:grid-cols-2 grid w-[100%] items-center gap-2 pb-4 sm:grid-cols-2 md:grid-cols-4 md:justify-center"
-          >
-            <AddCardButton
-              toggleModal={toggleModal}
-              data-auto-animate-id="add-class-button"
-              // onAlgo={handleAlgo}
-            />
-            <ClassCards />
+          <SectionTitleDash title="Classes overview" href="/dashboard/classes" />
+          <div className="custom-sm:grid-cols-2 grid w-[100%] items-center gap-2 pb-4 sm:grid-cols-2 md:grid-cols-3 md:justify-center">
+            <KpiCard />
+            <KpiCard />
+            <KpiCard />
+          </div>
+
+          <div>
+            <SectionTitleDash title="All Classes" href="/dashboard/classes" />
+            <div className="custom-sm:grid-cols-2 grid w-[100%] items-center gap-2 pb-4 sm:grid-cols-2 md:grid-cols-4 md:justify-center">
+              <AddCardButton
+                toggleModal={toggleModal}
+                data-auto-animate-id="add-class-button"
+                // onAlgo={handleAlgo}
+              />
+              <ClassCards />
+            </div>
           </div>
         </div>
       </div>

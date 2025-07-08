@@ -39,15 +39,11 @@ function ModalBase({ children, toggleModal, modalOpen }) {
           modalOpen ? 'opacity-100' : 'pointer-events-none opacity-0',
         )}
       >
-        <div
-          className="relative z-60 h-auto w-auto max-w-2xl rounded-lg bg-white shadow-xl"
-          // onClick={(e) => e.stopPropagation()}
-        >
+        <div className="relative z-60 h-auto w-auto max-w-2xl rounded-lg bg-white shadow-xl">
           <div>{children}</div>
           <CloseButton
             onClick={toggleModal}
             className="top-4 right-4 bg-none shadow-none hover:bg-none hover:text-neutral-300"
-            // className="-top-8 -right-8" onClick={toggleModal}
           />
         </div>
       </div>

@@ -4,17 +4,8 @@ import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded';
 import { useActionState, useState } from 'react';
 
 function Favorite({ className = '', isFavorite, toggleFavorite, classId }) {
-  // const [favorite, setFavorite] = useState(false);
-
-  // const toggleFavorite = () => {
-  //   setFavorite(!favorite);
-  //   console.log('click');
-  // };
   return (
-    <div
-      onClick={toggleFavorite}
-      //onClick={toggleFavorite.bind(null, classId, isFavorite)}
-    >
+    <div onClick={toggleFavorite}>
       <StarRateRoundedIcon
         className={cn(
           'text-neutral-200 hover:text-yellow-500',
