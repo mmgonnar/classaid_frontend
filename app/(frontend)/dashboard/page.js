@@ -10,6 +10,7 @@ import DashboardLayout from '@/components/layouts/DashboardLayout';
 import SectionTitleDash from '@/components/small components/SectionTitleDash';
 import AddCardButton from '@/components/buttons/AddCardButton';
 import AddClassModal from '@/components/modals/AddClassModal';
+import Calendar from '@/components/small components/Calendar';
 
 function Dashboard() {
   const { userData, loading } = useContext(UserContext);
@@ -45,6 +46,7 @@ function Dashboard() {
         </div>
         <div className="w-[]">
           <BaseCard border="lightGrey" className="w-[100%] bg-white p-2">
+            <Calendar />
             <div className="mb-3 flex h-[400px] w-full flex-nowrap items-center justify-center bg-neutral-200">
               Calendario aqui
             </div>
