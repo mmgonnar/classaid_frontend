@@ -20,9 +20,6 @@ function ClassProvider({ children }) {
       setLoading(true);
       const result = await api.getClassInfo();
 
-      //promissAll
-      //o 1 .then 2. then...
-
       setClassData(result.data);
     } catch (error) {
       console.error('Error fetching class data:', error);

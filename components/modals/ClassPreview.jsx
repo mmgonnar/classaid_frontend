@@ -3,14 +3,16 @@
 import { useEffect } from 'react';
 import ModalBase from './ModalBase';
 import { useEscapeKeyClose } from '@/hooks/useEscapeKeyClose';
+import DashboardLayout from '../layouts/DashboardLayout';
 
 function ClassPreview({ classId, onClose, isOpen }) {
+  console.log(classId, 'adsasdasdawd');
   useEscapeKeyClose(isOpen, onClose);
 
   if (!isOpen) return null;
 
   return (
-    <ModalBase onClose={onClose}>
+    <DashboardLayout onClose={onClose}>
       <div className="p-6">
         <h2 className="mb-4 text-2xl font-bold">Class Preview</h2>
         <div className="space-y-3">
@@ -19,7 +21,7 @@ function ClassPreview({ classId, onClose, isOpen }) {
           </p>
         </div>
       </div>
-    </ModalBase>
+    </DashboardLayout>
   );
 }
 

@@ -11,9 +11,11 @@ import AddClassModal from '@/components/modals/AddClassModal';
 import AddCardButton from '@/components/buttons/AddCardButton';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import KpiCard from '@/components/cards/KpiCard';
+import ClassContext from '@/context/ClassContext';
 
 function SubjectDashboard() {
   const { userData, loading } = useContext(UserContext);
+  const { classData } = useContext(ClassContext);
   const [modalOpen, setModalOpen] = useState(false);
 
   const [parent] = useAutoAnimate({ duration: 300 });
@@ -38,7 +40,7 @@ function SubjectDashboard() {
           </div>
           <PageTitle className="pb-2" />
           <SectionTitleDash title="Classes overview" href="/dashboard/classes" />
-          <div className="custom-sm:grid-cols-2 grid w-[100%] items-center gap-2 pb-4 sm:grid-cols-2 md:grid-cols-3 md:justify-center">
+          <div className="custom-sm:grid-cols-2 grid w-[100%] max-w-3xl items-center gap-2 pb-4 sm:grid-cols-2 md:grid-cols-3 md:justify-center">
             <KpiCard />
             <KpiCard />
             <KpiCard />

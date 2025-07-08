@@ -11,6 +11,7 @@ import SectionTitleDash from '@/components/small components/SectionTitleDash';
 import AddCardButton from '@/components/buttons/AddCardButton';
 import AddClassModal from '@/components/modals/AddClassModal';
 import Calendar from '@/components/small components/Calendar';
+import Loading from '@/components/small components/Loading';
 
 function Dashboard() {
   const { userData, loading } = useContext(UserContext);
@@ -21,11 +22,7 @@ function Dashboard() {
   };
 
   if (loading || !userData) {
-    return (
-      <div className="bg-opacity-75 fixed inset-0 flex items-center justify-center bg-white transition-opacity duration-300">
-        <BouncyLoader className="h-20 w-20" />
-      </div>
-    );
+    return <Loading />;
   }
 
   return (
@@ -46,7 +43,7 @@ function Dashboard() {
         </div>
         <div className="w-[]">
           <BaseCard border="lightGrey" className="w-[100%] bg-white p-2">
-            <Calendar />
+            {/* <Calendar /> */}
             <div className="mb-3 flex h-[400px] w-full flex-nowrap items-center justify-center bg-neutral-200">
               Calendario aqui
             </div>

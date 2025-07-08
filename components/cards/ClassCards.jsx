@@ -1,6 +1,6 @@
 'use client';
 
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import BaseCard from './BaseCard';
 import ClassContext from '@/context/ClassContext';
 import Favorite from '../small components/Favorite';
@@ -26,9 +26,15 @@ function ClassCards({ showOnlyFavorites = false }) {
   const searchParams = useSearchParams();
   const { classData, favoritesData, handleUpdateClass } = useContext(ClassContext);
   const [updates, setUpdates] = useState({});
-  const [parent] = useAutoAnimate();
+  const [parent] = useAutoAnimate({ duration: 300 });
+  const [selectedClassId, setSelectedClassId] = useState(null);
 
-  const selectedClassId = searchParams.get('classId');
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      setSelectedClassId(params.get('classId'));
+    }
+  }, []);
 
   const toggleFavorite = async (classId, favoriteStatus, evt) => {
     evt.stopPropagation();
@@ -55,20 +61,21 @@ function ClassCards({ showOnlyFavorites = false }) {
   };
 
   //! Unfinished
-  const handleOpenClassDetail = (classId) => {
+  const handleOpenClassDetails = (classId) => {
     const params = new URLSearchParams(searchParams);
     params.set('classId', classId);
-    router.push(`${pathname}?${params.toString()}`);
+    router.push(`/dashboard/classes/class?${params.toString()}`);
 
     console.log('click');
   };
 
   //! Unfinished
-  const handleCloseClassDetailModal = () => {
-    const params = new URLSearchParams(searchParams);
-    params.set('classId');
-    router.replace(`${pathname}?${params.toString()}`);
-  };
+  // const handleCloseClassDetails = () => {
+  //   const params = new URLSearchParams(searchParams);
+  //   params.delete('classId');
+  //   router.replace(`${pathname}?${params.toString()}`);
+  // };
+  // useEscapeKeyClose(isClassPreviewOpen, handleCloseClassDetails);
 
   const newData =
     (showOnlyFavorites ? favoritesData : classData)?.map((item) => ({
@@ -97,7 +104,11 @@ function ClassCards({ showOnlyFavorites = false }) {
           key={`${item._id}-${item.favorite}`}
           className={`relative m-auto h-40 w-full cursor-pointer justify-center bg-white`}
           border="lightGrey"
-          onClick={() => handleOpenClassDetail(item._id)}
+          toggleModal={() => {
+            console.log('click en card?');
+            handleOpenClassDetails(item._id);
+            console.log(item._id, 'id');
+          }}
         >
           <div className="flex items-center justify-center">
             <div className="m-auto flex w-full flex-col items-center justify-center gap-2">
@@ -115,18 +126,19 @@ function ClassCards({ showOnlyFavorites = false }) {
               isFavorite={item.favorite}
               toggleFavorite={(evt) => toggleFavorite(item._id, item.favorite, evt)}
               className="absolute right-2 bottom-2"
+              size="md"
             />
           </div>
         </BaseCard>
       ))}
-      {selectedClassId && (
+      {/* {selectedClassId && (
         //! Unfinished
         <ClassPreview
           classId={selectedClassId}
           onClose={handleCloseClassDetailModal}
-          isOpen={!!selectedClassId}
+          isOpen={isClassPreviewOpen}
         />
-      )}
+      )} */}
     </div>
   );
 }
