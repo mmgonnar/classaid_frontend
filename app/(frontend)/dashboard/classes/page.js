@@ -11,7 +11,7 @@ import AddClassModal from '@/components/modals/AddClassModal';
 import AddCardButton from '@/components/buttons/AddCardButton';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 
-function Dashboard() {
+function SubjectDashboard() {
   const { userData, loading } = useContext(UserContext);
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -57,4 +57,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default SubjectDashboard;

@@ -5,13 +5,20 @@ import BouncyLoader from '@/components/loaders/BouncyLoader';
 import PageTitle from '@/components/small components/PageTitle';
 import UserContext from '@/context/UserContext';
 
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import DashboardLayout from '@/components/layouts/DashboardLayout';
 import SectionTitleDash from '@/components/small components/SectionTitleDash';
 import AddCardButton from '@/components/buttons/AddCardButton';
+import AddClassModal from '@/components/modals/AddClassModal';
 
 function Dashboard() {
   const { userData, loading } = useContext(UserContext);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const toggleModal = () => {
+    setModalOpen(!modalOpen);
+    console.log('Click');
+  };
 
   if (loading || !userData) {
     return (
@@ -30,7 +37,7 @@ function Dashboard() {
           <PageTitle className="pb-2" />
           <SectionTitleDash title="Classes" href="/dashboard/classes" />
           <div className="custom-md:grid-cols-4 custom-sm:grid-cols-2 grid w-[100%] items-center gap-2 pb-4 md:justify-center">
-            <AddCardButton onClick={handleClick} />
+            <AddCardButton toggleModal={toggleModal} data-auto-animate-id="add-class-button" />
             <ClassCards />
           </div>
           <p className="text-primary pb-2 text-sm">Attendance</p>
@@ -46,6 +53,7 @@ function Dashboard() {
           </BaseCard>
         </div>
       </div>
+      <AddClassModal modalOpen={modalOpen} toggleModal={toggleModal} />
     </DashboardLayout>
   );
 }
