@@ -1,3 +1,5 @@
+'use client';
+
 import { clsx } from 'clsx';
 import toast from 'react-hot-toast';
 import { twMerge } from 'tailwind-merge';

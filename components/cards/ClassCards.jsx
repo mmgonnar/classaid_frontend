@@ -4,9 +4,11 @@ import { useContext, useState } from 'react';
 import BaseCard from './BaseCard';
 import ClassContext from '@/context/ClassContext';
 import Favorite from '../small components/Favorite';
-import { usePathname } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { apiCallToast } from '@/utils/functions';
+import { useRouter } from 'next/navigation';
+import { useEscapeKeyClose } from '@/hooks/useEscapeKeyClose';
 
 const getInitials = (name) => {
   let initials = '';
@@ -18,12 +20,17 @@ const getInitials = (name) => {
 };
 
 function ClassCards({ showOnlyFavorites = false }) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const { classData, favoritesData, handleUpdateClass } = useContext(ClassContext);
   const [updates, setUpdates] = useState({});
-  const pathname = usePathname();
   const [parent] = useAutoAnimate();
 
-  const toggleFavorite = async (classId, favoriteStatus) => {
+  const selectedClassId = searchParams.get('classId');
+
+  const toggleFavorite = async (classId, favoriteStatus, evt) => {
+    evt.stopPropagation();
     const newFavoriteStatus = !favoriteStatus;
 
     setUpdates((prev) => ({
@@ -39,12 +46,26 @@ function ClassCards({ showOnlyFavorites = false }) {
       });
     } finally {
       setUpdates((prev) => {
-        const newState = { ...prev };
-        delete newState[classId];
-        return newState;
+        const newClassState = { ...prev };
+        delete newClassState[classId];
+        return newClassState;
       });
     }
   };
+
+  const handleOpenClassDetail = (classId) => {
+    const params = new URLSearchParams(searchParams);
+    params.set('classId', classId);
+    router.push(`${pathname}?${params.toString()}`);
+  };
+
+  const handleCloseClassDetailModal = () => {
+    const params = new URLSearchParams(searchParams);
+    params.set('classId', classId);
+    router.push(`${pathname}?${params.toString()}`);
+  };
+
+  useEscapeKeyClose(handleOpenClassDetail, handleCloseClassDetailModal);
 
   const newData =
     (showOnlyFavorites ? favoritesData : classData)?.map((item) => ({

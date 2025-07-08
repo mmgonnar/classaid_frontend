@@ -4,19 +4,23 @@ import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import { cn } from '@/utils/functions';
 import { useEffect, useState } from 'react';
 import CloseButton from '../buttons/CloseButton';
+import { useEscapeKeyClose } from '@/hooks/useEscapeKeyClose';
 
 function ModalBase({ children, toggleModal, modalOpen }) {
-  useEffect(() => {
-    const handleKeyPress = (evt) => {
-      if (evt.key === 'Escape' && modalOpen) {
-        toggleModal();
-      }
-    };
-    window.addEventListener('keydown', handleKeyPress);
-    return () => {
-      window.removeEventListener('keydown', handleKeyPress);
-    };
-  }, [toggleModal]);
+  // useEffect(() => {
+  //   const handleKeyPress = (evt) => {
+  //     if (evt.key === 'Escape' && modalOpen) {
+  //       toggleModal();
+  //     }
+  //   };
+  //   window.addEventListener('keydown', handleKeyPress);
+  //   return () => {
+  //     window.removeEventListener('keydown', handleKeyPress);
+  //   };
+  // }, [toggleModal]);
+
+  useEscapeKeyClose(modalOpen, toggleModal);
+  if (!modalOpen) return null;
 
   return (
     <>

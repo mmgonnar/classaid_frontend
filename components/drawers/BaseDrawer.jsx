@@ -1,7 +1,8 @@
 'use client';
 
+import { useEscapeKeyClose } from '@/hooks/useEscapeKeyClose';
 import { PROTECTED_ROUTES } from '@/utils/constants';
-import { cn } from '@/utils/functions';
+import { cn, handleEscClose } from '@/utils/functions';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
@@ -10,17 +11,20 @@ function BaseDrawer({ children, isMenuOpen, toggleMenu }) {
   const pathname = usePathname();
   const isProtectedRoute = PROTECTED_ROUTES.some((route) => pathname.startsWith(route));
 
-  useEffect(() => {
-    const handleKeyPress = (evt) => {
-      if (evt.key === 'Escape' && isMenuOpen) {
-        toggleMenu();
-      }
-    };
-    window.addEventListener('keydown', handleKeyPress);
-    return () => {
-      window.removeEventListener('keydown', handleKeyPress);
-    };
-  }, [isMenuOpen]);
+  // useEffect(() => {
+  //   const handleKeyPress = (evt) => {
+  //     if (evt.key === 'Escape' && isMenuOpen) {
+  //       toggleMenu();
+  //     }
+  //   };
+  //   window.addEventListener('keydown', handleKeyPress);
+  //   return () => {
+  //     window.removeEventListener('keydown', handleKeyPress);
+  //   };
+  // }, [isMenuOpen]);
+
+  useEscapeKeyClose(isMenuOpen, toggleMenu);
+  if (!isMenuOpen) return null;
 
   return (
     <>
