@@ -36,7 +36,7 @@ export async function login(req) {
       );
     }
 
-    const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: '100d' });
+    const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: '1000d' });
     const cookieStore = await cookies();
     cookieStore.set('token', token);
 

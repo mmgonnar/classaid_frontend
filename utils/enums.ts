@@ -13,6 +13,7 @@ export enum CTA {
   ACCOUNT = "My Account",
   BACK = "Go Back",
   DASHBOARD = "Dashboard",
+  SUBMIT = "Submit",
   CREATE = "Create"
 }
 

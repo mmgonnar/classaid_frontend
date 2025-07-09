@@ -11,6 +11,7 @@ export async function createClass(req) {
     const { userId } = await setToken();
 
     const validatedBody = { ...body, teacher: userId, favorite: false };
+    console.log(userId, 'ssadasdasdasd');
     await subjectValidationBack.validate(validatedBody);
 
     const newClass = await Class.create(validatedBody);
@@ -73,4 +74,5 @@ export async function createClass(req) {
       { status: 400 },
     );
   }
+  console.log('🚀 ~ createClass.js:78 ~ createClass ~ validatedBody:', validatedBody);
 }

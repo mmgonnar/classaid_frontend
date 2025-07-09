@@ -1,9 +1,9 @@
 'use client';
 
-import 'rc-calendar/assets/index.css';
-import DatePicker from 'rc-calendar/lib/Picker';
-import 'rc-calendar/assets/index.css';
-import moment from 'moment';
+//import 'rc-calendar/assets/index.css';
+//import DatePicker from 'rc-calendar/lib/Picker';
+//import 'rc-calendar/assets/index.css';
+//import moment from 'moment';
 import 'moment/locale/es';
 import { useRef, useState } from 'react';
 

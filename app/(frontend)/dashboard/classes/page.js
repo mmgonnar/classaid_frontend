@@ -15,10 +15,10 @@ import ClassContext from '@/context/ClassContext';
 
 function SubjectDashboard() {
   const { userData, loading } = useContext(UserContext);
-  const { classData } = useContext(ClassContext);
+  // const { classData } = useContext(ClassContext);
   const [modalOpen, setModalOpen] = useState(false);
 
-  const [parent] = useAutoAnimate({ duration: 300 });
+  // const [parent] = useAutoAnimate({ duration: 300 });
 
   // const { classData, setClassData, handleCreateClass } = useContext(ClassContext);
 
@@ -28,7 +28,6 @@ function SubjectDashboard() {
 
   const toggleModal = () => {
     setModalOpen(!modalOpen);
-    console.log('Click');
   };
 
   return (
@@ -50,7 +49,7 @@ function SubjectDashboard() {
             <SectionTitleDash title="All Classes" href="/dashboard/classes" />
             <div className="custom-sm:grid-cols-2 grid w-[100%] items-center gap-2 pb-4 sm:grid-cols-2 md:grid-cols-4 md:justify-center">
               <AddCardButton
-                toggleModal={toggleModal}
+                onClick={toggleModal}
                 data-auto-animate-id="add-class-button"
                 // onAlgo={handleAlgo}
               />

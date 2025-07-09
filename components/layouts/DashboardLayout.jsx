@@ -4,10 +4,12 @@ import MainLayout from './MainLayout';
 
 function DashboardLayout({ children }) {
   return (
-    <MainLayout>
+    <MainLayout allowMainScroll={false}>
       <div className="bg-secondary bg-opacity-90 grid h-full grid-cols-[auto_1fr]">
-        <Sidebar />
-        <div className="p-4">{children}</div>
+        <div className="flex h-full">
+          <Sidebar />
+        </div>
+        <div className="h-full overflow-y-auto p-4">{children}</div>
       </div>
     </MainLayout>
   );

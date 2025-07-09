@@ -10,7 +10,7 @@ function Sidebar() {
   const sidebarItems = menuItems.filter((item) => item.isSidebar);
 
   return (
-    <aside className="flex h-full cursor-pointer flex-col items-center justify-between border-r-1 border-neutral-300 bg-white">
+    <aside className="sticky top-0 flex h-full cursor-pointer flex-col items-center justify-between border-r-1 border-neutral-300 bg-white">
       <nav>
         <div className="flex flex-col gap-2 bg-white py-8 md:gap-1">
           {sidebarItems.map((item) => (

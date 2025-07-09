@@ -1,15 +1,12 @@
-import React from 'react';
+'use client';
 
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import BaseCard from '../cards/BaseCard';
 
-function AddCardButton({
-  className = '',
-  onClick = () => {},
-  onAlgo = () => {},
-  toggleModal,
-  handleOpenModal,
-}) {
+function AddCardButton({ className = '', onClick = () => {}, toggleModal }) {
+  const handleClick = () => {
+    onClick();
+  };
   return (
     <BaseCard
       border="lightGrey"

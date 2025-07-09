@@ -60,22 +60,13 @@ function ClassCards({ showOnlyFavorites = false }) {
     }
   };
 
-  //! Unfinished
   const handleOpenClassDetails = (classId) => {
     const params = new URLSearchParams(searchParams);
     params.set('classId', classId);
-    router.push(`/dashboard/classes/class?${params.toString()}`);
+    router.push(`/dashboard/classes/subject?${params.toString()}`);
 
     console.log('click');
   };
-
-  //! Unfinished
-  // const handleCloseClassDetails = () => {
-  //   const params = new URLSearchParams(searchParams);
-  //   params.delete('classId');
-  //   router.replace(`${pathname}?${params.toString()}`);
-  // };
-  // useEscapeKeyClose(isClassPreviewOpen, handleCloseClassDetails);
 
   const newData =
     (showOnlyFavorites ? favoritesData : classData)?.map((item) => ({
@@ -105,9 +96,7 @@ function ClassCards({ showOnlyFavorites = false }) {
           className={`relative m-auto h-40 w-full cursor-pointer justify-center bg-white`}
           border="lightGrey"
           toggleModal={() => {
-            console.log('click en card?');
             handleOpenClassDetails(item._id);
-            console.log(item._id, 'id');
           }}
         >
           <div className="flex items-center justify-center">
@@ -131,14 +120,6 @@ function ClassCards({ showOnlyFavorites = false }) {
           </div>
         </BaseCard>
       ))}
-      {/* {selectedClassId && (
-        //! Unfinished
-        <ClassPreview
-          classId={selectedClassId}
-          onClose={handleCloseClassDetailModal}
-          isOpen={isClassPreviewOpen}
-        />
-      )} */}
     </div>
   );
 }

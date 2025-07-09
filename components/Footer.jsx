@@ -26,9 +26,9 @@ function Footer() {
   return (
     <footer
       className={cn(
-        'max-h-54 w-full overflow-y-auto bg-neutral-700 p-6 pt-12 text-xs text-neutral-200',
+        'z-30 max-h-54 w-full overflow-y-auto bg-neutral-700 p-6 pt-12 text-xs text-neutral-200',
         isProtectedRoute &&
-          'text-primary max-h-12 overflow-hidden rounded-xl rounded-b-none border-1 border-t border-r border-b-0 border-l border-neutral-300 bg-white p-1',
+          'text-primary sticky bottom-0 max-h-12 overflow-hidden rounded-xl rounded-b-none border-1 border-t border-r border-b-0 border-l border-neutral-300 bg-white p-1',
       )}
     >
       <div className="mx-auto max-w-7xl">

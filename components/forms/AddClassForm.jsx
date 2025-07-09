@@ -10,7 +10,7 @@ import { useContext, useState } from 'react';
 import { cn, apiCallToast } from '@/utils/functions';
 import ClassContext from '@/context/ClassContext';
 
-function ClassForm({ toggleModal }) {
+function AddClassForm({ toggleModal }) {
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { handleCreateClass } = useContext(ClassContext);
@@ -103,4 +103,4 @@ function ClassForm({ toggleModal }) {
   );
 }
 
-export default ClassForm;
+export default AddClassForm;

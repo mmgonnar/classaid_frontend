@@ -4,7 +4,6 @@ import DashboardLayout from '@/components/layouts/DashboardLayout';
 import ClassContext from '@/context/ClassContext';
 import { useContext, useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import Loading from '@/components/small components/Loading';
 import MainButton from '@/components/buttons/MainButton';
 import { CTA } from '@/utils/enums';
 import BouncyLoader from '@/components/loaders/BouncyLoader';
@@ -12,16 +11,22 @@ import AddButton from '@/components/buttons/AddButton';
 import Favorite from '@/components/small components/Favorite';
 import BaseCard from '@/components/cards/BaseCard';
 import { apiCallToast } from '@/utils/functions';
+import EditButton from '@/components/buttons/EditButton';
+import EditClassModal from '@/components/modals/EditClassModal';
 
 function ClassDetailPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { classData, handleUpdateClass } = useContext(ClassContext);
+  console.log('dddddddd');
+  const { classData, handleUpdateClass, handleDeleteClass } = useContext(ClassContext);
   const [currentClass, setCurrentClass] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
   const [loading, setLoading] = useState(true);
+  console.log('aaaaaaa');
 
   const classId = searchParams.get('classId');
   useEffect(() => {
+    console.log('bbbbbbb');
     if (!classId) {
       router.push('/dashboard/classes');
       return;
@@ -39,10 +44,12 @@ function ClassDetailPage() {
       setLoading(false);
     }
   }, [classId, classData, router]);
+  console.log('ccccccc');
 
   const handleToggleFavorite = async (evt) => {
     evt.stopPropagation();
     if (!currentClass) return;
+    setLoading(true);
     try {
       const newFavoriteStatus = !currentClass.favorite;
       setCurrentClass((prev) => ({ ...prev, favorite: newFavoriteStatus }));
@@ -54,7 +61,32 @@ function ClassDetailPage() {
     } catch (error) {
       setCurrentClass((prev) => ({ ...prev, favorite: !prev.favorite }));
       console.error('Error updating favorite:', error);
+    } finally {
+      setLoading(false);
     }
+  };
+
+  const onDeleteClass = async () => {
+    if (!currentClass) return;
+    setLoading(true);
+    try {
+      const result = apiCallToast(handleUpdateClass(currentClass._id), {
+        loading: 'Deleting class...',
+        successMessage: "Class deleted successfully'",
+        errorMessage: 'Error deleting class',
+      });
+      if (result.success) {
+        toggleModal();
+      }
+    } catch (error) {
+      console.error('Error deleting class:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const toggleModal = () => {
+    setModalOpen(!modalOpen);
   };
 
   if (loading) {
@@ -86,6 +118,7 @@ function ClassDetailPage() {
               size="lg"
             />
           </div>
+          <EditButton onClick={toggleModal} currentClass={currentClass} />
           <AddButton size="lg" />
         </div>
 
@@ -106,6 +139,7 @@ function ClassDetailPage() {
           </div>
         </BaseCard>
       </div>
+      <EditClassModal modalOpen={modalOpen} toggleModal={toggleModal} currentClass={currentClass} />
     </DashboardLayout>
   );
 }

@@ -31,7 +31,7 @@ function BaseDrawer({ children, isMenuOpen, toggleMenu }) {
       <div
         onClick={toggleMenu}
         className={cn(
-          'fixed inset-0 bg-black/50 backdrop-blur-[2px] transition-all duration-300 ease-in-out',
+          'fixed inset-0 bg-black/30 backdrop-blur-[3px] transition-all duration-300 ease-in-out',
           isMenuOpen ? 'opacity-100' : 'pointer-events-none opacity-0',
         )}
       ></div>

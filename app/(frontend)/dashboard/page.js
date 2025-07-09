@@ -38,7 +38,7 @@ function Dashboard() {
           </div>
           <SectionTitleDash title="Attendance" href="/dashboard/attendance" />
           <div className="custom-md:grid-cols-4 custom-sm:grid-cols-2 grid w-[100%] items-center gap-2 pb-4 md:justify-center">
-            <AddCardButton toggleModal={toggleModal} data-auto-animate-id="add-class-button" />
+            {/* <AddCardButton toggleModal={toggleModal} data-auto-animate-id="add-class-button" /> */}
           </div>
         </div>
         <div className="w-[]">

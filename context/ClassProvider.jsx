@@ -40,14 +40,10 @@ function ClassProvider({ children }) {
     }
     try {
       setLoading(true);
-      //const result = await api.getClassInfo();
 
       const favoriteResult = await api.getFavoriteClasses();
       const allClassesData = await api.getClassInfo();
-      //! separarlas despues
-
-      //promissAll
-      //o 1 .then 2. then...
+      // separarlas despues
 
       setFavoritesData(favoriteResult.data);
       setClassData(allClassesData.data);
@@ -96,32 +92,6 @@ function ClassProvider({ children }) {
     }
   };
 
-  // const handleUpdateClass = async (classId, updates) => {
-  //   try {
-  //     setLoading(true);
-  //     const response = await api.updateClass(classId, updates);
-  //     if (response.success) {
-  //       const updatedClass = response.data
-  //         ? { ...item, ...response.data }
-  //         : { ...item, ...updates };
-  //       setClassData((prev) =>
-  //         prev
-  //           ? prev.map((item) => (item._id === classId ? { ...item, ...updatedClass } : item))
-  //           : [],
-  //       );
-  //       return { success: true, data: updatedClass };
-  //     }
-  //     return {
-  //       success: true,
-  //       data: response,
-  //     };
-  //   } catch (error) {
-  //     console.error('Error updating class:', error);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
   const handleUpdateClass = async (classId, updates) => {
     setLoading(true);
     try {
@@ -161,6 +131,26 @@ function ClassProvider({ children }) {
     }
   };
 
+  //! ERROR en schema ??
+  // const handleDeleteClass = async (classId) => {
+  //   setLoading(true);
+  //   try {
+  //     const response = await api.handleDeleteClass(classId);
+  //     return {
+  //       success: true,
+  //       data: response.data,
+  //     };
+  //   } catch (error) {
+  //     console.error('Delete failed:', error);
+  //     return {
+  //       success: false,
+  //       error: error.message,
+  //     };
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
   return (
     <ClassContext.Provider
       value={{
@@ -171,6 +161,7 @@ function ClassProvider({ children }) {
         setFavoritesData,
         handleCreateClass,
         handleUpdateClass,
+        // handleDeleteClass,
       }}
     >
       {children}
