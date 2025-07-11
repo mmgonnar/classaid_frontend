@@ -5,6 +5,7 @@ import ClassProvider from './ClassProvider';
 
 function Providers({ children }) {
   return (
+    //ConfigContext = tema + otras cosas
     <AuthProvider>
       <UserProvider>
         <ClassProvider>{children}</ClassProvider>

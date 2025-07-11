@@ -6,20 +6,9 @@ import { useEffect, useState } from 'react';
 import CloseButton from '../buttons/CloseButton';
 import { useEscapeKeyClose } from '@/hooks/useEscapeKeyClose';
 
-function ModalBase({ children, toggleModal, modalOpen }) {
-  // useEffect(() => {
-  //   const handleKeyPress = (evt) => {
-  //     if (evt.key === 'Escape' && modalOpen) {
-  //       toggleModal();
-  //     }
-  //   };
-  //   window.addEventListener('keydown', handleKeyPress);
-  //   return () => {
-  //     window.removeEventListener('keydown', handleKeyPress);
-  //   };
-  // }, [toggleModal]);
-
+function ModalBase({ children, toggleModal, modalOpen, showButton = 'show' }) {
   useEscapeKeyClose(modalOpen, toggleModal);
+
   if (!modalOpen) return null;
 
   return (
@@ -28,18 +17,20 @@ function ModalBase({ children, toggleModal, modalOpen }) {
       <div
         onClick={toggleModal}
         className={cn(
-          'fixed inset-0 z-40 bg-black/30 backdrop-blur-[3px] transition-all duration-300 ease-in-out',
+          'fixed inset-0 z-6 bg-black/30 backdrop-blur-[3px] transition-all duration-300 ease-in-out',
           modalOpen ? 'opacity-100' : 'pointer-events-none opacity-0',
         )}
       ></div>
       {/* Modal */}
       <div
         className={cn(
-          'fixed inset-0 z-50 flex items-center justify-center p-4',
-          modalOpen ? 'opacity-100' : 'pointer-events-none opacity-0',
+          'fixed inset-0 z-7 flex items-center justify-center p-4',
+          modalOpen ? 'pointer-events-none opacity-100' : 'opacity-0',
         )}
       >
-        <div className="relative z-60 h-auto w-auto max-w-2xl rounded-lg bg-white shadow-xl">
+        <div
+          className={`relative h-auto w-auto max-w-4xl rounded-lg bg-white shadow-xl ${showButton}`}
+        >
           <div>{children}</div>
           <CloseButton
             onClick={toggleModal}

@@ -1,8 +1,6 @@
 'use client';
 
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { fullWidth } from 'validator/lib/isFullWidth';
 
 function MainButton({
   variant = 'primary',

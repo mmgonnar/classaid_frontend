@@ -131,25 +131,24 @@ function ClassProvider({ children }) {
     }
   };
 
-  //! ERROR en schema ??
-  // const handleDeleteClass = async (classId) => {
-  //   setLoading(true);
-  //   try {
-  //     const response = await api.handleDeleteClass(classId);
-  //     return {
-  //       success: true,
-  //       data: response.data,
-  //     };
-  //   } catch (error) {
-  //     console.error('Delete failed:', error);
-  //     return {
-  //       success: false,
-  //       error: error.message,
-  //     };
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
+  const handleDeleteClass = async (classId) => {
+    setLoading(true);
+    try {
+      const response = await api.deleteClass(classId);
+      return {
+        success: true,
+        data: response.data,
+      };
+    } catch (error) {
+      console.error('Delete failed:', error);
+      return {
+        success: false,
+        error: error.message,
+      };
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <ClassContext.Provider
@@ -161,7 +160,7 @@ function ClassProvider({ children }) {
         setFavoritesData,
         handleCreateClass,
         handleUpdateClass,
-        // handleDeleteClass,
+        handleDeleteClass,
       }}
     >
       {children}

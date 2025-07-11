@@ -1,14 +1,14 @@
 'use client';
 
+import ClassContext from '@/context/ClassContext';
+import { updateSubjectValidation } from '@/schemas/subjectSchema';
 import { classFormInput } from '@/utils/constants';
+import { CTA } from '@/utils/enums';
+import { apiCallToast } from '@/utils/functions';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import MainButton from '../buttons/MainButton';
-import { CTA } from '@/utils/enums';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { updateSubjectValidation } from '@/schemas/subjectSchema';
-import { useContext, useEffect, useState } from 'react';
-import { cn, apiCallToast } from '@/utils/functions';
-import ClassContext from '@/context/ClassContext';
 
 function EditClassForm({ toggleModal, currentClass }) {
   const [error, setError] = useState(false);
@@ -44,25 +44,6 @@ function EditClassForm({ toggleModal, currentClass }) {
       }
     } catch (error) {
       console.error('Something wrong happened, error:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const onDeleteClass = async () => {
-    if (!currentClass) return;
-    setLoading(true);
-    try {
-      const result = apiCallToast(handleUpdateClass(currentClass._id), {
-        loading: 'Deleting class...',
-        successMessage: "Class deleted successfully'",
-        errorMessage: 'Error deleting class',
-      });
-      if (result.success) {
-        toggleModal();
-      }
-    } catch (error) {
-      console.error('Error deleting class:', error);
     } finally {
       setLoading(false);
     }
@@ -107,11 +88,11 @@ function EditClassForm({ toggleModal, currentClass }) {
       {error && <p className="text-center text-xs text-red-500">{error}</p>}
       <div className="m-auto flex gap-4">
         <MainButton
-          type="submit"
+          type="button"
           variant="secondary"
-          onClick={onDeleteClass}
-          className="border-neutral-200 text-neutral-200 hover:border-neutral-200 hover:bg-red-500"
-          text="DELETE"
+          onClick={toggleModal}
+          className="border-neutral-200 text-neutral-200 hover:border-neutral-200"
+          text="Cancel"
           size="sm"
         />
         <MainButton

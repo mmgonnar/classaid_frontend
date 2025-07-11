@@ -13,20 +13,25 @@ import BaseCard from '@/components/cards/BaseCard';
 import { apiCallToast } from '@/utils/functions';
 import EditButton from '@/components/buttons/EditButton';
 import EditClassModal from '@/components/modals/EditClassModal';
+import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import ActionMenu from '@/components/menus/ActionMenu';
+import WarningModal from '@/components/modals/WarningModal';
 
-function ClassDetailPage() {
+function SubjectDetailPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  console.log('dddddddd');
+
   const { classData, handleUpdateClass, handleDeleteClass } = useContext(ClassContext);
   const [currentClass, setCurrentClass] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
+  const [editModalOpen, setEditModalOpen] = useState(false);
+  const [warningModalOpen, setWarningModalOpen] = useState(false);
   const [loading, setLoading] = useState(true);
-  console.log('aaaaaaa');
+  const [open, setOpen] = useState(false);
 
   const classId = searchParams.get('classId');
   useEffect(() => {
-    console.log('bbbbbbb');
     if (!classId) {
       router.push('/dashboard/classes');
       return;
@@ -44,7 +49,6 @@ function ClassDetailPage() {
       setLoading(false);
     }
   }, [classId, classData, router]);
-  console.log('ccccccc');
 
   const handleToggleFavorite = async (evt) => {
     evt.stopPropagation();
@@ -70,23 +74,29 @@ function ClassDetailPage() {
     if (!currentClass) return;
     setLoading(true);
     try {
-      const result = apiCallToast(handleUpdateClass(currentClass._id), {
+      const result = apiCallToast(handleDeleteClass(currentClass._id), {
         loading: 'Deleting class...',
         successMessage: "Class deleted successfully'",
         errorMessage: 'Error deleting class',
       });
       if (result.success) {
-        toggleModal();
+        toggleWarningModal();
+        router.push('/dashboard/classes');
       }
     } catch (error) {
       console.error('Error deleting class:', error);
     } finally {
+      router.push('/dashboard/classes');
       setLoading(false);
     }
   };
 
-  const toggleModal = () => {
-    setModalOpen(!modalOpen);
+  const toggleEditModal = () => {
+    setEditModalOpen(!editModalOpen);
+  };
+  const toggleWarningModal = () => {
+    console.log('click');
+    setWarningModalOpen(!warningModalOpen);
   };
 
   if (loading) {
@@ -107,29 +117,30 @@ function ClassDetailPage() {
   return (
     <DashboardLayout>
       <div className="">
-        <div className="flex max-w-7xl justify-between">
+        <div className="flex max-w-5xl items-center justify-between">
           <div className="mb-4 flex items-center gap-2">
-            <h2 className="text text-2xl font-bold text-neutral-500">
-              {currentClass.name} | Group {currentClass.group}
-            </h2>
-            <Favorite
-              toggleFavorite={handleToggleFavorite}
-              isFavorite={currentClass.favorite}
-              size="lg"
-            />
+            <h2 className="text font-bold text-neutral-500 md:text-2xl">{currentClass.name}</h2>
+            <h2 className="font-bold text-neutral-500 md:text-2xl">{currentClass.group}</h2>
+            <div>
+              <Favorite
+                toggleFavorite={handleToggleFavorite}
+                isFavorite={currentClass.favorite}
+                size="md"
+              />
+            </div>
           </div>
-          <EditButton onClick={toggleModal} currentClass={currentClass} />
-          <AddButton size="lg" />
+          <ActionMenu onEdit={toggleEditModal} onDelete={toggleWarningModal} />
         </div>
 
-        <div className="">
+        <div className="pb-20">
           <h4 className="pb-2 text-sm text-neutral-400">Description</h4>
-          <p className="max-w-4xl text-sm text-balance text-neutral-600">
+          <p className="max-w-4xl pb-10 text-sm text-balance text-neutral-600">
             {currentClass.description}
           </p>
           <p>{currentClass.students?.length || 0}</p>
           <MainButton onClick={goBack} text="Back to Classes" />
         </div>
+        {/* Table */}
         <BaseCard border="lightGrey" align="center" className="max-w-300 bg-white">
           <div className="flex gap-6">
             <p>#</p>
@@ -139,9 +150,20 @@ function ClassDetailPage() {
           </div>
         </BaseCard>
       </div>
-      <EditClassModal modalOpen={modalOpen} toggleModal={toggleModal} currentClass={currentClass} />
+      <EditClassModal
+        modalOpen={editModalOpen}
+        toggleModal={toggleEditModal}
+        currentClass={currentClass}
+      />
+      <WarningModal
+        modalOpen={warningModalOpen}
+        toggleModal={toggleWarningModal}
+        onConfirm={onDeleteClass}
+        title="Delete subject"
+        keyWord="subject"
+      />
     </DashboardLayout>
   );
 }
 
-export default ClassDetailPage;
+export default SubjectDetailPage;

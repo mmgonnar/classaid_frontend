@@ -248,3 +248,28 @@ export const classFormInput = [
     icon: HelpOutlineOutlinedIcon,
   },
 ];
+
+export const actions = [
+  { type: 'text', name: 'edit', text: 'Edit', id: 'edit', onClick: 'onEdit' },
+  {
+    type: 'duplicate',
+    name: 'duplicate',
+    text: 'Duplicate',
+    id: 'duplicate',
+    onClick: 'onDuplicate',
+  },
+  {
+    type: 'add',
+    name: 'add',
+    text: 'Add students',
+    id: 'add',
+    onClick: 'onAdd',
+  },
+  {
+    type: 'delete',
+    name: 'delete',
+    text: 'Delete',
+    id: 'delete',
+    onClick: 'onDelete',
+  },
+];

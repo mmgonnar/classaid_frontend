@@ -107,9 +107,9 @@ class ApiSubject {
       });
 
       const data = await response.json();
-      if (!response.ok) {
-        throw new Error(`Error deleting class! status: ${response.status}`);
-      }
+      // if (!response.ok) {
+      //   throw new Error(`Error deleting class! status: ${response.status}`);
+      // }
       return data;
     } catch (error) {
       console.error('API Error deleting cards:', error);

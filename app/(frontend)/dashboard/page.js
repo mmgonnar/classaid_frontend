@@ -27,7 +27,7 @@ function Dashboard() {
 
   return (
     <DashboardLayout>
-      <div className="grid gap-4 md:grid-cols-[1fr_250px]">
+      <div className="pl-60px grid h-full gap-4 overflow-y-auto md:grid-cols-[1fr_250px]">
         <div className="flex flex-col">
           <h1 className="text-primary text-lg font-bold">Welcome, {userData?.name}! </h1>
           <PageTitle className="pb-2" />
