@@ -33,7 +33,9 @@ export default function RootLayout({ children }) {
         {/* <link rel="shortcut icon" href="/icons/favicon.ico" /> */}
         <meta name="viewport" content="width=device-width,initial-scale=1.0" />
       </head>
-      <body className="overflow-hidden">
+      <body
+      // className="overflow-hidden"
+      >
         <Providers>
           {children} <Toaster position="top-center" />
         </Providers>

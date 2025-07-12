@@ -116,8 +116,8 @@ function SubjectDetailPage() {
   };
   return (
     <DashboardLayout>
-      <div className="">
-        <div className="flex max-w-5xl items-center justify-between">
+      <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between">
+        <div className="flex w-full items-center justify-between">
           <div className="mb-4 flex items-center gap-2">
             <h2 className="text font-bold text-neutral-500 md:text-2xl">{currentClass.name}</h2>
             <h2 className="font-bold text-neutral-500 md:text-2xl">{currentClass.group}</h2>
@@ -132,7 +132,7 @@ function SubjectDetailPage() {
           <ActionMenu onEdit={toggleEditModal} onDelete={toggleWarningModal} />
         </div>
 
-        <div className="pb-20">
+        <div className="w-full pb-20">
           <h4 className="pb-2 text-sm text-neutral-400">Description</h4>
           <p className="max-w-4xl pb-10 text-sm text-balance text-neutral-600">
             {currentClass.description}

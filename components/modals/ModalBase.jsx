@@ -17,25 +17,24 @@ function ModalBase({ children, toggleModal, modalOpen, showButton = 'show' }) {
       <div
         onClick={toggleModal}
         className={cn(
-          'fixed inset-0 z-6 bg-black/30 backdrop-blur-[3px] transition-all duration-300 ease-in-out',
+          'fixed inset-0 z-6 flex items-center justify-center bg-black/30 backdrop-blur-[3px] transition-all duration-300 ease-in-out',
           modalOpen ? 'opacity-100' : 'pointer-events-none opacity-0',
         )}
-      ></div>
-      {/* Modal */}
-      <div
-        className={cn(
-          'fixed inset-0 z-7 flex items-center justify-center p-4',
-          modalOpen ? 'pointer-events-none opacity-100' : 'opacity-0',
-        )}
       >
+        {/* Modal */}
         <div
-          className={`relative h-auto w-auto max-w-4xl rounded-lg bg-white shadow-xl ${showButton}`}
+          onClick={(evt) => {
+            evt.stopPropagation();
+          }}
+          className={`z-7 h-auto w-auto max-w-4xl rounded-lg bg-white shadow-xl`}
         >
-          <div>{children}</div>
-          <CloseButton
-            onClick={toggleModal}
-            className="top-4 right-4 bg-none shadow-none hover:bg-none hover:text-neutral-300"
-          />
+          <div className="relative">
+            <div className="">{children}</div>
+            <CloseButton
+              onClick={toggleModal}
+              className={`absolute top-4 right-4 z-80 cursor-pointer bg-none shadow-none hover:bg-none hover:text-neutral-300 ${showButton}`}
+            />
+          </div>
         </div>
       </div>
     </>

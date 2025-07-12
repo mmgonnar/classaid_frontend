@@ -51,7 +51,7 @@ function ActionMenu({ onEdit, onAdd, onDuplicate, onDelete }) {
             <div
               key={action.id}
               onClick={() => {
-                actionsFunctions[action.onClick]?.();
+                handleActionClick(actionsFunctions[action.onClick]?.());
               }}
               //
               className={cn(

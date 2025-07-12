@@ -7,6 +7,7 @@ import Image from 'next/image';
 function Title() {
   return (
     <section className="relative top-[-50px] bg-[linear-gradient(345deg,rgba(101,156,246,0.3),rgba(246,246,246,0.2))] pt-8 pb-60 md:pt-20 md:pb-50">
+      {/* <div className="bg-[url(/img/classroom.jpg)]"></div> */}
       <div className="mx-auto pt-18 sm:px-6 sm:py-10">
         <div className="relative text-center">
           <h1 className="text-3xl font-bold text-gray-900 sm:text-5xl">

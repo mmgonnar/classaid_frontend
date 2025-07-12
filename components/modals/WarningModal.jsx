@@ -3,6 +3,7 @@
 import MainButton from '../buttons/MainButton';
 import ModalBase from './ModalBase';
 import ReportGmailerrorredRoundedIcon from '@mui/icons-material/ReportGmailerrorredRounded';
+
 function WarningModal({ toggleModal, modalOpen, onConfirm, title, keyWord }) {
   const handleConfirm = () => {
     onConfirm();
@@ -10,7 +11,7 @@ function WarningModal({ toggleModal, modalOpen, onConfirm, title, keyWord }) {
   };
   return (
     <>
-      <ModalBase modalOpen={modalOpen} toggleModal={toggleModal}>
+      <ModalBase showButton="hidden" modalOpen={modalOpen} toggleModal={toggleModal}>
         <div className="custom-sm:w-100 grid grid-cols-[auto_1fr] gap-3 p-4">
           <div className="xw flex h-10 w-10 items-center justify-center rounded-full bg-red-100">
             <ReportGmailerrorredRoundedIcon

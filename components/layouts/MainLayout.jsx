@@ -11,7 +11,9 @@ function MainLayout({ children, allowMainScroll = false }) {
       <Header>
         <Navbar menuItems={menuItems} />
       </Header>
-      <main className={`h-full ${allowMainScroll ? 'overflow-y-auto' : 'overflow-hidden'}`}>
+      <main
+        className={`h-full ${allowMainScroll === true ? 'overflow-y-auto' : 'overflow-hidden'}`}
+      >
         {children}
       </main>
       <Footer />
