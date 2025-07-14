@@ -10,12 +10,13 @@ import DashboardLayout from '@/components/layouts/DashboardLayout';
 import SectionTitleDash from '@/components/small components/SectionTitleDash';
 import AddCardButton from '@/components/buttons/AddCardButton';
 import AddClassModal from '@/components/modals/AddClassModal';
-import Calendar from '@/components/small components/Calendar';
 import Loading from '@/components/small components/Loading';
+import GroupCards from '@/components/cards/GroupCards';
 
 function Dashboard() {
   const { userData, loading } = useContext(UserContext);
   const [modalOpen, setModalOpen] = useState(false);
+  const [addClassModalOpen, setAddClassModalOpen] = useState(false);
 
   const toggleModal = () => {
     setModalOpen(!modalOpen);
@@ -25,6 +26,10 @@ function Dashboard() {
     return <Loading />;
   }
 
+  const handleAddClassModal = () => {
+    setAddClassModalOpen(!addClassModalOpen);
+  };
+
   return (
     <DashboardLayout>
       <div className="pl-60px grid h-full gap-4 overflow-y-auto md:grid-cols-[1fr_250px]">
@@ -33,12 +38,20 @@ function Dashboard() {
           <PageTitle className="pb-2" />
           <SectionTitleDash title="Classes" href="/dashboard/classes" />
           <div className="custom-md:grid-cols-4 custom-sm:grid-cols-2 grid w-[100%] items-center gap-2 pb-4 md:justify-center">
-            <AddCardButton toggleModal={toggleModal} data-auto-animate-id="add-class-button" />
+            <AddCardButton
+              toggleModal={handleAddClassModal}
+              data-auto-animate-id="add-class-button"
+            />
             <ClassCards />
           </div>
-          <SectionTitleDash title="Attendance" href="/dashboard/attendance" />
-          <div className="custom-md:grid-cols-4 custom-sm:grid-cols-2 grid w-[100%] items-center gap-2 pb-4 md:justify-center">
-            {/* <AddCardButton toggleModal={toggleModal} data-auto-animate-id="add-class-button" /> */}
+          <SectionTitleDash title="Groups" href="/dashboard/attendance" />
+          <div className="w-[100%] items-center gap-2 pb-4 sm:grid-cols-1 md:justify-center">
+            {/* <AddCardButton
+              toggleModal={handleAddClassModal}
+              data-auto-animate-id="add-class-button"
+            />
+            <ClassCards /> */}
+            <GroupCards />
           </div>
         </div>
         <div className="w-[]">
@@ -53,7 +66,7 @@ function Dashboard() {
           </BaseCard>
         </div>
       </div>
-      <AddClassModal modalOpen={modalOpen} toggleModal={toggleModal} />
+      <AddClassModal modalOpen={addClassModalOpen} toggleModal={handleAddClassModal} />
     </DashboardLayout>
   );
 }

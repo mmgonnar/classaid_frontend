@@ -3,10 +3,7 @@
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import BaseCard from '../cards/BaseCard';
 
-function AddCardButton({ className = '', onClick = () => {}, toggleModal }) {
-  const handleClick = () => {
-    onClick();
-  };
+function AddCardButton({ className = '', toggleModal }) {
   return (
     <BaseCard
       border="lightGrey"

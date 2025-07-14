@@ -13,7 +13,7 @@ function AddButton({ className = '', onClick = () => {}, size }) {
       <AddRoundedIcon
         onClick={onClick}
         sx={{ fontSize: sizes[size] || sizes.medium }}
-        className={`text-primary cursor-pointer text-5xl ${className}`}
+        className={`text-primary w-[98%] cursor-pointer text-5xl ${className}`}
       />
     </>
   );

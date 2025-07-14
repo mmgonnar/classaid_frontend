@@ -64,8 +64,6 @@ function ClassCards({ showOnlyFavorites = false }) {
     const params = new URLSearchParams(searchParams);
     params.set('classId', classId);
     router.push(`/dashboard/classes/subject?${params.toString()}`);
-
-    console.log('click');
   };
 
   const newData =

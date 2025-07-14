@@ -1,33 +1,25 @@
 'use client';
-import { useContext, useState } from 'react';
 import ClassCards from '@/components/cards/ClassCards';
+import DashboardLayout from '@/components/layouts/DashboardLayout';
 import Loading from '@/components/small components/Loading';
 import PageTitle from '@/components/small components/PageTitle';
-import UserContext from '@/context/UserContext';
-import DashboardLayout from '@/components/layouts/DashboardLayout';
 import SectionTitleDash from '@/components/small components/SectionTitleDash';
-// import ClassContext from '@/context/ClassContext';
-import AddClassModal from '@/components/modals/AddClassModal';
+import UserContext from '@/context/UserContext';
+import { useContext, useState } from 'react';
 import AddCardButton from '@/components/buttons/AddCardButton';
-import { useAutoAnimate } from '@formkit/auto-animate/react';
 import KpiCard from '@/components/cards/KpiCard';
-import ClassContext from '@/context/ClassContext';
+import AddClassModal from '@/components/modals/AddClassModal';
 
 function SubjectDashboard() {
   const { userData, loading } = useContext(UserContext);
-  // const { classData } = useContext(ClassContext);
-  const [modalOpen, setModalOpen] = useState(false);
-
-  // const [parent] = useAutoAnimate({ duration: 300 });
-
-  // const { classData, setClassData, handleCreateClass } = useContext(ClassContext);
+  const [addClassModalOpen, setAddClassModalOpen] = useState(false);
 
   if (loading || !userData) {
     return <Loading />;
   }
 
-  const toggleModal = () => {
-    setModalOpen(!modalOpen);
+  const handleAddClassModal = () => {
+    setAddClassModalOpen(!addClassModalOpen);
   };
 
   return (
@@ -49,9 +41,8 @@ function SubjectDashboard() {
             <SectionTitleDash title="All Classes" href="/dashboard/classes" />
             <div className="custom-sm:grid-cols-2 grid w-[100%] items-center gap-2 pb-4 sm:grid-cols-2 md:grid-cols-4 md:justify-center">
               <AddCardButton
-                onClick={toggleModal}
+                toggleModal={handleAddClassModal}
                 data-auto-animate-id="add-class-button"
-                // onAlgo={handleAlgo}
               />
               <ClassCards />
             </div>
@@ -59,7 +50,7 @@ function SubjectDashboard() {
         </div>
       </div>
 
-      <AddClassModal modalOpen={modalOpen} toggleModal={toggleModal} />
+      <AddClassModal modalOpen={addClassModalOpen} toggleModal={handleAddClassModal} />
     </DashboardLayout>
   );
 }

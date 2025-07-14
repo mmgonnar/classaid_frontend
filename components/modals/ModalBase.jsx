@@ -17,7 +17,7 @@ function ModalBase({ children, toggleModal, modalOpen, showButton = 'show' }) {
       <div
         onClick={toggleModal}
         className={cn(
-          'fixed inset-0 z-6 flex items-center justify-center bg-black/30 backdrop-blur-[3px] transition-all duration-300 ease-in-out',
+          'fixed inset-0 z-10 flex items-center justify-center bg-black/30 backdrop-blur-[3px] transition-all duration-300 ease-in-out',
           modalOpen ? 'opacity-100' : 'pointer-events-none opacity-0',
         )}
       >
@@ -26,7 +26,7 @@ function ModalBase({ children, toggleModal, modalOpen, showButton = 'show' }) {
           onClick={(evt) => {
             evt.stopPropagation();
           }}
-          className={`z-7 h-auto w-auto max-w-4xl rounded-lg bg-white shadow-xl`}
+          className={`z-11 h-auto w-auto max-w-4xl rounded-lg bg-white shadow-xl`}
         >
           <div className="relative">
             <div className="">{children}</div>

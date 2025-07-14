@@ -8,12 +8,7 @@ import AddClassForm from '../forms/AddClassForm';
 function AddClassModal({ open, onClose, toggleModal, modalOpen }) {
   return (
     <>
-      <ModalBase
-        modalOpen={modalOpen}
-        // open={open}
-        // onClose={onClose}
-        toggleModal={toggleModal}
-      >
+      <ModalBase modalOpen={modalOpen} toggleModal={toggleModal}>
         <div className="w-100 p-6">
           <h2 className="text-primary mb-4 text-xl font-bold">Create a new class</h2>
           <div className="flex">
