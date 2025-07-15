@@ -2,6 +2,7 @@
 const nextConfig = {
   experimental: {
     nodeMiddleware: true,
+    missingSuspenseWithCSRBailout: false,
   },
 };
 
