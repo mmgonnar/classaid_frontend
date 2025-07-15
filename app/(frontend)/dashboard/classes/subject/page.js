@@ -144,7 +144,7 @@ function SubjectDetailPage() {
         <BaseCard border="lightGrey" align="center" className="max-w-300 bg-white">
           <div className="flex gap-6">
             <p>#</p>
-            <p>Student's Name</p>
+            <p>Student&apos;s Name</p>
             <p>Evaluation</p>
             <p>Absences</p>
           </div>

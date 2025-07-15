@@ -16,9 +16,10 @@ export default function NotFound() {
     <section className="flex min-h-screen flex-col items-center justify-center bg-[linear-gradient(345deg,rgba(101,156,246,0.3),rgba(246,246,246,0.2))] text-balance md:relative md:flex-row">
       <div className="mx-auto hidden max-w-4xl flex-col gap-6 px-30 text-neutral-700 md:flex md:w-3/5">
         <h1 className="text-3xl font-semibold">Oops!</h1>
-        <h2 className="text-xl font-semibold">This class isn’t on the schedule…</h2>
+        <h2 className="text-xl font-semibold">This class isn&apos;t on the schedule…</h2>
         <p className="w-auto pb-1 text-lg">
-          Looks like you tried to access a page that doesn’t exist or haven't been created.
+          Looks like you tried to access a page that doesn&apos;t exist or haven&apos;t been
+          created.
         </p>
         <p className="pb-10 text-sm">
           Kind of like that student who always ends up in the wrong classroom. 😅
@@ -33,7 +34,7 @@ export default function NotFound() {
           <p className="pb-8 text-sm">
             Maybe this page was absent today or it never got registered.
             <br />
-            But don’t worry, you can always head back...
+            But do not worry, you can always head back...
           </p>
           <MainButton variant="secondary" text={CTA.BACK} onClick={goBack} />
           <p className="pt-10 pb-3 text-xs font-semibold">What else can you do?</p>

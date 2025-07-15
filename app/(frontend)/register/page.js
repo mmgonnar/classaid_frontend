@@ -24,7 +24,7 @@ function Login() {
         <Logo className="w-[120px] pb-3 md:w-[130px]" />
         <div className="pb-4 text-neutral-700">
           <h3 className="text-primary pb-2 text-xl font-medium md:pb-4">
-            Welcome, <br /> let's get started!!
+            Welcome, <br /> let&apos;s get started!!
           </h3>
           <p className="text-sm">
             Please add your information to register. <br />
