@@ -1,46 +1,39 @@
 'use client';
 
-//import 'rc-calendar/assets/index.css';
-//import DatePicker from 'rc-calendar/lib/Picker';
-//import 'rc-calendar/assets/index.css';
-//import moment from 'moment';
-import 'moment/locale/es';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
+import { DayPicker, getDefaultClassNames } from 'react-day-picker';
+import 'react-day-picker/dist/style.css';
 
 function Calendar() {
-  const [selectedDate, setSelectedDate] = useState(moment());
-  const onSelect = (newValue) => {
-    console.log('Selected Date:', newValue ? newValue.format('YYYY-MM-DD') : 'None');
-    setSelectedDate(newValue);
+  const [selected, setSelected] = useState();
+
+  const handleDate = (date) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const dayToEvaluate = new Date(date);
+    dayToEvaluate.setHours(0, 0, 0, 0);
+
+    return dayToEvaluate < today;
   };
 
+  const defaultClassNames = getDefaultClassNames();
+
   return (
-    <div>
-      <h2>Calendar</h2>
-      <Calendar
-        defaultValue={moment()}
-        selectedValue={selectedDate}
-        onSelect={onSelect}
-        showToday
-      />
-      <h2 style={{ marginTop: '20px' }}>Component DatePicker (rc-calendar/lib/Picker)</h2>
-      <DatePicker
-        animation="slide-up"
-        value={value}
-        onChange={onSelect}
-        calendar={<Calendar defaultValue={moment()} showToday />}
-      >
-        {({ value }) => {
-          return (
-            <input
-              readOnly
-              style={{ width: 250 }}
-              value={value ? value.format('YYYY-MM-DD HH:mm:ss') : ''}
-              placeholder="Por favor, selecciona una fecha y hora"
-            />
-          );
+    <div className="flex max-w-[200px] justify-center">
+      <DayPicker
+        animate
+        mode="single"
+        selected={selected}
+        onSelect={setSelected}
+        disabled={handleDate}
+        navLayout="around"
+        classNames={{
+          today: `outline-2 outline-[#1E3A8A] rounded-full font-medium text-[#1E3A8A] -outline-offset-6 ${selected ? 'outline-none' : 'outline-2 '}`,
+          chevron: ` fill-[#1E3A8A]`,
+          selected: `bg-[#1E3A8A] text-white rounded-full`,
         }}
-      </DatePicker>
+      />
     </div>
   );
 }

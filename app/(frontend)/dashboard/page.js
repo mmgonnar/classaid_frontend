@@ -17,6 +17,7 @@ import ErrorOutlineRoundedIcon from '@mui/icons-material/ErrorOutlineRounded';
 import QueryBuilderRoundedIcon from '@mui/icons-material/QueryBuilderRounded';
 import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftRounded';
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
+import Calendar from '@/components/small components/Calendar';
 
 function Dashboard() {
   const { userData, loading } = useContext(UserContext);
@@ -40,7 +41,7 @@ function Dashboard() {
       <div className="flex flex-col">
         <h1 className="text-primary pb-1 text-2xl font-bold">Welcome, {userData?.name}! </h1>
         <PageTitle className="pb-4" />
-        <div className="pl-60px grid h-full gap-4 overflow-y-auto md:grid-cols-[1fr_290px]">
+        <div className="pl-60px grid h-full gap-4 overflow-y-auto md:grid-cols-[1fr_340px]">
           <div>
             <KpiCards />
             <SectionTitleDash title="Classes" href="/dashboard/classes" />
@@ -68,14 +69,7 @@ function Dashboard() {
               border="lightGrey"
               className="mb-4 w-[100%] rounded-lg bg-white p-2"
             >
-              <div className="bg-third text-primary mb-3 flex w-full items-center justify-evenly rounded-full text-sm font-medium">
-                <KeyboardArrowLeftRoundedIcon />
-                <p>July 2025</p>
-                <ChevronRightRoundedIcon />
-              </div>
-              <div className="mb-3 flex h-60 w-full items-center justify-center rounded-lg bg-neutral-200">
-                Calendario aqui
-              </div>
+              <Calendar />
             </BaseCard>
             <BaseCard
               animation="none"

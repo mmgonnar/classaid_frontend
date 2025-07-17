@@ -1,13 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0');
-/* @import "tailwindcss/preflight"; */
 @import "tailwindcss";
-
-/* @import "tailwindcsss/preflight"; */
-/* @tailwind utilities; */
-/* @tailwind base;
-@tailwind components; */
-/* @tailwind utilities; */
-
+@import 'react-day-picker/dist/style.css';
 
 
 @theme inline {
@@ -38,7 +31,6 @@ html, body {
   @apply md:text-lg lg:text-lg;
 } */
 
-
 .container {
   --uib-size: 25px;
   --uib-color: white;
@@ -51,6 +43,8 @@ html, body {
   height: var(--uib-size);
   width: var(--uib-size);
 }
+
+
 
 .line {
   position: absolute;

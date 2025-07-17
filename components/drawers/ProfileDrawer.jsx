@@ -137,9 +137,9 @@ function Drawer({ toggleMenu, isMenuOpen }) {
                   <MainButton
                     variant="primary"
                     size="sm"
-                    text={CTA.PROFILE}
+                    text={isProtectedRoute ? CTA.PROFILE : CTA.DASHBOARD}
                     type="button"
-                    href="profile"
+                    href={isProtectedRoute ? '/dashboard/profile' : '/dashboard'}
                   />
                   <MainButton
                     onClick={handleLogout}

@@ -1,11 +1,7 @@
-//'use client';
-
-import { Inter } from 'next/font/google';
-import './(frontend)/globals.css';
-import { Toaster } from 'react-hot-toast';
 import Providers from '@/context/Providers';
-import { PROTECTED_ROUTES } from '@/utils/constants';
-//import { usePathname } from 'next/navigation';
+import { Toaster } from 'react-hot-toast';
+import './(frontend)/globals.css';
+import BodyWrapper from './bodyWraper';
 
 export const metadata = {
   title: 'ClassAid',
@@ -15,14 +11,20 @@ export const metadata = {
     { name: 'Horacio Gutierrez', url: 'https://github.com/HoracioGutierrez' },
     { name: 'Sarah Alfonsin', url: 'https://www.linkedin.com/in/sarahalfonsin/' },
   ],
-  icons: {
-    icon: [
-      { url: '/icons/favicon.ico' },
-      { url: '/icons/favicon.ico', sizes: '32x32', type: 'image/png' },
-      { url: '/icons/favicon.ico', sizes: '16x16', type: 'image/png' },
-    ],
-    apple: '/icons/apple-touch-icon.png',
-  },
+  icons: [
+    {
+      rel: 'icon',
+      type: 'image/ico',
+      sizes: '16x16',
+      url: '/icons/favicon.ico',
+    },
+  ],
+  // icon: [
+  //   { url: '/icons/favicon.ico' },
+  //   { url: '/icons/favicon.ico', sizes: '32x32', type: 'image/png' },
+  //   { url: '/icons/favicon.ico', sizes: '16x16', type: 'image/png' },
+  // ],
+  apple: '/icons/apple-touch-icon.png',
 };
 
 //const inter = Inter({ variable: '--font-inter', subsets: ['latin'], display: 'swap' });
@@ -35,6 +37,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
+
       // className={inter.variable}
     >
       <head>
@@ -48,9 +51,11 @@ export default function RootLayout({ children }) {
       <body
       // className={isProtectedRoute ? "overflow-hidden" : "overflow-auto"}
       >
-        <Providers>
-          {children} <Toaster position="top-center" />
-        </Providers>
+        <BodyWrapper>
+          <Providers>
+            {children} <Toaster position="top-center" />
+          </Providers>
+        </BodyWrapper>
       </body>
     </html>
   );

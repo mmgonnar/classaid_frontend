@@ -1,23 +1,18 @@
 'use client';
 
-import DashboardLayout from '@/components/layouts/DashboardLayout';
-import ClassContext from '@/context/ClassContext';
-import { useContext, useEffect, useState } from 'react';
-import { useSearchParams, useRouter } from 'next/navigation';
+import ExportButton from '@/components/menus/ExportMenu';
 import MainButton from '@/components/buttons/MainButton';
-import { CTA } from '@/utils/enums';
+import DashboardLayout from '@/components/layouts/DashboardLayout';
 import BouncyLoader from '@/components/loaders/BouncyLoader';
-import AddButton from '@/components/buttons/AddButton';
-import Favorite from '@/components/small components/Favorite';
-import BaseCard from '@/components/cards/BaseCard';
-import { apiCallToast } from '@/utils/functions';
-import EditButton from '@/components/buttons/EditButton';
-import EditClassModal from '@/components/modals/EditClassModal';
-import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import ActionMenu from '@/components/menus/ActionMenu';
+import EditClassModal from '@/components/modals/EditClassModal';
 import WarningModal from '@/components/modals/WarningModal';
+import Favorite from '@/components/small components/Favorite';
 import Table from '@/components/Table';
+import ClassContext from '@/context/ClassContext';
+import { apiCallToast } from '@/utils/functions';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useContext, useEffect, useState } from 'react';
 
 function SubjectDetailPage() {
   const router = useRouter();
@@ -75,19 +70,19 @@ function SubjectDetailPage() {
     if (!currentClass) return;
     setLoading(true);
     try {
-      const result = apiCallToast(handleDeleteClass(currentClass._id), {
+      const result = await apiCallToast(handleDeleteClass(currentClass._id), {
         loading: 'Deleting class...',
         successMessage: "Class deleted successfully'",
         errorMessage: 'Error deleting class',
       });
-      if (result.success) {
-        toggleWarningModal();
+      console.log(result, 'xxxxx');
+      if (result && result.success) {
+        toggleWarningModal(false);
         router.push('/dashboard/classes');
       }
     } catch (error) {
       console.error('Error deleting class:', error);
     } finally {
-      router.push('/dashboard/classes');
       setLoading(false);
     }
   };
@@ -133,16 +128,21 @@ function SubjectDetailPage() {
           <ActionMenu onEdit={toggleEditModal} onDelete={toggleWarningModal} />
         </div>
 
-        <div className="w-full pb-20">
+        <div className="w-full pb-1">
           <h4 className="pb-2 text-sm text-neutral-400">Description</h4>
-          <p className="max-w-4xl pb-10 text-sm text-balance text-neutral-600">
+          <p className="max-w-4xl pb-6 text-sm text-balance text-neutral-600">
             {currentClass.description}
           </p>
           <p>{currentClass.students?.length || 0}</p>
-          <MainButton onClick={goBack} text="Back to Classes" />
         </div>
         {/* Table */}
-        <Table />
+        <div className="flex w-full flex-col items-end pb-8">
+          <ExportButton />
+          <div className="flex w-full flex-col justify-end">
+            <Table />
+          </div>
+        </div>
+        <MainButton onClick={goBack} text="Back to Classes" />
       </div>
       <EditClassModal
         modalOpen={editModalOpen}
