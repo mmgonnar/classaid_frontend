@@ -38,7 +38,7 @@ function Header({ children }) {
     <>
       <header
         className={cn(
-          'sticky top-0 z-4 w-full transition-all duration-100 md:p-0 md:px-6',
+          'fixed top-0 z-4 w-full transition-all duration-100 md:p-0 md:px-6',
           'bg-white shadow-xs',
           'sm:bg-transparent sm:shadow-none',
           isScrolled && 'sm:bg-white sm:shadow-md',

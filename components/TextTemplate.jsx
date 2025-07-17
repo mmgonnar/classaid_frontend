@@ -66,7 +66,7 @@ function TextBlock({
               </div>
             </div>
           </div>
-          {/* <BaseCard
+          <BaseCard
             border="lightGrey"
             className="bg-secondary m-auto flex w-auto items-center justify-center p-4 shadow-md md:h-auto"
           >
@@ -91,7 +91,7 @@ function TextBlock({
                 </div>
               </div>
             </div>
-          </BaseCard> */}
+          </BaseCard>
         </div>
       </div>
     </>

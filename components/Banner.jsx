@@ -7,7 +7,7 @@ import { TypeAnimation } from 'react-type-animation';
 
 function Title() {
   return (
-    <section className="relative top-[-50px] bg-[linear-gradient(345deg,rgba(101,156,246,0.3),rgba(246,246,246,0.2))] pt-8 pb-60 md:pt-20 md:pb-50">
+    <section className="relative top-[-50px] bg-[linear-gradient(345deg,rgba(101,156,246,0.3),rgba(246,246,246,0.2))] pt-20 pb-60 md:pt-40 md:pb-50">
       {/* <div className="bg-[url(/img/classroom.jpg)]"></div> */}
       <div className="mx-auto pt-18 sm:px-6 sm:py-10">
         <div className="relative text-center">
