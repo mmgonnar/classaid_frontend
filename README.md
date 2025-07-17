@@ -1,116 +1,112 @@
 # ClassAid - Teacher's Daily Tools Application
 
-ClassAid is a modern web application designed to help teachers streamline their daily tasks and classroom management. This project provides essential tools and features that make teaching more efficient and organized, showcasing modern web development practices and user-friendly design.
+ClassAid is a modern web application designed to help teachers streamline daily classroom management. It provides essential tools for organizing classes, managing students, and tracking progress, all within a clean, modern interface.
 
-## Project Structure
+---
 
-The project is organized into a modular structure:
+## Live Demo
 
-- **Components**: React components for UI elements
-- **Utils**: Utility functions and API services
-- **Styles**: CSS and styling utilities
+Check out the latest version of the app here:  
+**[classaidfrontend.vercel.app](https://classaidfrontend.vercel.app)**
+
+---
 
 ## Features
 
-### Frontend
+### Core Features
 
-- Real-time weather information for planning outdoor activities
-- Temperature and weather conditions display
-- Wind speed information for safety considerations
-- Loading states with skeleton loader
-- Error handling for API and geolocation errors
-- Responsive design for all devices
-- Clean and modern UI optimized for educational use
+- **Class Management:** Create, edit, and delete classes.
+- **Student Management:** (In progress) Add and manage students within classes.
+- **Profile Management:** Update user profile information.
+- **Authentication:** Secure registration and login.
+- **Dashboard:** Overview of classes, subjects, and key metrics.
+- **Subject Details:** View and manage subjects within classes.
+- **Responsive UI:** Works on all devices with a modern, teacher-focused design.
+- **Loading States:** Skeleton, spinner, and bouncy loaders for smooth UX.
+- **Error Handling:** User-friendly error boundaries and feedback.
+- **Export Data:** (In progress) Export class or student data.
+- **Calendar:** (In progress) Calendar component for scheduling and upcoming tasks.
+- **Upcoming Tasks:** (In progress) Reminders and to-dos for teachers.
+
+---
 
 ## Technologies Used
 
-### Frontend
+- **Frontend:** React 18+, Next.js 14, Tailwind CSS
+- **Backend:** API routes in Next.js (app/(backend)/api)
+- **Database:** MongoDB Atlas (cloud-hosted)
+- **State Management:** React Context API (Auth, User, Class)
+- **UI Components:** Modular, reusable components (cards, forms, modals, menus, loaders, etc.)
 
-- React 18+
-- Next.js 14
-- Tailwind CSS
-- Open-Meteo API (for weather information)
-- Geolocation API
+---
+
+## Project Structure
+
+- `app/(frontend)`: All frontend pages (dashboard, profile, register, signin, etc.)
+- `app/(backend)/api`: API routes for classes, users, authentication, etc.
+- `components/`: UI components (cards, forms, modals, loaders, etc.)
+- `context/`: React context providers for state management
+- `controllers/`: Backend logic for classes, users, and login
+- `models/`: Mongoose models for users, classes, students, attendance, evaluation, and scores
+- `schemas/`: Validation schemas for user and subject data
+- `utils/`: Utility functions and API service classes
+
+---
 
 ## Installation
 
-1. Clone the repository:
-
+1. **Clone the repository:**
    ```bash
    git clone https://github.com/mmgonnar/classaid_frontend
    ```
-
-2. Navigate to the project directory:
-
+2. **Navigate to the project directory:**
    ```bash
    cd classaid
    ```
-
-3. Install dependencies:
-
+3. **Install dependencies:**
    ```bash
    npm install
    ```
+4. **Create a `.env.local` file in the project root:**
+   ```env
+   # MongoDB Atlas connection string
+   MONGODB_URI=your_mongodb_atlas_connection_string
+   ```
 
-4. Start the development server:
-
+   - Make sure your MongoDB Atlas connection string is valid and your IP is whitelisted in the Atlas dashboard.
+5. **Start the development server:**
    ```bash
    npm run dev
    ```
+6. **Open your browser and go to:**  
+   [http://localhost:3000](http://localhost:3000)
 
-5. Open your browser and go to http://localhost:3000
+---
 
-# agregar detalles .env
+## Development & Best Practices
 
-## API Integration
-
-The application uses the Open-Meteo API for weather data to help teachers plan outdoor activities:
-
-- Base URL: `https://api.open-meteo.com/v1/forecast`
-- Endpoints:
-  - Current weather
-  - Temperature
-  - Wind speed
-  - Hourly forecasts
-
-## Component Structure
-
-### Weather Component
-
-- Handles geolocation for local weather
-- Manages API calls for weather data
-- Displays weather information
-- Handles loading and error states
-
-### API Service
-
-- Modular API class for weather data
-- Error handling
-- Data transformation
-  (TODO falta implemtar la api, esta es temporal)
-
-## Development
-
-### Key Features
-
-- Component-based architecture
-- Error boundary implementation
-- Loading states with skeleton loader
-- Responsive design with Tailwind CSS
-- Teacher-focused interface
-
-### Best Practices
-
-- Clean code structure
-- Error handling
-- Loading states
-- Modular API service
-- Type safety
+- Component-based architecture for scalability
+- Modular API service and utility functions
+- Error boundaries for robust error handling
+- Multiple loading state components for better UX
+- Type safety and validation with schemas
 - Accessibility considerations for educational use
+- **Keep your `.env.local` file secure and never commit it to version control**
+
+---
+
+## Features in Progress
+
+- Calendar integration
+- Adding students to classes
+- Export button for data
+- Upcoming tasks and reminders
+
+---
 
 ## Contact
 
-If you have any questions or suggestions, feel free to reach out:
+For questions or suggestions:
 
 - **Email:** [mmgonnar@gmail.com](mailto:mmgonnar@gmail.com)
 - **LinkedIn:** [/mmgonnar](https://www.linkedin.com/in/mmgonnar/)
