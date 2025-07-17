@@ -4,7 +4,6 @@ import connectDB from '@/lib/mongodb';
 
 export async function deleteAllUsers() {
   try {
-    await connectDB();
     const result = await Users.deleteMany({});
 
     return NextResponse.json(

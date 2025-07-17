@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-import api from '../utils/Api/Api';
+import api from '../utils/Api/ApiUser';
 import Loader from './loaders/SpinnerLoader';
 import SpinnerLoader from './loaders/SpinnerLoader';
 //import SkeletonLoader from './loaders/SkeletonLoader';
@@ -17,7 +17,6 @@ function Weather() {
 
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        console.log(api);
         api
           .getCurrentWeather(position.coords.latitude, position.coords.longitude)
           .then((data) => {

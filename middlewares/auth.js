@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 const { JWT_SECRET = 'secret-token' } = process.env;
 
 export function authMiddleware(req) {
-  const { authorization } = req.headers;
+  const { authorization, id } = req.headers;
 
   if (!authorization) {
     return NextResponse.json({ message: 'Need Authorization' }, { status: 401 });

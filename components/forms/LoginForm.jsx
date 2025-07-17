@@ -1,15 +1,12 @@
 'use client';
 
-import MainButton from '../MainButton';
+import MainButton from '../buttons/MainButton';
 import { CTA } from '@/utils/enums';
 import { formInputs } from '@/utils/constants';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { loginValidationSchema } from '@/lib/schemas';
+import { loginUserValidationSchema } from '@/schemas/userSchema';
 import { useRouter } from 'next/navigation';
-import { toast } from 'react-hot-toast';
-import { setToken } from '@/utils/token';
-import auth from '@/utils/Api/Auth';
 import { useContext } from 'react';
 import AuthContext from '@/context/AuthContext';
 
@@ -23,36 +20,20 @@ function LoginForm() {
     register,
     formState: { errors, isSubmitting },
   } = useForm({
-    resolver: yupResolver(loginValidationSchema),
+    resolver: yupResolver(loginUserValidationSchema),
     mode: 'onSubmit',
   });
 
   const onSubmit = async (credentials) => {
     handleLogin(credentials);
-    // try {
-    //   const response = await auth.login(credentials.email, credentials.password);
-
-    //   if (response.success && response.data?.token) {
-    //     setToken(response.data.token);
-    //     toast.success('Welcome back!');
-    //     router.push('/dashboard');
-    //     router.refresh();
-    //   } else {
-    //     console.error(response.message, 'AAAAAA');
-    //     toast.error(response.message || 'Error signing in');
-    //   }
-    // } catch (error) {
-    //   console.error('Login error:', error);
-    //   toast.error(error.message || 'Error signing in');
-    // }
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate className="flex flex-col gap-2">
       {loginInputs.map((item) => (
         <div key={item.id} className="mb-1">
-          <div className="mx-auto flex items-center rounded-md border border-neutral-400 p-1 text-sm">
-            {item.icon && <item.icon className="mr-1 h-5 w-5 text-neutral-400" />}
+          <div className="flex max-w-90 items-center rounded-md border border-neutral-400 p-1 text-sm">
+            {item.icon && <item.icon className="mx-1 h-5 text-neutral-400" />}
 
             <input
               type={item.type}
@@ -77,6 +58,7 @@ function LoginForm() {
           variant="primary"
           text={isSubmitting ? 'Signing in...' : CTA.SIGN_IN}
           disabled={isSubmitting}
+          className="w-full md:w-40"
         />
       </div>
     </form>

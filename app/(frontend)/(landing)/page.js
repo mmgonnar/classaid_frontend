@@ -2,11 +2,11 @@ import CTASection from '@/components/sections/CTASection';
 import Banner from '@/components/Banner';
 import { TextBlock } from '@/components/TextTemplate';
 import FeaturesSection from '@/components/sections/FeaturesSection';
-import MainLayout from '@/components/MainLayout';
+import MainLayout from '@/components/layouts/MainLayout';
 
 function Landing() {
   return (
-    <MainLayout>
+    <MainLayout allowMainScroll={false}>
       <Banner />
       <TextBlock />
       <FeaturesSection />

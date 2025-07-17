@@ -1,3 +1,5 @@
+'use client';
+
 import { clsx } from 'clsx';
 import toast from 'react-hot-toast';
 import { twMerge } from 'tailwind-merge';
@@ -15,9 +17,6 @@ export function handleError(error) {
   if (error.message.includes('duplicate key error collection')) {
     return 'Please use a different email address.';
   }
-
-  console.log('Error code:', error.code);
-  console.log('Error message:', error.message);
   switch (error.message) {
     case 'duplicate key error collection':
       errorMessage = 'Please use a different email address.';
@@ -31,7 +30,7 @@ export function handleError(error) {
   }
 }
 
-export function toastApiCall(fetch, { loading, redirectTo, successMessage, errorMessage, router }) {
+export function apiCallToast(fetch, { loading, redirectTo, successMessage, errorMessage, router }) {
   return toast.promise(fetch, {
     loading: loading,
     success: (response) => {
@@ -46,9 +45,3 @@ export function toastApiCall(fetch, { loading, redirectTo, successMessage, error
     error: (error) => error.message || errorMessage,
   });
 }
-
-// export const generalErrorMessage = (er) => {
-//   handleErrorMessage(error);
-// };
-
-//

@@ -1,5 +1,5 @@
 'use client';
-import MainButton from '@/components/MainButton';
+import MainButton from '@/components/buttons/MainButton';
 import LoginForm from '@/components/forms/LoginForm';
 import Copyright from '@/components/Copyright';
 import Logo from '@/components/Logo';

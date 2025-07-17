@@ -7,7 +7,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import Link from 'next/link';
 import { PROTECTED_ROUTES, PUBLIC_ROUTES } from '@/utils/constants';
-import MainButton from './MainButton';
+import MainButton from './buttons/MainButton';
 import { CTA } from '@/utils/enums';
 import { cn } from '@/utils/functions';
 import { usePathname } from 'next/navigation';
@@ -105,8 +105,11 @@ function Navbar({ menuItems }) {
             key={item.text}
             href={item.href}
             className={cn(
-              'w-full p-2 text-center hover:bg-gray-100',
+              'w-full p-2 text-center',
+              !authenticated && 'hover:bg-gray-100',
+              !authenticated && isDesktop && 'hover:text-primary hover:bg-transparent',
               isProtectedRoute && 'flex items-center justify-center',
+              isDesktop && authenticated && 'hover:text-primary hover:bg-transparent',
             )}
           >
             {isProtectedRoute ? (

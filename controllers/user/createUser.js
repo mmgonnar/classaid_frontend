@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import Users from '@/models/user';
-import { validationFront } from '@/lib/schemas';
+import { frontUserValidationSchema } from '@/schemas/userSchema';
 import bcrypt from 'bcryptjs';
 import { handleError } from '@/utils/functions';
 //import jwt from 'jsonwebtoken';
@@ -8,7 +8,7 @@ import { handleError } from '@/utils/functions';
 export async function createUser(req) {
   try {
     const body = await req.json();
-    const validatedData = await validationFront.validate(body, {
+    const validatedData = await frontUserValidationSchema.validate(body, {
       abortEarly: false,
       stripUnknown: true,
     });
@@ -16,7 +16,6 @@ export async function createUser(req) {
     const hash = await bcrypt.hash(data.password, 12);
     const userData = { ...data, password: hash };
     const newUser = await Users.create(userData);
-    console.log(newUser);
 
     return NextResponse.json(
       {
@@ -39,7 +38,6 @@ export async function createUser(req) {
         {
           success: false,
           message: errorMessage,
-          //error
           errors: {
             code: 11000,
             message: 'AUTH_DUPLICATE',

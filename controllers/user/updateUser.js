@@ -1,20 +1,10 @@
 import { NextResponse } from 'next/server';
 import Users from '@/models/user';
-import { validationUpdateUser } from '@/lib/schemas';
+import { validationUpdateUser } from '@/schemas/userSchema';
 import { handleError } from '@/utils/functions';
 
 export async function updateUser(id, req) {
   try {
-    // if (!id) {
-    //   return NextResponse.json(
-    //     {
-    //       success: false,
-    //       message: 'User ID',
-    //     },
-    //     { status: 400 },
-    //   );
-    // }
-
     const userExists = await Users.findById(id);
     if (!userExists) {
       return NextResponse.json(
@@ -85,7 +75,6 @@ export async function updateUser(id, req) {
     }
 
     if (error.name === 'ValidationError') {
-      console.log(error.name);
       const errors = error.inner?.reduce(
         (acc, err) => ({
           ...acc,

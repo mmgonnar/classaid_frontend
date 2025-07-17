@@ -1,7 +1,7 @@
 'use client';
 
 import { CTA } from '@/utils/enums';
-import MainButton from '../MainButton';
+import MainButton from '../buttons/MainButton';
 
 function CTASection({
   title = 'Are you ready to ease your class?',
@@ -15,7 +15,7 @@ function CTASection({
         <h3 className="text-gray-600">{subtitle}</h3>
       </div>
       <div className="flex items-center sm:self-stretch">
-        <MainButton variant="primary" text={buttonText} />
+        <MainButton href="/register" variant="primary" text={buttonText} />
       </div>
     </section>
   );

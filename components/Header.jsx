@@ -14,8 +14,6 @@ function Header({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const pathname = usePathname();
 
-  const pruebaContexto = useContext(BaseContext);
-
   const isProtectedRoute = PROTECTED_ROUTES.some((route) => pathname.startsWith(route));
 
   useEffect(() => {
@@ -40,17 +38,19 @@ function Header({ children }) {
     <>
       <header
         className={cn(
-          'sticky top-0 z-50 mx-auto flex h-[50px] w-full max-w-7xl items-center justify-between px-6 text-sm transition-all duration-100 md:p-0 md:px-6',
+          'sticky top-0 z-4 w-full transition-all duration-100 md:p-0 md:px-6',
           'bg-white shadow-xs',
           'sm:bg-transparent sm:shadow-none',
           isScrolled && 'sm:bg-white sm:shadow-md',
           !isScrolled && 'shadow-lg',
-          isProtectedRoute && 'border-b-1 border-neutral-300',
+          isProtectedRoute && 'border-b-1 border-neutral-300 shadow-none',
         )}
       >
-        <Logo className="mr-2 w-[110px]" />
-        {isProtectedRoute && <SearchBar />}
-        <div>{children}</div>
+        <div className="mx-auto flex h-[50px] w-full max-w-7xl items-center justify-between px-6 text-sm transition-all duration-100 md:p-0 md:px-6">
+          <Logo className="mr-2 w-[110px]" />
+          {isProtectedRoute && <SearchBar />}
+          <div>{children}</div>
+        </div>
       </header>
     </>
   );

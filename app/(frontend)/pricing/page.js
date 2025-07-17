@@ -1,5 +1,5 @@
 import PricingCard from '@/components/cards/PricingCard';
-import MainLayout from '@/components/MainLayout';
+import MainLayout from '@/components/layouts/MainLayout';
 import FAQSection from '@/components/sections/FAQSection';
 import React from 'react';
 

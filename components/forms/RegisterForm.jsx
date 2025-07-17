@@ -1,14 +1,14 @@
 'use client';
 import { formInputs } from '@/utils/constants';
 import { CTA } from '@/utils/enums';
-import MainButton from '../MainButton';
+import MainButton from '../buttons/MainButton';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { validationFront } from '@/lib/schemas';
-import api from '@/utils/Api/Api';
+import { frontUserValidationSchema } from '@/schemas/userSchema';
+import api from '@/utils/Api/ApiUser';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { toastApiCall } from '@/utils/functions';
+import { apiCallToast } from '@/utils/functions';
 
 function RegisterForm() {
   const [error, setError] = useState(false);
@@ -18,30 +18,17 @@ function RegisterForm() {
   const registerInputs = formInputs.filter((item) => item.isRegister);
 
   const { handleSubmit, register, formState } = useForm({
-    resolver: yupResolver(validationFront),
+    resolver: yupResolver(frontUserValidationSchema),
   });
 
   const onSubmit = async (userData) => {
-    toastApiCall(api.createUser(userData), {
+    apiCallToast(api.createUser(userData), {
       loading: 'Creating user...',
       redirectTo: 'signin',
       successMessage: 'User created correctly',
       errorMessage: 'Error creating user',
       router: route,
     });
-
-    // try {
-    //   setIsLoading(true);
-    //   setError(null);
-
-    //   const response = await api.createUser(userData);
-
-    //   if (response.success) {
-    //     route.push('signin');
-    //   }
-    // } catch (error) {
-    //   setError(error.message || 'Error');
-    // }
   };
 
   return (
@@ -53,7 +40,7 @@ function RegisterForm() {
     >
       {registerInputs.map((item) => (
         <div key={item.id} className="mb-1">
-          <div className="mx-auto flex items-center rounded-md border border-neutral-400 p-1 text-sm">
+          <div className="flex max-w-90 items-center rounded-md border border-neutral-400 p-1 text-sm">
             {item.icon && <item.icon className="mr-1 h-5 w-5 text-neutral-400" />}
 
             <input
@@ -79,6 +66,7 @@ function RegisterForm() {
           variant="primary"
           //text={CTA.SIGN_IN}
           text={isLoading ? 'Creating...' : CTA.SIGN_IN}
+          className="w-full md:w-40"
         />
       </div>
     </form>
