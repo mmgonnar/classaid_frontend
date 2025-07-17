@@ -7,7 +7,7 @@ import SectionTitleDash from '@/components/small components/SectionTitleDash';
 import UserContext from '@/context/UserContext';
 import { useContext, useState } from 'react';
 import AddCardButton from '@/components/buttons/AddCardButton';
-import KpiCard from '@/components/cards/KpiCard';
+import KpiCards from '@/components/cards/KpiCards';
 import AddClassModal from '@/components/modals/AddClassModal';
 
 function SubjectDashboard() {
@@ -31,11 +31,8 @@ function SubjectDashboard() {
           </div>
           <PageTitle className="pb-2" />
           <SectionTitleDash title="Classes overview" href="/dashboard/classes" />
-          <div className="custom-sm:grid-cols-2 grid w-[100%] max-w-3xl items-center gap-2 pb-4 sm:grid-cols-2 md:grid-cols-3 md:justify-center">
-            <KpiCard />
-            <KpiCard />
-            <KpiCard />
-          </div>
+          <KpiCards />
+          <div className="custom-sm:grid-cols-2 grid w-[100%] max-w-3xl items-center gap-2 pb-4 sm:grid-cols-2 md:grid-cols-3 md:justify-center"></div>
 
           <div>
             <SectionTitleDash title="All Classes" href="/dashboard/classes" />

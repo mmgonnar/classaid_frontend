@@ -20,8 +20,8 @@ function Title() {
           </p>
 
           <div className="mt-4 flex justify-center gap-4 sm:mt-6">
-            <MainButton variant="primary" text={CTA.MORE_INFO} />
-            <MainButton variant="secondary" text={CTA.TRY_FREE} />
+            <MainButton href="/pricing" variant="primary" text={CTA.MORE_INFO} />
+            <MainButton href="/register" variant="secondary" text={CTA.TRY_FREE} />
           </div>
           <Image
             src={browserScreen}

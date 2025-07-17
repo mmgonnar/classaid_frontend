@@ -7,16 +7,16 @@ import phoneScreen from '../../img/phone_screen.png';
 function FeaturesSection() {
   return (
     <section className="bg-third md:grid-rows-2fr] grid grid-cols-1 justify-items-center gap-x-2 pt-10 md:grid-cols-[1fr_auto_1fr]">
-      <div className="w-fit text-balance md:w-auto md:justify-self-end">
-        <TextTemplate align="right" />
+      <div className="w-fit pb-4 text-balance md:w-auto md:justify-self-end">
+        <TextTemplate className="" align="right" />
       </div>
-      <div className="w-fit text-balance md:w-auto md:justify-self-start">
+      <div className="w-fit pb-4 text-balance md:w-auto md:justify-self-start">
         <TextTemplate align="left" />
       </div>
-      <div className="w-fit text-balance md:w-auto md:justify-self-end">
+      <div className="w-fit pb-4 text-balance md:w-auto md:justify-self-end">
         <TextTemplate align="right" />
       </div>
-      <div className="w-fit text-balance md:w-auto md:justify-self-start">
+      <div className="w-fit pb-4 text-balance md:w-auto md:justify-self-start">
         <TextTemplate align="left" />
       </div>
 

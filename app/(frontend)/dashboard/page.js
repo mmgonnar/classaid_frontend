@@ -1,7 +1,6 @@
 'use client';
 import BaseCard from '@/components/cards/BaseCard';
 import ClassCards from '@/components/cards/ClassCards';
-import BouncyLoader from '@/components/loaders/BouncyLoader';
 import PageTitle from '@/components/small components/PageTitle';
 import UserContext from '@/context/UserContext';
 
@@ -12,6 +11,12 @@ import AddCardButton from '@/components/buttons/AddCardButton';
 import AddClassModal from '@/components/modals/AddClassModal';
 import Loading from '@/components/small components/Loading';
 import GroupCards from '@/components/cards/GroupCards';
+import KpiCards from '@/components/cards/KpiCards';
+import CalendarTodayRoundedIcon from '@mui/icons-material/CalendarTodayRounded';
+import ErrorOutlineRoundedIcon from '@mui/icons-material/ErrorOutlineRounded';
+import QueryBuilderRoundedIcon from '@mui/icons-material/QueryBuilderRounded';
+import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftRounded';
+import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 
 function Dashboard() {
   const { userData, loading } = useContext(UserContext);
@@ -32,38 +37,104 @@ function Dashboard() {
 
   return (
     <DashboardLayout>
-      <div className="pl-60px grid h-full gap-4 overflow-y-auto md:grid-cols-[1fr_250px]">
-        <div className="flex flex-col">
-          <h1 className="text-primary text-lg font-bold">Welcome, {userData?.name}! </h1>
-          <PageTitle className="pb-2" />
-          <SectionTitleDash title="Classes" href="/dashboard/classes" />
-          <div className="custom-md:grid-cols-4 custom-sm:grid-cols-2 grid w-[100%] items-center gap-2 pb-4 md:justify-center">
-            <AddCardButton
-              toggleModal={handleAddClassModal}
-              data-auto-animate-id="add-class-button"
-            />
-            <ClassCards />
-          </div>
-          <SectionTitleDash title="Groups" href="/dashboard/attendance" />
-          <div className="w-[100%] items-center gap-2 pb-4 sm:grid-cols-1 md:justify-center">
-            {/* <AddCardButton
-              toggleModal={handleAddClassModal}
-              data-auto-animate-id="add-class-button"
-            />
-            <ClassCards /> */}
-            <GroupCards />
-          </div>
-        </div>
-        <div className="w-[]">
-          <BaseCard border="lightGrey" className="w-[100%] bg-white p-2">
-            {/* <Calendar /> */}
-            <div className="mb-3 flex h-[400px] w-full flex-nowrap items-center justify-center bg-neutral-200">
-              Calendario aqui
+      <div className="flex flex-col">
+        <h1 className="text-primary pb-1 text-2xl font-bold">Welcome, {userData?.name}! </h1>
+        <PageTitle className="pb-4" />
+        <div className="pl-60px grid h-full gap-4 overflow-y-auto md:grid-cols-[1fr_290px]">
+          <div>
+            <KpiCards />
+            <SectionTitleDash title="Classes" href="/dashboard/classes" />
+            <BaseCard
+              border="lightGrey"
+              className="!w-[100%] items-center justify-center bg-white p-6"
+              animation="none"
+            >
+              <div className="custom-md:grid-cols-4 custom-sm:grid-cols-2 grid w-[100%] items-center gap-2 md:justify-center">
+                <AddCardButton
+                  toggleModal={handleAddClassModal}
+                  data-auto-animate-id="add-class-button"
+                />
+                <ClassCards />
+              </div>
+            </BaseCard>
+            <SectionTitleDash title="Groups" href="/dashboard/groups" />
+            <div className="w-[100%] items-center gap-2 pb-4 sm:grid-cols-1 md:justify-center">
+              <GroupCards />
             </div>
-            <div className="mb-3 flex h-[210px] w-full items-center justify-center bg-neutral-200">
-              No sé qué aqui
-            </div>
-          </BaseCard>
+          </div>
+          <div className="">
+            <BaseCard
+              animation="none"
+              border="lightGrey"
+              className="mb-4 w-[100%] rounded-lg bg-white p-2"
+            >
+              <div className="bg-third text-primary mb-3 flex w-full items-center justify-evenly rounded-full text-sm font-medium">
+                <KeyboardArrowLeftRoundedIcon />
+                <p>July 2025</p>
+                <ChevronRightRoundedIcon />
+              </div>
+              <div className="mb-3 flex h-60 w-full items-center justify-center rounded-lg bg-neutral-200">
+                Calendario aqui
+              </div>
+            </BaseCard>
+            <BaseCard
+              animation="none"
+              border="lightGrey"
+              className="w-[100%] rounded-lg bg-white p-2"
+            >
+              {/* <Calendar /> */}
+
+              <div className="flex w-full items-center justify-between p-2">
+                <p className="text-primary text-sm font-semibold">Upcoming Tasks</p>
+                <button className="flex cursor-pointer items-center gap-1">
+                  <CalendarTodayRoundedIcon className="!text-[14px] text-neutral-500" />
+                  <p className="text-xs text-neutral-600">Calendar</p>
+                </button>
+              </div>
+              <div className="flex w-full flex-col gap-3">
+                <div className="w-full rounded-sm outline-1 outline-neutral-200">
+                  <div className="flex items-center justify-between gap-2 p-2">
+                    <ErrorOutlineRoundedIcon className="!text-[16px] text-red-600" />
+
+                    <div className="w-[70%] text-sm">
+                      <p className="text-neutral-700">English evaluation</p>
+                      <p className="text-xs text-neutral-400">Due today</p>
+                    </div>
+                    <div className="flex h-5 w-12 justify-center rounded-full bg-red-500 text-[12px] text-white">
+                      high
+                    </div>
+                  </div>
+                </div>
+                <div className="w-full rounded-sm outline-1 outline-neutral-200">
+                  <div className="flex items-center justify-between gap-2 p-2">
+                    <QueryBuilderRoundedIcon className="!text-[16px] text-neutral-600" />
+
+                    <div className="w-[70%] text-sm">
+                      <p className="truncate text-neutral-800">Update grades</p>
+                      <p className="text-xs text-neutral-400">Due today</p>
+                    </div>
+
+                    <div className="flex h-5 w-12 justify-center rounded-full bg-green-600 text-[12px] text-white">
+                      low
+                    </div>
+                  </div>
+                </div>
+                <div className="w-full rounded-sm outline-1 outline-neutral-200">
+                  <div className="flex items-center justify-between gap-2 p-2">
+                    <QueryBuilderRoundedIcon className="!text-[16px] text-neutral-600" />
+
+                    <div className="w-[70%] text-sm">
+                      <p className="truncate text-neutral-800">Prepare English A1 evaluation</p>
+                      <p className="text-xs text-neutral-400">Due today</p>
+                    </div>
+                    <div className="flex h-5 w-12 justify-center rounded-full bg-green-600 text-[12px] text-white">
+                      low
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </BaseCard>
+          </div>
         </div>
       </div>
       <AddClassModal modalOpen={addClassModalOpen} toggleModal={handleAddClassModal} />

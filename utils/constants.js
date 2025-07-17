@@ -17,6 +17,10 @@ import LayersOutlinedIcon from '@mui/icons-material/LayersOutlined';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import LogoutIcon from '@mui/icons-material/Logout';
 import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
+import PeopleOutlineRoundedIcon from '@mui/icons-material/PeopleOutlineRounded';
+import SubjectRoundedIcon from '@mui/icons-material/SubjectRounded';
+import QueryBuilderRoundedIcon from '@mui/icons-material/QueryBuilderRounded';
+import TrendingUpRoundedIcon from '@mui/icons-material/TrendingUpRounded';
 import { CTA } from './enums';
 
 export const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -271,5 +275,40 @@ export const actions = [
     text: 'Delete',
     id: 'delete',
     onClick: 'onDelete',
+  },
+];
+
+export const kpisDashboard = [
+  {
+    type: 'text',
+    name: 'Total Students',
+    id: 'totalStudents',
+    icon: PeopleOutlineRoundedIcon,
+    data: '256',
+    autoComplete: 'off',
+  },
+  {
+    type: 'text',
+    name: 'Active Classes',
+    id: 'activeClasses',
+    icon: SubjectRoundedIcon,
+    data: '9',
+    autoComplete: 'off',
+  },
+  {
+    type: 'text',
+    name: 'Active Hours',
+    id: 'activeHours',
+    icon: QueryBuilderRoundedIcon,
+    data: '40',
+    autoComplete: 'off',
+  },
+  {
+    type: 'text',
+    name: 'Avg Grade',
+    id: 'averageGrade',
+    icon: TrendingUpRoundedIcon,
+    data: '89%',
+    autoComplete: 'off',
   },
 ];

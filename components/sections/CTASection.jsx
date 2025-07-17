@@ -15,7 +15,7 @@ function CTASection({
         <h3 className="text-gray-600">{subtitle}</h3>
       </div>
       <div className="flex items-center sm:self-stretch">
-        <MainButton variant="primary" text={buttonText} />
+        <MainButton href="/register" variant="primary" text={buttonText} />
       </div>
     </section>
   );

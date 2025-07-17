@@ -17,6 +17,7 @@ import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import ActionMenu from '@/components/menus/ActionMenu';
 import WarningModal from '@/components/modals/WarningModal';
+import Table from '@/components/Table';
 
 function SubjectDetailPage() {
   const router = useRouter();
@@ -141,14 +142,7 @@ function SubjectDetailPage() {
           <MainButton onClick={goBack} text="Back to Classes" />
         </div>
         {/* Table */}
-        <BaseCard border="lightGrey" align="center" className="max-w-300 bg-white">
-          <div className="flex gap-6">
-            <p>#</p>
-            <p>Student&apos;s Name</p>
-            <p>Evaluation</p>
-            <p>Absences</p>
-          </div>
-        </BaseCard>
+        <Table />
       </div>
       <EditClassModal
         modalOpen={editModalOpen}

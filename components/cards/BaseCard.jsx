@@ -7,6 +7,7 @@ function BaseCard({
   className = '',
   toggleModal,
   size = 'medium',
+  animation = 'scale',
 }) {
   const borders = {
     blue: 'border-primary',
@@ -24,9 +25,14 @@ function BaseCard({
     // medium: 'max-w-sm',
     full: 'w-full',
   };
+
+  const animations = {
+    scale: 'transition-all duration-300 hover:z-10 hover:scale-[1.02]',
+    none: '',
+  };
   return (
     <div
-      className={`flex !w-[97%] flex-col items-center rounded-2xl border-2 transition-all duration-300 hover:z-10 hover:scale-[1.02] hover:shadow-md ${className} ${borders[border]} ${alignment[align]} ${sizes[size]}`}
+      className={`flex !w-[97%] flex-col items-center rounded-2xl border-1 ${className} ${borders[border]} ${alignment[align]} ${sizes[size]} ${animations[animation]}`}
       onClick={toggleModal}
     >
       {children}

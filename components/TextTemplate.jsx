@@ -3,6 +3,7 @@
 function TextTemplate({
   align = 'center',
   text = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
+  className = '',
 }) {
   const alignment = {
     center: 'text-center md:text-justify',

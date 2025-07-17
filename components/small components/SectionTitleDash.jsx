@@ -12,7 +12,7 @@ function SectionTitleDash({ title = '', href = '' }) {
       <p className="text-primary pb-2 text-sm">{title}</p>
       {dashboardRoute && (
         <Link href={href}>
-          <p className="flex cursor-pointer pb-2 text-xs text-neutral-400">
+          <p className="hover:text-primary flex cursor-pointer pb-2 text-xs text-neutral-400">
             View All <ChevronRightRoundedIcon sx={{ fontSize: '1.3em' }} />
           </p>
         </Link>

@@ -6,9 +6,7 @@ import MainLayout from '@/components/layouts/MainLayout';
 
 function Landing() {
   return (
-    <MainLayout
-    // allowMainScroll={true}
-    >
+    <MainLayout allowMainScroll={false}>
       <Banner />
       <TextBlock />
       <FeaturesSection />

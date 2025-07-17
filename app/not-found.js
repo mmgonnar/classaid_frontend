@@ -1,5 +1,5 @@
 'use client';
-import './globals.css';
+import './(frontend)/globals.css';
 import Copyright from '@/components/Copyright';
 import Logo from '@/components/Logo';
 import MainButton from '@/components/buttons/MainButton';
