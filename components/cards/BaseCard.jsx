@@ -13,6 +13,7 @@ function BaseCard({
     blue: 'border-primary',
     grey: 'border-neutral-500',
     lightGrey: 'border-neutral-200',
+    none: 'border-none',
   };
 
   const alignment = {
@@ -32,7 +33,7 @@ function BaseCard({
   };
   return (
     <div
-      className={`flex !w-[97%] flex-col items-center rounded-2xl border-1 ${className} ${borders[border]} ${alignment[align]} ${sizes[size]} ${animations[animation]}`}
+      className={`flex w-full flex-col items-center rounded-2xl border-1 ${className} ${borders[border]} ${alignment[align]} ${sizes[size]} ${animations[animation]}`}
       onClick={toggleModal}
     >
       {children}

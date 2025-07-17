@@ -44,6 +44,14 @@ html, body {
   width: var(--uib-size);
 }
 
+.rdp-root {
+  --rdp-day-height: 36px!important;
+  --rdp-day-width: 34px;
+  --rdp-accent-color: #1E3A8A!important;
+  --rdp-day_button-height:10px!important;
+  --rdp-day_button-width::10px!important;
+  --rdp-day_button-border: 7px solid transparent!important;
+}
 
 
 .line {

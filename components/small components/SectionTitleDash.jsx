@@ -8,7 +8,7 @@ function SectionTitleDash({ title = '', href = '' }) {
 
   const dashboardRoute = pathname === '/dashboard';
   return (
-    <div className="flex justify-between pt-3">
+    <div className="flex w-full justify-between pt-3">
       <p className="text-primary pb-2 text-sm">{title}</p>
       {dashboardRoute && (
         <Link href={href}>

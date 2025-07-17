@@ -20,7 +20,7 @@ function Calendar() {
   const defaultClassNames = getDefaultClassNames();
 
   return (
-    <div className="flex max-w-[200px] justify-center">
+    <div className="flex justify-center p-1">
       <DayPicker
         animate
         mode="single"

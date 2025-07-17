@@ -1,7 +1,7 @@
 import Providers from '@/context/Providers';
 import { Toaster } from 'react-hot-toast';
 import './(frontend)/globals.css';
-import BodyWrapper from './bodyWraper';
+import BodyWrapper from './BodyWraper';
 
 export const metadata = {
   title: 'ClassAid',
@@ -48,9 +48,7 @@ export default function RootLayout({ children }) {
         {/* <link rel="shortcut icon" href="/icons/favicon.ico" /> */}
         <meta name="viewport" content="width=device-width,initial-scale=1.0" />
       </head>
-      <body
-      // className={isProtectedRoute ? "overflow-hidden" : "overflow-auto"}
-      >
+      <body>
         <BodyWrapper>
           <Providers>
             {children} <Toaster position="top-center" />

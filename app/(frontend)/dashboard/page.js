@@ -39,15 +39,17 @@ function Dashboard() {
   return (
     <DashboardLayout>
       <div className="flex flex-col">
-        <h1 className="text-primary pb-1 text-2xl font-bold">Welcome, {userData?.name}! </h1>
+        <h1 className="text-primary pb-1 text-xl font-bold md:text-2xl">
+          Welcome, {userData?.name}!{' '}
+        </h1>
         <PageTitle className="pb-4" />
-        <div className="pl-60px grid h-full gap-4 overflow-y-auto md:grid-cols-[1fr_340px]">
+        <div className="pl-60px grid h-full grid-cols-1 gap-4 overflow-y-auto md:grid-cols-[1fr_auto]">
           <div>
             <KpiCards />
             <SectionTitleDash title="Classes" href="/dashboard/classes" />
             <BaseCard
               border="lightGrey"
-              className="!w-[100%] items-center justify-center bg-white p-6"
+              className="w-full items-center justify-center bg-white p-3 md:p-6"
               animation="none"
             >
               <div className="custom-md:grid-cols-4 custom-sm:grid-cols-2 grid w-[100%] items-center gap-2 md:justify-center">
@@ -67,7 +69,7 @@ function Dashboard() {
             <BaseCard
               animation="none"
               border="lightGrey"
-              className="mb-4 w-[100%] rounded-lg bg-white p-2"
+              className="mb-4 w-[100%] rounded-lg bg-white"
             >
               <Calendar />
             </BaseCard>

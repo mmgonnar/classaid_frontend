@@ -14,7 +14,7 @@ function GroupCards() {
   return (
     <div className="contents">
       <BaseCard animation="none" border="lightGrey" className="!w-full bg-white" size="full">
-        <div className="custom-md:grid-cols-1 grid w-full gap-4 p-6 lg:grid-cols-2">
+        <div className="custom-md:grid-cols-1 grid w-full gap-4 p-3 md:p-6 lg:grid-cols-2">
           {classData?.slice(0, 4).map((classItem) => (
             <div
               key={classItem._id}

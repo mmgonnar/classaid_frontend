@@ -14,7 +14,7 @@ function Table() {
   ];
 
   return (
-    <div className="flex w-full max-w-4xl items-center justify-center">
+    <div className="custom-sm:w-full block w-[98%] max-w-4xl items-center justify-center overflow-y-auto">
       <table className="w-full rounded-lg">
         <thead>
           <tr className="bg-gray-200 text-left">
