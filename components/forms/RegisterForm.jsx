@@ -1,0 +1,76 @@
+'use client';
+import { formInputs } from '@/utils/constants';
+import { CTA } from '@/utils/enums';
+import MainButton from '../buttons/MainButton';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { frontUserValidationSchema } from '@/schemas/userSchema';
+import api from '@/utils/Api/ApiUser';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { apiCallToast } from '@/utils/functions';
+
+function RegisterForm() {
+  const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const route = useRouter();
+
+  const registerInputs = formInputs.filter((item) => item.isRegister);
+
+  const { handleSubmit, register, formState } = useForm({
+    resolver: yupResolver(frontUserValidationSchema),
+  });
+
+  const onSubmit = async (userData) => {
+    apiCallToast(api.createUser(userData), {
+      loading: 'Creating user...',
+      redirectTo: 'signin',
+      successMessage: 'User created correctly',
+      errorMessage: 'Error creating user',
+      router: route,
+    });
+  };
+
+  return (
+    <form
+      action="submit"
+      noValidate
+      className="flex flex-col gap-2"
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      {registerInputs.map((item) => (
+        <div key={item.id} className="mb-1">
+          <div className="flex max-w-90 items-center rounded-md border border-neutral-400 p-1 text-sm">
+            {item.icon && <item.icon className="mr-1 h-5 w-5 text-neutral-400" />}
+
+            <input
+              type={item.type}
+              name={item.name}
+              id={item.id}
+              placeholder={item.placeholder}
+              autoComplete={item.autoComplete}
+              className="flex-1 outline-none"
+              {...register(item.name)}
+            />
+          </div>
+          {formState.errors[item.name] && (
+            <p className="text-xs text-red-500">{formState.errors[item.name].message}</p>
+          )}
+        </div>
+      ))}
+      {/* ERROR */}
+      {error && <p className="text-center text-xs text-red-500">{error}</p>}
+      <div className="flex justify-center pt-4 sm:justify-start">
+        <MainButton
+          type="submit"
+          variant="primary"
+          //text={CTA.SIGN_IN}
+          text={isLoading ? 'Creating...' : CTA.SIGN_IN}
+          className="w-full md:w-40"
+        />
+      </div>
+    </form>
+  );
+}
+
+export default RegisterForm;

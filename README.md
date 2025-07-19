@@ -1,34 +1,115 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ClassAid - Teacher's Daily Tools Application
 
-## Getting Started
+ClassAid is a modern web application designed to help teachers streamline daily classroom management. It provides essential tools for organizing classes, managing students, and tracking progress, all within a clean, modern interface.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Live Demo
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Check out the latest version of the app here:  
+**[classaidfrontend.vercel.app](https://classaidfrontend.vercel.app)**
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+---
 
-## Learn More
+## Features
 
-To learn more about Next.js, take a look at the following resources:
+### Core Features
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Class Management:** Create, edit, and delete classes.
+- **Student Management:** (In progress) Add and manage students within classes.
+- **Profile Management:** Update user profile information.
+- **Authentication:** Secure registration and login.
+- **Dashboard:** Overview of classes, subjects, and key metrics.
+- **Subject Details:** View and manage subjects within classes.
+- **Responsive UI:** Works on all devices with a modern, teacher-focused design.
+- **Loading States:** Skeleton, spinner, and bouncy loaders for smooth UX.
+- **Error Handling:** User-friendly error boundaries and feedback.
+- **Export Data:** (In progress) Export class or student data.
+- **Calendar:** (In progress) Calendar component for scheduling and upcoming tasks.
+- **Upcoming Tasks:** (In progress) Reminders and to-dos for teachers.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Technologies Used
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Frontend:** React 18+, Next.js 14, Tailwind CSS
+- **Backend:** API routes in Next.js (app/(backend)/api)
+- **Database:** MongoDB Atlas (cloud-hosted)
+- **State Management:** React Context API (Auth, User, Class)
+- **UI Components:** Modular, reusable components (cards, forms, modals, menus, loaders, etc.)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## Project Structure
+
+- `app/(frontend)`: All frontend pages (dashboard, profile, register, signin, etc.)
+- `app/(backend)/api`: API routes for classes, users, authentication, etc.
+- `components/`: UI components (cards, forms, modals, loaders, etc.)
+- `context/`: React context providers for state management
+- `controllers/`: Backend logic for classes, users, and login
+- `models/`: Mongoose models for users, classes, students, attendance, evaluation, and scores
+- `schemas/`: Validation schemas for user and subject data
+- `utils/`: Utility functions and API service classes
+
+---
+
+## Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/mmgonnar/classaid_frontend
+   ```
+2. **Navigate to the project directory:**
+   ```bash
+   cd classaid
+   ```
+3. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+4. **Create a `.env.local` file in the project root:**
+   ```env
+   # MongoDB Atlas connection string
+   MONGODB_URI=your_mongodb_atlas_connection_string
+   ```
+
+   - Make sure your MongoDB Atlas connection string is valid and your IP is whitelisted in the Atlas dashboard.
+5. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+6. **Open your browser and go to:**  
+   [http://localhost:3000](http://localhost:3000)
+
+---
+
+## Development & Best Practices
+
+- Component-based architecture for scalability
+- Modular API service and utility functions
+- Error boundaries for robust error handling
+- Multiple loading state components for better UX
+- Type safety and validation with schemas
+- Accessibility considerations for educational use
+- **Keep your `.env.local` file secure and never commit it to version control**
+
+---
+
+## Features in Progress
+
+- Calendar integration
+- Adding students to classes
+- Export button for data
+- Upcoming tasks and reminders
+
+---
+
+## Contact
+
+For questions or suggestions:
+
+- **Email:** [mmgonnar@gmail.com](mailto:mmgonnar@gmail.com)
+- **LinkedIn:** [/mmgonnar](https://www.linkedin.com/in/mmgonnar/)
+- **Twitter:** [@mmgonnar](https://x.com/mmgonnar)
+
+Your feedback and contributions are welcome! This project aims to make teaching more efficient and enjoyable.
