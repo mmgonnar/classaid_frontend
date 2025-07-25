@@ -10,13 +10,9 @@ export async function updateClass(req, id) {
     const validatedBody = { ...body };
     await updateSubjectValidation.validate(validatedBody);
 
-    console.log(validatedBody, 'BODY VALIDATED');
-
     const updatedClass = await Class.findByIdAndUpdate(id, body, { new: true, runValidators: true })
       .populate('teacher')
       .orFail(() => new Error('Class not found'));
-
-    console.log(updatedClass, 'UPDATE CLASES');
 
     return NextResponse.json(
       {

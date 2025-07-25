@@ -22,7 +22,6 @@ function AddClassForm({ toggleModal }) {
   const onSubmit = async (formData) => {
     setIsLoading(true);
     try {
-      console.log('onSubmit', onSubmit);
       const result = await apiCallToast(handleCreateClass(formData), {
         loading: 'Creating class...',
         successMessage: 'Class created correctly',

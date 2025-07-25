@@ -14,12 +14,12 @@ function DashboardLayout({ children }) {
 
   return (
     <MainLayout allowMainScroll={false}>
-      <div className="bg-secondary bg-opacity-90 grid h-full grid-cols-[auto_1fr]">
+      <div className="bg-secondary bg-opacity-90 mb-6 grid h-full grid-cols-[auto_1fr]">
         <div className="flex h-full">
           <Sidebar className="" />
         </div>
         {/* <ChildrenSection>{children}</ChildrenSection> */}
-        <div className="h-[90vh] overflow-y-scroll p-2 pb-4 md:p-4">{children}</div>
+        <div className="mt-[50px] h-[90vh] overflow-y-scroll p-2 pb-4 md:p-4">{children}</div>
       </div>
     </MainLayout>
   );
