@@ -75,7 +75,6 @@ function SubjectDetailPage() {
         successMessage: "Class deleted successfully'",
         errorMessage: 'Error deleting class',
       });
-      console.log(result, 'xxxxx');
       if (result && result.success) {
         toggleWarningModal(false);
         router.push('/dashboard/classes');
@@ -91,7 +90,6 @@ function SubjectDetailPage() {
     setEditModalOpen(!editModalOpen);
   };
   const toggleWarningModal = () => {
-    console.log('click');
     setWarningModalOpen(!warningModalOpen);
   };
 

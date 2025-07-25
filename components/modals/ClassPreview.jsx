@@ -6,7 +6,6 @@ import { useEscapeKeyClose } from '@/hooks/useEscapeKeyClose';
 import DashboardLayout from '../layouts/DashboardLayout';
 
 function ClassPreview({ classId, onClose, isOpen }) {
-  console.log(classId, 'adsasdasdawd');
   useEscapeKeyClose(isOpen, onClose);
 
   if (!isOpen) return null;

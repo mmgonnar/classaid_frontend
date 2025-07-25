@@ -2,7 +2,6 @@ import { Class } from '@/models/class';
 import { NextResponse } from 'next/server';
 
 export async function deleteClass(id) {
-  console.log(id, 'id');
   try {
     const subject = await Class.findByIdAndDelete(id)
       // .populate('teacher')

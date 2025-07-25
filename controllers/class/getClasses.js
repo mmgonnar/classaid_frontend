@@ -17,7 +17,6 @@ export async function getClasses() {
         success: true,
         message: 'Classes found successfully',
         data: classes,
-        // Array.isArray(classes) ? classes : [classes],
       },
       { status: 200 },
     );

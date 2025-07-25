@@ -38,12 +38,12 @@ function Header({ children }) {
     <>
       <header
         className={cn(
-          'fixed top-0 z-4 w-full transition-all duration-100 md:p-0 md:px-6',
+          'fixed top-0 z-5 w-full transition-all duration-100 md:p-0 md:px-6',
           'bg-white shadow-xs',
           'sm:bg-transparent sm:shadow-none',
           isScrolled && 'sm:bg-white sm:shadow-md',
           !isScrolled && 'shadow-lg',
-          isProtectedRoute && 'border-b-1 border-neutral-300 shadow-none',
+          isProtectedRoute && 'z-10 border-b-1 border-neutral-300 shadow-none sm:bg-white',
         )}
       >
         <div className="mx-auto flex h-[50px] w-full max-w-7xl items-center justify-between px-6 text-sm transition-all duration-100 md:p-0 md:px-6">

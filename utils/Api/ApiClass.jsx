@@ -9,7 +9,6 @@ class ApiSubject {
 
   getHeaders() {
     const token = getToken();
-    console.log(getToken(), 'xxxxxxxxxxx');
 
     return {
       'Content-Type': 'application/json',
