@@ -20,21 +20,19 @@ function Calendar() {
   const defaultClassNames = getDefaultClassNames();
 
   return (
-    <div className="flex justify-center p-1">
-      <DayPicker
-        animate
-        mode="single"
-        selected={selected}
-        onSelect={setSelected}
-        disabled={handleDate}
-        navLayout="around"
-        classNames={{
-          today: `outline-2 outline-[#1E3A8A] rounded-full font-medium text-[#1E3A8A] -outline-offset-6 ${selected ? 'outline-none' : 'outline-2 '}`,
-          chevron: ` fill-[#1E3A8A]`,
-          selected: `bg-[#1E3A8A] text-white rounded-full`,
-        }}
-      />
-    </div>
+    <DayPicker
+      animate
+      mode="single"
+      selected={selected}
+      onSelect={setSelected}
+      disabled={handleDate}
+      navLayout="around"
+      classNames={{
+        today: `outline-2 outline-[#1E3A8A] rounded-full font-medium text-[#1E3A8A] -outline-offset-6 ${selected ? 'outline-none' : 'outline-2 '}`,
+        chevron: ` fill-[#1E3A8A]`,
+        selected: `bg-[#1E3A8A] text-white rounded-full`,
+      }}
+    />
   );
 }
 
