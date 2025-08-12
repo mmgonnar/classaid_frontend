@@ -4,20 +4,18 @@ import ClassCards from '@/components/cards/ClassCards';
 import PageTitle from '@/components/small components/PageTitle';
 import UserContext from '@/context/UserContext';
 
-import { useContext, useState } from 'react';
-import DashboardLayout from '@/components/layouts/DashboardLayout';
-import SectionTitleDash from '@/components/small components/SectionTitleDash';
 import AddCardButton from '@/components/buttons/AddCardButton';
-import AddClassModal from '@/components/modals/AddClassModal';
-import Loading from '@/components/small components/Loading';
 import GroupCards from '@/components/cards/GroupCards';
 import KpiCards from '@/components/cards/KpiCards';
+import DashboardLayout from '@/components/layouts/DashboardLayout';
+import AddClassModal from '@/components/modals/AddClassModal';
+import Calendar from '@/components/small components/Calendar';
+import Loading from '@/components/small components/Loading';
+import SectionTitleDash from '@/components/small components/SectionTitleDash';
 import CalendarTodayRoundedIcon from '@mui/icons-material/CalendarTodayRounded';
 import ErrorOutlineRoundedIcon from '@mui/icons-material/ErrorOutlineRounded';
 import QueryBuilderRoundedIcon from '@mui/icons-material/QueryBuilderRounded';
-import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftRounded';
-import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
-import Calendar from '@/components/small components/Calendar';
+import { useContext, useState } from 'react';
 
 function Dashboard() {
   const { userData, loading } = useContext(UserContext);
@@ -69,7 +67,7 @@ function Dashboard() {
             <BaseCard
               animation="none"
               border="lightGrey"
-              className="mb-4 w-[100%] rounded-lg bg-white"
+              className="mb-4 w-120 rounded-lg bg-white"
             >
               <Calendar />
             </BaseCard>

@@ -19,7 +19,7 @@ function DashboardLayout({ children }) {
           <Sidebar className="" />
         </div>
         {/* <ChildrenSection>{children}</ChildrenSection> */}
-        <div className="mt-[50px] h-[90vh] overflow-y-scroll p-2 pb-4 md:p-4">{children}</div>
+        <div className="mt-[50px] h-[90vh] overflow-y-scroll p-2 md:p-4">{children}</div>
       </div>
     </MainLayout>
   );

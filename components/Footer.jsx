@@ -1,11 +1,10 @@
 'use client';
-import Link from 'next/link';
-import { menuItems, PROTECTED_ROUTES } from '../utils/constants';
-import Weather from './Weather';
-import { useEffect, useState } from 'react';
-import { getToken } from '@/utils/token';
 import { cn } from '@/utils/functions';
+import { getToken } from '@/utils/token';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { menuItems, PROTECTED_ROUTES } from '../utils/constants';
 
 function Footer() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
